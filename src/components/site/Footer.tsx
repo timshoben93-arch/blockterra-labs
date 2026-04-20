@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { TALENTS } from "@/data/talents";
+import { DOCS } from "@/data/docs";
 
 export const Footer = () => {
   const navLinks = [
     { label: "Company", to: "/company" },
+    { label: "Docs", to: "/docs" },
     { label: "RWA", to: "/#rwa" },
     { label: "Industries", to: "/#industries" },
     { label: "Insights", to: "/#insights" },
@@ -82,6 +84,21 @@ export const Footer = () => {
                     className="text-sm text-surface-dark-foreground/75 hover:text-primary-glow transition-colors"
                   >
                     {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h4 className="mt-8 font-display font-semibold text-xs uppercase tracking-[0.18em] text-surface-dark-foreground/50">
+              Docs
+            </h4>
+            <ul className="mt-5 space-y-3">
+              {DOCS.map((d) => (
+                <li key={d.slug}>
+                  <Link
+                    to={`/docs/${d.slug}`}
+                    className="text-sm text-surface-dark-foreground/75 hover:text-primary-glow transition-colors"
+                  >
+                    {d.title}
                   </Link>
                 </li>
               ))}

@@ -103,9 +103,11 @@ const TalentPage = () => {
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold tracking-tight">
               About <span className="text-gradient">the role</span>
             </h2>
-            <p className="mt-6 text-base md:text-lg text-foreground/80 leading-relaxed">
-              {talent.overview}
-            </p>
+            <div className="mt-6 space-y-4 text-base md:text-lg text-foreground/80 leading-relaxed">
+              {talent.overview.split("\n\n").map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
         </section>
 

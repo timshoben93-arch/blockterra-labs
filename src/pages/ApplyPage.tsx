@@ -64,8 +64,27 @@ const ApplyPage = () => {
     }
 
     setSubmitting(true);
-    // Simulate submission. Wire to backend / edge function when available.
-    await new Promise((r) => setTimeout(r, 800));
+
+    // Submit to Google Form (no-cors: response is opaque but submission succeeds)
+    const formData = new FormData();
+    formData.append("entry.416377519", talent.title);
+    formData.append("entry.2005620554", String(parsed.data.firstName));
+    formData.append("entry.384439563", String(parsed.data.lastName));
+    formData.append("entry.1045781291", String(parsed.data.email));
+    formData.append("entry.1065046570", String(parsed.data.contact));
+    formData.append("entry.1166974658", String(parsed.data.location));
+    formData.append("entry.839337160", String(parsed.data.social));
+    formData.append("entry.1961290135", String(parsed.data.experience));
+
+    try {
+      await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSfT4euNBTT2UYkPLXdQuFO9Hs0dOqjvKpwFXzsHsROxMXhY_A/formResponse",
+        { method: "POST", mode: "no-cors", body: formData }
+      );
+    } catch {
+      // no-cors hides errors; treat as fire-and-forget
+    }
+
     setSubmitting(false);
     setSubmitted(true);
   };

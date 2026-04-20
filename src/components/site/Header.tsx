@@ -71,6 +71,12 @@ export const Header = () => {
           >
             Company
           </Link>
+          <Link
+            to="/docs"
+            className="px-3 py-2 rounded-lg text-sm font-medium text-foreground/75 hover:text-foreground hover:bg-secondary/70 transition-colors"
+          >
+            Docs
+          </Link>
           {NAV.map((item) => (
             <a
               key={item.label}
