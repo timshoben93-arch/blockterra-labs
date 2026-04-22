@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin } from "lucide-react";
 import { TALENTS } from "@/data/talents";
 import { DOCS } from "@/data/docs";
 
@@ -50,6 +50,17 @@ export const Footer = () => {
               support@blockterralab.com
               <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </a>
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/c/blockterra-lab/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="BlockTerraLab on LinkedIn"
+                className="group inline-flex h-10 w-10 items-center justify-center rounded-xl border border-surface-dark-foreground/15 bg-surface-dark-foreground/5 text-surface-dark-foreground/80 hover:text-primary-foreground hover:bg-gradient-primary hover:border-transparent hover:shadow-glow transition-all"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           {/* Talent */}
@@ -132,6 +143,15 @@ export const Footer = () => {
             © {new Date().getFullYear()} BlockTerraLab. All rights reserved.
           </p>
           <div className="flex gap-7 text-xs text-surface-dark-foreground/55">
+            <a
+              href="https://www.linkedin.com/c/blockterra-lab/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-surface-dark-foreground transition-colors"
+            >
+              <Linkedin className="h-3.5 w-3.5" />
+              LinkedIn
+            </a>
             <a href="#" className="hover:text-surface-dark-foreground transition-colors">Privacy</a>
             <a href="#" className="hover:text-surface-dark-foreground transition-colors">Terms</a>
             <a href="#" className="hover:text-surface-dark-foreground transition-colors">Security</a>
