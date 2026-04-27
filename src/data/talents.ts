@@ -10,6 +10,7 @@ import {
   Package,
   Settings,
   ShieldCheck,
+  Network,
   type LucideIcon,
 } from "lucide-react";
 
@@ -28,6 +29,35 @@ const PROJECT_CONTEXT =
   "BlockTerraLab is building a Real-World Asset (RWA) platform that enables fractional ownership of real estate through blockchain tokenization, enhanced with AI-driven personalization and immersive 3D property exploration.";
 
 export const TALENTS: Talent[] = [
+  {
+    slug: "blockchain-architect",
+    title: "Blockchain Architect",
+    short: "Blockchain Architect",
+    tagline: "Architect the secure, scalable Web3 core of our RWA platform.",
+    icon: Network,
+    overview:
+      "We’re looking for a Blockchain Architect to help design and build the core Web3 infrastructure behind this project. This role sits at the intersection of smart contract architecture, backend integration, and product scalability — working closely with our engineering, product, and DevOps teams to bring secure, production-ready blockchain features to life.",
+    responsibilities: [
+      "Design and implement smart contract architecture for NFT-based property ownership, transfers, and fractionalization.",
+      "Build and maintain contracts using Solidity (Hardhat), ensuring security, upgradeability, and gas efficiency.",
+      "Integrate blockchain functionality with backend services and frontend apps.",
+      "Define and manage on-chain/off-chain data interactions (IPFS, metadata, ownership records).",
+      "Support multi-chain strategy (Ethereum / Polygon) and evaluate L2 scaling solutions.",
+      "Collaborate with product and legal teams on tokenization models and compliance.",
+      "Prepare code for audits and implement security best practices.",
+      "Contribute to wallet integration and Web3 authentication flows.",
+    ],
+    qualifications: [
+      "2+ years of experience in blockchain or backend engineering.",
+      "Strong experience with Solidity and smart contract development.",
+      "Experience with Hardhat or Truffle and contract deployment.",
+      "Understanding of Ethereum ecosystem and token standards (ERC-721, ERC-1155).",
+      "Familiarity with Web3 integrations (Ethers.js or Web3.js).",
+      "Experience with backend systems (Node.js or Python preferred).",
+      "Understanding of security patterns and audit preparation.",
+      "Ability to work in fast-paced startup environments.",
+    ],
+  },
   {
     slug: "solidity-smart-contract-developer",
     title: "Solidity / Smart Contract Developer",
@@ -210,22 +240,23 @@ export const TALENTS: Talent[] = [
     slug: "product-manager",
     title: "Product Manager",
     short: "Product Manager",
-    tagline: "Define what we build for investors, sponsors and partners.",
+    tagline: "Lead the vision bridging blockchain, gaming, and real estate.",
     icon: Package,
-    overview: `${PROJECT_CONTEXT} As a Product Manager, you will own product strategy and execution for key surfaces — investor experience, tokenization workflows, AI personalization and 3D exploration.`,
+    overview:
+      "This is a technology platform focused on tokenizing real-world assets (RWA) — starting with real estate — by combining blockchain, AI, and data-driven insights. Our goal is to make real estate investment more transparent, efficient, and accessible through modern technology.\n\nWe’re looking for a visionary Product Manager to lead the strategy, planning, and execution of this platform — a next-generation ecosystem combining blockchain, gaming, and real estate. The Product Manager will act as the bridge between business, design, and engineering, ensuring smooth delivery of features that align with our long-term vision.",
     responsibilities: [
-      "Own product vision, roadmap and KPIs for assigned surfaces.",
-      "Talk to investors, sponsors and partners to deeply understand needs.",
-      "Translate insights into crisp PRDs, user stories and success metrics.",
-      "Partner with design, engineering and BD to ship and iterate on features.",
-      "Use analytics and experimentation to continuously improve outcomes.",
+      "Collaborate with engineering, design, blockchain, and AI teams to translate business goals into clear product requirements and user stories.",
+      "Lead end-to-end product lifecycle from ideation, specification, and development to launch and iteration.",
+      "Conduct market research, competitive analysis, and user interviews to gather insights and validate assumptions.",
+      "Monitor product performance through KPIs and user feedback; drive continuous improvement and feature enhancements.",
+      "Manage stakeholder communication and ensure alignment across business, tech, and marketing teams.",
     ],
     qualifications: [
-      "4+ years of product management in fintech, Web3, real estate or marketplaces.",
-      "Strong analytical skills and comfort with data tools (SQL, Amplitude, Mixpanel).",
-      "Proven track record shipping consumer or B2B2C products at scale.",
-      "Excellent communication and prioritization in ambiguous environments.",
-      "Bonus: experience with RWA, tokenization, or AI-driven product surfaces.",
+      "Proven experience as a Product Manager, preferably in blockchain, gaming, fintech, or real estate tech.",
+      "Strong understanding of Web3 ecosystems, tokenomics, NFTs, and DeFi platforms.",
+      "Excellent communication and leadership skills with cross-functional teams.",
+      "Ability to balance big-picture vision with detailed execution.",
+      "Familiarity with agile methodologies and product management tools (Jira, Trello, Notion).",
     ],
   },
   {
