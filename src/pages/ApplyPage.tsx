@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { getTalentBySlug } from "@/data/talents";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 
 const applySchema = z.object({
@@ -19,6 +20,11 @@ const applySchema = z.object({
   experience: z.coerce.number().min(0, "Must be 0 or more").max(60, "Must be 60 or less"),
 });
 
+type FieldErrors = Partial<Record<
+  "firstName" | "lastName" | "email" | "contact" | "location" | "social" | "experience" | "resume",
+  string
+>>;
+
 const ApplyPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const talent = slug ? getTalentBySlug(slug) : undefined;
@@ -26,6 +32,7 @@ const ApplyPage = () => {
   const [resume, setResume] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FieldErrors>({});
 
   useEffect(() => {
     if (talent) document.title = `Apply · ${talent.title} | TokenBrickLabs`;
@@ -35,6 +42,9 @@ const ApplyPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Prevent duplicate submissions while a request is in progress
+    if (submitting) return;
+
     const form = e.currentTarget;
     const data = new FormData(form);
     const parsed = applySchema.safeParse({
@@ -47,46 +57,79 @@ const ApplyPage = () => {
       experience: data.get("experience"),
     });
 
+    const nextErrors: FieldErrors = {};
     if (!parsed.success) {
-      const first = Object.values(parsed.error.flatten().fieldErrors).flat()[0];
-      toast({ title: "Please check the form", description: first ?? "Invalid input", variant: "destructive" });
-      return;
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      (Object.keys(fieldErrors) as Array<keyof typeof fieldErrors>).forEach((k) => {
+        const msg = fieldErrors[k]?.[0];
+        if (msg) (nextErrors as Record<string, string>)[k as string] = msg;
+      });
     }
-
     if (!resume) {
-      toast({ title: "Resume required", description: "Please upload your resume.", variant: "destructive" });
-      return;
+      nextErrors.resume = "Please upload your resume.";
+    } else if (resume.size > 10 * 1024 * 1024) {
+      nextErrors.resume = "Resume must be under 10MB.";
     }
 
-    if (resume.size > 10 * 1024 * 1024) {
-      toast({ title: "File too large", description: "Resume must be under 10MB.", variant: "destructive" });
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0 || !parsed.success || !resume) {
+      toast({
+        title: "Please check the form",
+        description: "Fix the highlighted fields and try again.",
+        variant: "destructive",
+      });
       return;
     }
 
     setSubmitting(true);
 
-    // Submit to Google Form (no-cors: response is opaque but submission succeeds)
-    const formData = new FormData();
-    formData.append("entry.416377519", talent.title);
-    formData.append("entry.2005620554", String(parsed.data.firstName));
-    formData.append("entry.384439563", String(parsed.data.lastName));
-    formData.append("entry.1045781291", String(parsed.data.email));
-    formData.append("entry.1065046570", String(parsed.data.contact));
-    formData.append("entry.1166974658", String(parsed.data.location));
-    formData.append("entry.839337160", String(parsed.data.social));
-    formData.append("entry.1961290135", String(parsed.data.experience));
-
     try {
-      await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSfT4euNBTT2UYkPLXdQuFO9Hs0dOqjvKpwFXzsHsROxMXhY_A/formResponse",
-        { method: "POST", mode: "no-cors", body: formData }
-      );
-    } catch {
-      // no-cors hides errors; treat as fire-and-forget
-    }
+      // 1. Upload resume to the `resumes` storage bucket (unique path per submission)
+      let resumeUrl: string | null = null;
+      if (resume) {
+        const safeName = resume.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+        const path = `${talent.slug}/${crypto.randomUUID()}-${safeName}`;
+        const { error: uploadError } = await supabase.storage
+          .from("resumes")
+          .upload(path, resume, { cacheControl: "3600", upsert: false });
+        if (uploadError) throw uploadError;
+        // Store the storage object path; a signed URL can be minted on demand.
+        resumeUrl = path;
+      }
 
-    setSubmitting(false);
-    setSubmitted(true);
+      // 2. Insert the application row (RLS allows public INSERT only)
+      const { error: insertError } = await supabase.from("job_applications").insert({
+        job_id: talent.slug,
+        job_title: talent.title,
+        first_name: parsed.data.firstName,
+        last_name: parsed.data.lastName,
+        email: parsed.data.email,
+        whatsapp_tg_disc: parsed.data.contact,
+        linkedin_url: parsed.data.social,
+        country: parsed.data.location,
+        resume_url: resumeUrl,
+        experience: String(parsed.data.experience),
+      });
+      if (insertError) throw insertError;
+
+      // 3. Success: reset form state
+      form.reset();
+      setResume(null);
+      setErrors({});
+      setSubmitted(true);
+      toast({ title: "Your application has been submitted successfully." });
+    } catch (err) {
+      // Log full error for debugging; show friendly message to user.
+      console.error("Application submission failed:", err);
+      toast({
+        title: "Submission failed",
+        description:
+          "Something went wrong while submitting your application. Please try again in a moment.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -142,36 +185,43 @@ const ApplyPage = () => {
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First name</Label>
                   <Input id="firstName" name="firstName" required maxLength={80} placeholder="Ada" />
+                  {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last name</Label>
                   <Input id="lastName" name="lastName" required maxLength={80} placeholder="Lovelace" />
+                  {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" name="email" type="email" required maxLength={255} placeholder="you@example.com" />
+                {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="contact">WhatsApp / Telegram / Discord</Label>
                 <Input id="contact" name="contact" required maxLength={150} placeholder="@telegram_handle or +1 555 0100" />
+                {errors.contact && <p className="text-xs text-destructive">{errors.contact}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="location">Where do you live (country, city)?</Label>
                 <Input id="location" name="location" required maxLength={150} placeholder="USA, Seattle" />
+                {errors.location && <p className="text-xs text-destructive">{errors.location}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="social">LinkedIn or X profile</Label>
                 <Input id="social" name="social" required maxLength={255} placeholder="https://linkedin.com/in/yourname" />
+                {errors.social && <p className="text-xs text-destructive">{errors.social}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="experience">Experience (years)</Label>
                 <Input id="experience" name="experience" type="number" min={0} max={60} step={1} required placeholder="5" />
+                {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
               </div>
 
               <div className="space-y-2">
@@ -204,6 +254,7 @@ const ApplyPage = () => {
                   className="sr-only"
                   onChange={(e) => setResume(e.target.files?.[0] ?? null)}
                 />
+                {errors.resume && <p className="text-xs text-destructive">{errors.resume}</p>}
               </div>
 
               <div className="pt-2">

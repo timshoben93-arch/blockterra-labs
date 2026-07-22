@@ -59,13 +59,9 @@ const TalentPage = () => {
                 </span>
               </div>
 
-              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-5xl md:text-7xl lg:text-8xl leading-[0.95]">
-                <span className="block text-foreground/90">{talent.title.split(" ").slice(0, -1).join(" ") || talent.title}</span>
-                {talent.title.split(" ").length > 1 && (
-                  <span className="block text-gradient italic font-display">
-                    {talent.title.split(" ").slice(-1)[0]}.
-                  </span>
-                )}
+              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-4xl md:text-5xl lg:text-6xl leading-[1.05] md:whitespace-nowrap">
+                <span className="text-foreground/90">{talent.title}</span>
+                <span className="text-gradient italic font-display">.</span>
               </h1>
 
               <p className="mt-8 text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed font-light">
