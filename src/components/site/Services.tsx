@@ -54,7 +54,7 @@ export const Services = () => {
             Our Core Services
           </span>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
-            End-to-end <span className="text-gradient">blockchain engineering</span> for real assets.
+            End-to-end <span className="text-gradient">blockchain engineering</span> for real assets
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
             From tokenization design to audited deployment, TokenBrickLabs is the technical

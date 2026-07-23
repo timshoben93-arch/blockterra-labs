@@ -17,7 +17,7 @@ export const Industries = () => {
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Industries</span>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
-              Powering the next wave of <span className="text-gradient-warm">tokenized markets.</span>
+              Powering the next wave of <span className="text-gradient-warm">tokenized markets</span>
             </h2>
           </div>
           <p className="text-lg text-muted-foreground">

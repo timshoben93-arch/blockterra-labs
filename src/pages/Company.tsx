@@ -59,7 +59,7 @@ const Company = () => {
           <div className="max-w-2xl">
             <Eyebrow>Leadership</Eyebrow>
             <h2 className="mt-5 font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-              Operators and builders, end&#8209;to&#8209;end.
+              Operators and builders, end&#8209;to&#8209;end
             </h2>
             <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
               A senior team with a track record across Web3 protocols, fintech
@@ -117,7 +117,7 @@ const Company = () => {
             <div className="max-w-2xl">
               <Eyebrow>Headquarters</Eyebrow>
               <h2 className="mt-5 font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-                Find us in <span className="text-gradient">Seattle</span>.
+                Find us in <span className="text-gradient">Seattle</span>
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
                 Our studio sits in downtown Seattle, steps from the waterfront

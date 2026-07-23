@@ -41,7 +41,7 @@ export const Models = () => {
             Two Engagement Models
           </span>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
-            Bring assets <span className="text-gradient">on-chain</span> — your way.
+            Bring assets <span className="text-gradient">on-chain</span> — your way
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
             Whether you're issuing your first tokenized fund or scaling an existing

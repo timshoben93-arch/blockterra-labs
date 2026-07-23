@@ -42,7 +42,7 @@ const TalentsIndex = () => {
               <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-5xl md:text-7xl leading-[0.95]">
                 Join the team{" "}
                 <span className="text-gradient italic">tokenizing</span> real-world
-                assets.
+                assets
               </h1>
               <p className="mt-6 text-lg md:text-xl text-surface-dark-foreground/70 max-w-2xl leading-relaxed font-light">
                 We're building the platform that brings real-estate on-chain —
