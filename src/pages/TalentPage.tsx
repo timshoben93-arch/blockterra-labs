@@ -61,7 +61,6 @@ const TalentPage = () => {
 
               <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-4xl md:text-5xl lg:text-6xl leading-[1.05] md:whitespace-nowrap">
                 <span className="text-foreground/90">{talent.title}</span>
-                <span className="text-gradient italic font-display">.</span>
               </h1>
 
               <p className="mt-8 text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed font-light">
@@ -121,7 +120,7 @@ const TalentPage = () => {
         {/* MAIN CONTENT — sticky sidebar layout */}
         <section className="relative py-20 md:py-28">
           <div className="container">
-            <div className="grid lg:grid-cols-[1fr_320px] gap-12 lg:gap-16 items-start">
+            <div className="grid grid-cols-1 gap-12 lg:gap-16 items-start">
               {/* Left: content */}
               <div className="space-y-20">
                 {/* About */}
@@ -298,46 +297,6 @@ const TalentPage = () => {
                 )}
               </div>
 
-              {/* Right: sticky apply card */}
-              <aside className="lg:sticky lg:top-24">
-                <div className="relative overflow-hidden rounded-3xl bg-foreground text-background p-8 shadow-elevated">
-                  <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-primary/30 blur-3xl" />
-                  <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
-
-                  <div className="relative">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-background/10 backdrop-blur text-background">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="mt-6 font-display text-2xl font-bold leading-tight">
-                      Ready to <span className="italic text-primary-glow">build</span> the future of RWA?
-                    </h3>
-                    <p className="mt-3 text-sm text-background/70 leading-relaxed">
-                      Send your CV, GitHub or portfolio. We review every application personally.
-                    </p>
-
-                    <div className="mt-6 grid grid-cols-2 gap-3 text-xs">
-                      <div className="rounded-lg bg-background/5 border border-background/10 p-3">
-                        <p className="text-background/50 uppercase tracking-wider">Type</p>
-                        <p className="mt-1 font-semibold">Full-time</p>
-                      </div>
-                      <div className="rounded-lg bg-background/5 border border-background/10 p-3">
-                        <p className="text-background/50 uppercase tracking-wider">Location</p>
-                        <p className="mt-1 font-semibold">Remote</p>
-                      </div>
-                    </div>
-
-                    <Button variant="hero" size="lg" className="mt-6 w-full group" asChild>
-                      <a href={`/talents/${talent.slug}/apply`} target="_blank" rel="noopener noreferrer">
-                        Apply Now
-                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </a>
-                    </Button>
-                    <p className="mt-3 text-center text-[11px] text-background/50">
-                      Avg. response within 48 hours
-                    </p>
-                  </div>
-                </div>
-              </aside>
             </div>
           </div>
         </section>
