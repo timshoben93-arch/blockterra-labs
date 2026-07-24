@@ -53,7 +53,7 @@ export const Services = () => {
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Our Core Services
           </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap">
             End-to-end <span className="text-gradient">blockchain engineering</span> for real assets
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">

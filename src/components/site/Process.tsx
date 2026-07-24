@@ -13,7 +13,7 @@ export const Process = () => {
       <div className="container relative">
         <div className="max-w-3xl">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-glow">Our Process</span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap">
             From concept to <span className="text-gradient">on-chain</span> in weeks, not quarters
           </h2>
         </div>

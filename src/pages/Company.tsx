@@ -29,7 +29,7 @@ const Company = () => {
             <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
               The team building the
               <br className="hidden md:block" />{" "}
-              <span className="text-gradient">on-chain real economy.</span>
+              <span className="text-gradient">on-chain real economy</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground font-normal">
               We're a Seattle-based studio of engineers, designers and operators
@@ -55,62 +55,6 @@ const Company = () => {
         </section>
 
         {/* Team */}
-        <section id="team" className="container py-24 lg:py-32">
-          <div className="max-w-2xl">
-            <Eyebrow>Leadership</Eyebrow>
-            <h2 className="mt-5 font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-              Operators and builders, end&#8209;to&#8209;end
-            </h2>
-            <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
-              A senior team with a track record across Web3 protocols, fintech
-              infrastructure and applied AI — shipping production systems used
-              by real users.
-            </p>
-          </div>
-
-          <div className="mt-14 grid md:grid-cols-3 gap-6">
-            {TEAM.map((m) => (
-              <Card
-                key={m.name}
-                className="group p-8 bg-gradient-card border-border/70 shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
-              >
-                <Avatar className="h-16 w-16 bg-gradient-primary ring-4 ring-primary/5">
-                  {m.photo && <AvatarImage src={m.photo} alt={m.name} className="object-cover" />}
-                  <AvatarFallback className="bg-transparent text-primary-foreground font-display font-bold tracking-tight text-base">
-                    {m.initials}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="mt-5">
-                  <div className="font-display text-xl font-bold tracking-tight text-foreground">
-                    {m.name}
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
-                    {m.role}
-                  </div>
-                </div>
-                {m.bio && (
-                  <p className="mt-5 text-[15px] leading-[1.65] text-muted-foreground">
-                    {m.bio}
-                  </p>
-                )}
-                {m.linkedin && (
-                  <div className="mt-6 flex items-center gap-2 text-muted-foreground">
-                    <a
-                      href={m.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${m.name} on LinkedIn`}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
-                    >
-                      <Linkedin className="h-3.5 w-3.5" />
-                    </a>
-                  </div>
-                )}
-              </Card>
-            ))}
-          </div>
-        </section>
-
         {/* HQ + Map */}
         <section id="hq" className="border-t border-border/60 bg-secondary/30">
           <div className="container py-24 lg:py-28">
