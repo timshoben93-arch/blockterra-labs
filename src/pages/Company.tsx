@@ -26,7 +26,7 @@ const Company = () => {
         <section className="bg-hero-radial border-b border-border/60">
           <div className="container py-24 lg:py-32 max-w-5xl">
             <Eyebrow>About · TokenBrickLabs</Eyebrow>
-            <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
+            <h1 className="mt-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
               The team building the
               <br className="hidden md:block" />{" "}
               <span className="text-gradient">on-chain real economy</span>
@@ -60,7 +60,7 @@ const Company = () => {
           <div className="container py-24 lg:py-28">
             <div className="max-w-2xl">
               <Eyebrow>Headquarters</Eyebrow>
-              <h2 className="mt-5 font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
+              <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
                 Find us in <span className="text-gradient">Seattle</span>
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
@@ -69,8 +69,8 @@ const Company = () => {
               </p>
             </div>
 
-            <div className="mt-12 grid lg:grid-cols-3 gap-6 items-stretch">
-              <Card className="p-8 lg:col-span-1 bg-card border-border/70 shadow-soft">
+            <div className="mt-12 grid lg:grid-cols-3 gap-6 items-stretch min-w-0">
+              <Card className="p-6 sm:p-8 min-w-0 break-words lg:col-span-1 bg-card border-border/70 shadow-soft">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Visit · Contact
                 </div>
@@ -111,7 +111,7 @@ const Company = () => {
                 </ul>
               </Card>
 
-              <div className="lg:col-span-2 rounded-2xl overflow-hidden border border-border/70 shadow-soft min-h-[460px] bg-card">
+              <div className="lg:col-span-2 min-w-0 rounded-2xl overflow-hidden border border-border/70 shadow-soft min-h-[460px] bg-card">
                 <iframe
                   title="TokenBrickLabs HQ map"
                   src={mapSrc}

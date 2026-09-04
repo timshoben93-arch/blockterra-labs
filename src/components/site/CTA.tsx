@@ -13,7 +13,7 @@ export const CTA = () => {
             <span className="inline-flex rounded-full bg-primary-foreground/10 backdrop-blur px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
               Ready when you are
             </span>
-            <h2 className="mt-6 font-display text-4xl md:text-6xl font-bold tracking-tight leading-tight whitespace-nowrap">
+            <h2 className="mt-6 font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight md:whitespace-nowrap">
               Let's bring your asset on-chain
             </h2>
             <p className="mt-5 text-lg md:text-xl text-primary-foreground/85 max-w-2xl">

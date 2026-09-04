@@ -31,7 +31,7 @@ const DocChapter = () => {
               </span>
               <div className="text-[11px] uppercase tracking-[0.2em] text-surface-dark-foreground/60">Chapter {chapter.number}</div>
             </div>
-            <h1 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">{chapter.title}</h1>
+            <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">{chapter.title}</h1>
             <p className="mt-4 max-w-2xl text-surface-dark-foreground/75">{chapter.tagline}</p>
           </div>
         </section>

@@ -16,7 +16,7 @@ export const Industries = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-end">
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Industries</span>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
               Powering the next wave of <span className="text-gradient-warm">tokenized markets</span>
             </h2>
           </div>

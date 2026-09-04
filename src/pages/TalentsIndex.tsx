@@ -25,7 +25,7 @@ const TalentsIndex = () => {
         <section className="relative overflow-hidden bg-surface-dark text-surface-dark-foreground">
           <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/25 blur-[130px]" />
           <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
-          <div className="container relative py-24 md:py-32">
+          <div className="container relative py-16 sm:py-24 md:py-32">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-surface-dark-foreground/15 bg-surface-dark-foreground/5 backdrop-blur pl-1.5 pr-4 py-1.5">
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground">
@@ -39,7 +39,7 @@ const TalentsIndex = () => {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                 </span>
               </div>
-              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-4xl md:text-6xl lg:text-7xl leading-[0.95] whitespace-nowrap">
+              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.05] md:leading-[0.95] lg:whitespace-nowrap">
                 Join the team <span className="text-gradient italic">tokenizing</span> real-world assets
               </h1>
               <p className="mt-6 text-lg md:text-xl text-surface-dark-foreground/70 max-w-2xl leading-relaxed font-light">
@@ -67,7 +67,7 @@ const TalentsIndex = () => {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                   Open positions
                 </p>
-                <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold tracking-tight">
+                <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight">
                   All <span className="text-gradient italic">roles</span>
                 </h2>
               </div>

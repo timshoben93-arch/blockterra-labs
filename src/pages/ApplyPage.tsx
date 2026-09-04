@@ -173,7 +173,7 @@ const ApplyPage = () => {
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Apply · {talent.short}
             </span>
-            <h1 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">
+            <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">
               Apply for <span className="text-gradient">{talent.title}</span>
             </h1>
             <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl">

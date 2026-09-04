@@ -59,7 +59,7 @@ const TalentPage = () => {
                 </span>
               </div>
 
-              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-4xl md:text-5xl lg:text-6xl leading-[1.05] md:whitespace-nowrap">
+              <h1 className="mt-8 font-display font-bold tracking-[-0.03em] text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] lg:whitespace-nowrap break-words">
                 <span className="text-foreground/90">{talent.title}</span>
               </h1>
 
@@ -307,7 +307,7 @@ const TalentPage = () => {
             <div className="flex items-end justify-between flex-wrap gap-4 mb-12">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">More opportunities</p>
-                <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold tracking-tight">
+                <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight">
                   Other open <span className="text-gradient italic">roles</span>
                 </h2>
               </div>

@@ -1,4 +1,10 @@
 import { Coins, Layers, ShieldCheck, Cpu, Network, FileCode2 } from "lucide-react";
+import rwaImg from "@/assets/services/rwa-tokenization.jpg";
+import auditsImg from "@/assets/services/audits.jpg";
+import layersImg from "@/assets/services/layers.jpg";
+import complianceImg from "@/assets/services/compliance.jpg";
+import liquidityImg from "@/assets/services/liquidity.jpg";
+import aiImg from "@/assets/services/ai-analytics.jpg";
 
 const services = [
   {
@@ -6,36 +12,42 @@ const services = [
     title: "RWA Tokenization",
     desc: "Tokenize real estate, treasuries, commodities and private credit with compliant, transferable on-chain instruments.",
     accent: "primary",
+    image: rwaImg,
   },
   {
     icon: ShieldCheck,
     title: "Smart Contract Audits",
     desc: "Formal verification, fuzzing and manual review by senior auditors — for Solidity, Move and Rust.",
     accent: "accent",
+    image: auditsImg,
   },
   {
     icon: Layers,
     title: "L1 / L2 Engineering",
     desc: "Custom rollups, app-chains and bridge infrastructure designed for institutional-grade throughput.",
     accent: "primary",
+    image: layersImg,
   },
   {
     icon: FileCode2,
     title: "Compliance & KYC Rails",
     desc: "On-chain identity, transfer restrictions and ERC-3643 / T-REX implementations ready for regulators.",
     accent: "highlight",
+    image: complianceImg,
   },
   {
     icon: Network,
     title: "Liquidity & Market Infra",
     desc: "AMMs, order books, oracle feeds and tokenized fund settlement layers — battle-tested in production.",
     accent: "accent",
+    image: liquidityImg,
   },
   {
     icon: Cpu,
     title: "AI × On-chain Analytics",
     desc: "Real-time risk dashboards, anomaly detection and AI agents that act on verifiable on-chain data.",
     accent: "primary",
+    image: aiImg,
   },
 ];
 
@@ -53,7 +65,7 @@ export const Services = () => {
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Our Core Services
           </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight lg:whitespace-nowrap">
             End-to-end <span className="text-gradient">blockchain engineering</span> for real assets
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
@@ -63,17 +75,25 @@ export const Services = () => {
         </div>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc, accent }) => (
+          {services.map(({ icon: Icon, title, desc, accent, image }) => (
             <article
               key={title}
-              className="group relative rounded-3xl bg-gradient-card border border-border p-7 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl bg-gradient-card border border-border p-7 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1"
             >
+              <div
+                className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-15 group-hover:opacity-30 transition-opacity duration-500"
+                style={{ backgroundImage: `url(${image})` }}
+                aria-hidden="true"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" aria-hidden="true" />
+              <div className="relative">
               <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${accentMap[accent]}`}>
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
               <p className="mt-2 text-muted-foreground leading-relaxed">{desc}</p>
               <div className="absolute inset-x-7 bottom-7 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
             </article>
           ))}
         </div>

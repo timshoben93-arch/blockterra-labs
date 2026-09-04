@@ -18,7 +18,7 @@ const Docs = () => {
               <FileText className="h-3.5 w-3.5" />
               Technical Whitepaper · v1.0 · 2026
             </div>
-            <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight whitespace-nowrap">
+            <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight sm:whitespace-nowrap">
               TokenBrickLabs Documentation
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg text-surface-dark-foreground/75 leading-relaxed">

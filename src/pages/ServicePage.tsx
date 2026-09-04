@@ -44,7 +44,7 @@ const ServicePage = () => {
                 <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 backdrop-blur px-4 py-2 text-xs font-medium text-foreground/70 shadow-soft">
                   TokenBrickLabs Services
                 </span>
-                <h1 className="mt-6 font-display font-bold tracking-tight text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
+                <h1 className="mt-6 font-display font-bold tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
                   <span className="text-gradient">{service.title}</span>
                 </h1>
                 <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-2xl">

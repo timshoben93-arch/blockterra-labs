@@ -40,7 +40,7 @@ export const Models = () => {
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
             Two Engagement Models
           </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
             Bring assets <span className="text-gradient">on-chain</span> — your way
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
