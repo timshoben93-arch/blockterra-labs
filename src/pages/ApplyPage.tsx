@@ -133,32 +133,32 @@ const ApplyPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <div className="min-h-screen w-full overflow-x-hidden bg-background font-sans">
       <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
-        <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5">
-            <img src={logo} alt="TokenBrickLabs" className="h-8 w-8 rounded-lg object-contain" />
-            <span className="font-display font-bold tracking-tight">TokenBrickLabs</span>
+        <div className="container flex h-14 sm:h-16 items-center justify-between gap-3">
+          <Link to="/" className="flex items-center gap-2 min-w-0">
+            <img src={logo} alt="TokenBrickLabs" className="h-7 w-7 sm:h-8 sm:w-8 rounded-lg object-contain shrink-0" />
+            <span className="font-display font-bold tracking-tight text-sm sm:text-base truncate">TokenBrickLabs</span>
           </Link>
           <Link
             to={`/talents/${talent.slug}`}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex shrink-0 items-center gap-1.5 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" /> Back to role
+            <ArrowLeft className="h-4 w-4" /> <span className="hidden xs:inline sm:inline">Back to role</span><span className="xs:hidden sm:hidden">Back</span>
           </Link>
         </div>
       </header>
 
-      <main className="container max-w-3xl py-14 md:py-20">
+      <main className="container max-w-3xl py-8 sm:py-12 md:py-20">
         {submitted ? (
-          <div className="rounded-3xl bg-gradient-card border border-border p-10 md:p-14 shadow-elevated text-center">
+          <div className="rounded-3xl bg-gradient-card border border-border p-6 sm:p-10 md:p-14 shadow-elevated text-center">
             <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
               <CheckCircle2 className="h-7 w-7" />
             </div>
-            <h1 className="mt-6 font-display text-3xl md:text-4xl font-bold tracking-tight">
+            <h1 className="mt-6 font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
               Application received
             </h1>
-            <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground max-w-lg mx-auto break-words">
               Thanks for applying to <span className="font-medium text-foreground">{talent.title}</span>.
               We review every application personally and will reach out within a few business days.
             </p>
@@ -173,14 +173,14 @@ const ApplyPage = () => {
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Apply · {talent.short}
             </span>
-            <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">
+            <h1 className="mt-3 font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.15] sm:leading-[1.05] break-words">
               Apply for <span className="text-gradient">{talent.title}</span>
             </h1>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl">
               Tell us about yourself. All fields are required.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-10 rounded-3xl bg-card border border-border p-6 md:p-10 shadow-soft space-y-6">
+            <form onSubmit={handleSubmit} className="mt-6 sm:mt-10 rounded-2xl sm:rounded-3xl bg-card border border-border p-4 sm:p-6 md:p-10 shadow-soft space-y-5 sm:space-y-6">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First name</Label>
@@ -228,21 +228,21 @@ const ApplyPage = () => {
                 <Label htmlFor="resume">Submit your resume</Label>
                 <label
                   htmlFor="resume"
-                  className="flex items-center justify-between gap-3 rounded-xl border border-dashed border-border bg-muted/30 px-4 py-4 cursor-pointer hover:border-primary hover:bg-muted/50 transition-colors"
+                  className="flex items-center justify-between gap-3 rounded-xl border border-dashed border-border bg-muted/30 px-3 sm:px-4 py-3.5 sm:py-4 cursor-pointer hover:border-primary hover:bg-muted/50 transition-colors"
                 >
-                  <span className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <span className="flex min-w-0 items-center gap-3 text-xs sm:text-sm text-muted-foreground">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Upload className="h-4 w-4" />
                     </span>
                     {resume ? (
-                      <span className="text-foreground font-medium truncate max-w-[260px] sm:max-w-none">
+                      <span className="text-foreground font-medium truncate">
                         {resume.name}
                       </span>
                     ) : (
                       <span>PDF, DOC, DOCX up to 10MB</span>
                     )}
                   </span>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  <span className="shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-primary">
                     {resume ? "Replace" : "Choose file"}
                   </span>
                 </label>
@@ -257,8 +257,8 @@ const ApplyPage = () => {
                 {errors.resume && <p className="text-xs text-destructive">{errors.resume}</p>}
               </div>
 
-              <div className="pt-2">
-                <Button type="submit" variant="hero" size="xl" disabled={submitting} className="w-full sm:w-auto">
+              <div className="pt-1 sm:pt-2">
+                <Button type="submit" variant="hero" size="xl" disabled={submitting} className="w-full sm:w-auto min-h-[3.25rem]">
                   {submitting ? "Submitting..." : "Submit application"}
                 </Button>
               </div>
