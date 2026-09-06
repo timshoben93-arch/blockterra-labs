@@ -1,15 +1,18 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, MapPin, Clock, Users, Layers, Zap, Target, Award, Star, Gift, Cpu } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import { Button } from "@/components/ui/button";
+import { ApplyDialog } from "@/components/talent/ApplyDialog";
 import { TALENTS, getTalentBySlug } from "@/data/talents";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const TalentPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const talent = slug ? getTalentBySlug(slug) : undefined;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [applyOpen, setApplyOpen] = useState(() => searchParams.get("apply") === "1");
 
   useEffect(() => {
     if (talent) {
@@ -18,6 +21,18 @@ const TalentPage = () => {
       if (desc) desc.setAttribute("content", talent.tagline);
     }
   }, [talent]);
+
+  useEffect(() => {
+    setApplyOpen(searchParams.get("apply") === "1");
+  }, [searchParams]);
+
+  const handleApplyOpenChange = (open: boolean) => {
+    setApplyOpen(open);
+    const next = new URLSearchParams(searchParams);
+    if (open) next.set("apply", "1");
+    else next.delete("apply");
+    setSearchParams(next, { replace: true });
+  };
 
   if (!talent) return <Navigate to="/" replace />;
 
@@ -93,11 +108,15 @@ const TalentPage = () => {
               </div>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="xl" className="group shadow-elevated" asChild>
-                  <a href={`/talents/${talent.slug}/apply`} target="_blank" rel="noopener noreferrer">
-                    Apply for this role
-                    <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </a>
+                <Button
+                  variant="hero"
+                  size="xl"
+                  type="button"
+                  className="group shadow-elevated"
+                  onClick={() => handleApplyOpenChange(true)}
+                >
+                  Apply for this role
+                  <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
                 <Button variant="soft" size="xl" asChild>
                   <Link to="/">Browse other roles</Link>
@@ -353,6 +372,7 @@ const TalentPage = () => {
         <CTA />
       </main>
       <Footer />
+      <ApplyDialog talent={talent} open={applyOpen} onOpenChange={handleApplyOpenChange} />
     </div>
   );
 };
