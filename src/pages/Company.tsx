@@ -21,7 +21,7 @@ const Company = () => {
   return (
     <div className="min-h-screen bg-background font-sans antialiased text-foreground">
       <Header />
-      <main>
+      <main id="main">
         {/* Hero */}
         <section className="bg-hero-radial border-b border-border/60">
           <div className="container py-24 lg:py-32 max-w-5xl">

@@ -17,7 +17,7 @@ const DocChapter = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <section className="relative overflow-hidden bg-surface-dark text-surface-dark-foreground">
           <div className="pointer-events-none absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
           <div className="container relative py-16 md:py-20">

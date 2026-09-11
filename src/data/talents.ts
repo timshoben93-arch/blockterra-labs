@@ -11,8 +11,14 @@ import {
   Settings,
   ShieldCheck,
   Network,
+  PenTool,
+  Palette,
+  UsersRound,
   type LucideIcon,
 } from "lucide-react";
+
+export const DEPARTMENTS = ["Engineering", "Design", "Product", "Go-to-market", "Operations"] as const;
+export type Department = (typeof DEPARTMENTS)[number];
 
 export type Talent = {
   slug: string;
@@ -20,6 +26,9 @@ export type Talent = {
   short: string;
   tagline: string;
   icon: LucideIcon;
+  department: Department;
+  location: string;
+  employmentType: string;
   overview: string;
   responsibilities: string[];
   qualifications: string[];
@@ -40,6 +49,9 @@ export const TALENTS: Talent[] = [
     short: "Blockchain Architect",
     tagline: "Architect the secure, scalable Web3 core of our RWA platform.",
     icon: Network,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview:
       "We’re looking for a Blockchain Architect to help design and build the core Web3 infrastructure behind this project. This role sits at the intersection of smart contract architecture, backend integration, and product scalability — working closely with our engineering, product, and DevOps teams to bring secure, production-ready blockchain features to life.",
     responsibilities: [
@@ -67,8 +79,11 @@ export const TALENTS: Talent[] = [
     slug: "solidity-smart-contract-developer",
     title: "Blockchain Developer (Smart Contracts)",
     short: "Blockchain Developer (Smart Contracts)",
-    tagline: "",
+    tagline: "Design and ship production smart contracts for tokenized assets.",
     icon: Code2,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview:
       "TokenBrickLabs is an institutionally focused global digital asset platform that provides market infrastructure and information services. These include: TokenBrickLabs Exchange – a regulated and institutionally focused digital assets spot and derivatives exchange, integrating a high-performance central limit order book matching engine with automated market making to provide deep and predictable liquidity. TokenBrickLabs Exchange is regulated in Germany, Hong Kong, and Gibraltar. TokenBrickLabs Indices – a collection of tradable proprietary and single-asset benchmarks and indices that track the performance of digital assets for global institutions in the digital assets and traditional finance industries. TokenBrickLabs Data – a broad suite of digital assets market data and analytics, providing real-time insights into prices, trends, and market dynamics. TokenBrickLabs Insights – a digital asset media and events provider covering news and insights about digital assets, the underlying markets, policy, and blockchain technology.",
     extraSections: [
@@ -139,6 +154,9 @@ export const TALENTS: Talent[] = [
     short: "Web3 Developer",
     tagline: "Bridge users, wallets and contracts into a seamless RWA experience.",
     icon: Globe2,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a Web3 Developer, you will build the dApp layer that connects investors to tokenized properties — wallets, transactions, indexing and on-chain data flows.`,
     responsibilities: [
       "Develop and deploy smart contracts for property tokenization (NFTs), ownership transfer, and transaction flows.",
@@ -162,6 +180,9 @@ export const TALENTS: Talent[] = [
     short: "Backend Developer",
     tagline: "Power the off-chain core of our RWA platform.",
     icon: Server,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a Backend Developer, you will design and build the APIs, services and data pipelines that power property listings, KYC, payments, AI personalization and on-chain orchestration.`,
     responsibilities: [
       "Design and build scalable REST/GraphQL APIs and microservices.",
@@ -184,6 +205,9 @@ export const TALENTS: Talent[] = [
     short: "Frontend Developer",
     tagline: "Craft a beautiful, trustworthy investor experience.",
     icon: Layout,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a Frontend Developer, you will build the investor-facing web application — property discovery, portfolio dashboards, KYC onboarding and immersive 3D exploration.`,
     responsibilities: [
       "Implement responsive, accessible UI using React, TypeScript and Tailwind CSS.",
@@ -206,6 +230,9 @@ export const TALENTS: Talent[] = [
     short: "AI / ML Developer",
     tagline: "Personalize the way investors discover real-world assets.",
     icon: Brain,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As an AI / ML Developer, you will design recommendation systems, valuation models and AI-driven assistants that personalize how investors discover and evaluate tokenized properties.`,
     responsibilities: [
       "Build recommendation and personalization models for property discovery.",
@@ -228,6 +255,9 @@ export const TALENTS: Talent[] = [
     short: "Mobile App Developer",
     tagline: "Put fractional real estate in every investor's pocket.",
     icon: Smartphone,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a Mobile App Developer, you will design and build our iOS and Android apps so investors can browse properties, manage portfolios and explore 3D listings on the go.`,
     responsibilities: [
       "Build cross-platform mobile apps using React Native or Flutter (or native iOS/Android).",
@@ -250,6 +280,9 @@ export const TALENTS: Talent[] = [
     short: "BD Manager",
     tagline: "Grow our network of property partners and institutional investors.",
     icon: Briefcase,
+    department: "Go-to-market",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a BD Manager, you will drive partnerships with real-estate developers, asset managers and institutional investors to bring high-quality assets and capital onto the platform.`,
     responsibilities: [
       "Identify, pitch and close partnerships with real-estate sponsors and institutional investors.",
@@ -272,6 +305,9 @@ export const TALENTS: Talent[] = [
     short: "Project Manager",
     tagline: "Keep cross-functional RWA delivery on time and on quality.",
     icon: ClipboardList,
+    department: "Operations",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a Project Manager, you will coordinate engineering, design, product and external partners to deliver complex tokenization, AI and 3D features end-to-end.`,
     responsibilities: [
       "Plan and run delivery cycles across engineering, design, product and partners.",
@@ -294,6 +330,9 @@ export const TALENTS: Talent[] = [
     short: "Product Manager",
     tagline: "Lead the vision bridging blockchain, gaming, and real estate.",
     icon: Package,
+    department: "Product",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview:
       "This is a technology platform focused on tokenizing real-world assets (RWA) — starting with real estate — by combining blockchain, AI, and data-driven insights. Our goal is to make real estate investment more transparent, efficient, and accessible through modern technology.\n\nWe’re looking for a visionary Product Manager to lead the strategy, planning, and execution of this platform — a next-generation ecosystem combining blockchain, gaming, and real estate. The Product Manager will act as the bridge between business, design, and engineering, ensuring smooth delivery of features that align with our long-term vision.",
     responsibilities: [
@@ -317,6 +356,9 @@ export const TALENTS: Talent[] = [
     short: "DevOps Engineer",
     tagline: "Build the reliable, secure infra that institutions trust.",
     icon: Settings,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a DevOps Engineer, you will design and operate the cloud, CI/CD and observability foundations that keep our RWA platform secure, compliant and always-on.`,
     responsibilities: [
       "Design and manage cloud infrastructure on AWS or GCP using Terraform.",
@@ -339,6 +381,9 @@ export const TALENTS: Talent[] = [
     short: "QA Engineer",
     tagline: "Guard the quality bar where money meets blockchain.",
     icon: ShieldCheck,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
     overview: `${PROJECT_CONTEXT} As a QA Engineer, you will design and execute test strategies that ensure our tokenization, payment and investor flows are accurate, secure and reliable.`,
     responsibilities: [
       "Design test plans and automated test suites across web, mobile and APIs.",
@@ -353,6 +398,103 @@ export const TALENTS: Talent[] = [
       "Experience testing APIs, payment flows and complex stateful systems.",
       "Solid understanding of CI/CD and test infrastructure.",
       "Bonus: experience testing dApps, fintech, or RWA platforms.",
+    ],
+  },
+  {
+    slug: "product-designer",
+    title: "Product Designer",
+    short: "Product Designer",
+    tagline: "Shape the product surfaces investors and issuers use every day.",
+    icon: PenTool,
+    department: "Design",
+    location: "Remote · Global",
+    employmentType: "Full-time",
+    reportsTo: "Head of Product",
+    overview: `${PROJECT_CONTEXT} As a Product Designer, you will own end-to-end product design — from problem framing and information architecture to high-fidelity systems — so tokenization, KYC, and portfolio flows feel as considered as a top-tier fintech.`,
+    responsibilities: [
+      "Lead design for investor, issuer, and operator journeys across web (and later mobile).",
+      "Translate ambiguous asset and compliance requirements into clear product structure.",
+      "Build and maintain a coherent design system used by engineering and marketing.",
+      "Prototype flows for issuance, onboarding, and portfolio management; test with real users.",
+      "Partner with Product, Engineering, and Legal so visual decisions survive regulatory review.",
+      "Present work with rationale — not just screens — to founders and cross-functional partners.",
+    ],
+    qualifications: [
+      "5+ years of product design for complex web products (fintech, marketplace, or B2B SaaS preferred).",
+      "A portfolio that shows systems thinking, not only visual polish.",
+      "Expert in Figma: components, variants, auto-layout, and documentation for engineers.",
+      "Comfortable running lightweight research and turning findings into product changes.",
+      "Strong written communication; you can write specs designers and engineers both use.",
+      "Experience collaborating in a remote, high-ownership environment.",
+    ],
+    niceToHave: [
+      "Prior work on dashboards, KYC/AML, or wealth/investment products.",
+      "Motion and prototyping (Figma, Principle, or code).",
+      "Familiarity with Web3 wallets and on-chain mental models.",
+    ],
+  },
+  {
+    slug: "ui-ux-designer",
+    title: "UI/UX Designer",
+    short: "UI/UX Designer",
+    tagline: "Craft accessible, high-clarity interfaces for tokenized markets.",
+    icon: Palette,
+    department: "Design",
+    location: "Remote · Global",
+    employmentType: "Full-time",
+    reportsTo: "Product Designer",
+    overview: `${PROJECT_CONTEXT} As a UI/UX Designer, you will refine interaction patterns, visual hierarchy, and usability across property discovery, onboarding, and operational tools — with a bar that matches global consumer-fintech products.`,
+    responsibilities: [
+      "Design interface states (empty, loading, error, success) for high-stakes financial flows.",
+      "Map user journeys and wireframes for KYC, purchase, and distribution experiences.",
+      "Raise visual craft: typography, spacing, color, and component consistency.",
+      "Run usability reviews and synthesize feedback into iteration plans.",
+      "Produce production-ready specs, redlines, and assets for frontend engineers.",
+      "Champion accessibility (WCAG) and inclusive design in every surface you touch.",
+    ],
+    qualifications: [
+      "3+ years of UI/UX design shipped to production.",
+      "Portfolio demonstrating interaction design, visual systems, and before/after thinking.",
+      "Strong Figma craft and an eye for detail at 1x and 2x.",
+      "Working knowledge of accessibility, responsive layouts, and design-to-dev handoff.",
+      "Ability to work from product briefs without waiting for pixel-perfect direction.",
+    ],
+    niceToHave: [
+      "Experience with design systems or contributing to component libraries.",
+      "Basic HTML/CSS familiarity for tighter collaboration with frontend.",
+      "Motion design or 3D/property visualization work.",
+    ],
+  },
+  {
+    slug: "engineering-manager",
+    title: "Engineering Manager",
+    short: "Engineering Manager",
+    tagline: "Lead a multi-disciplinary squad shipping production RWA infrastructure.",
+    icon: UsersRound,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time",
+    reportsTo: "Chief Technology Officer",
+    overview: `${PROJECT_CONTEXT} As an Engineering Manager, you will lead a squad spanning protocol, backend, and product engineering. You set the delivery bar, grow people, and keep the technical standard high enough for institutional partners — without becoming a bottleneck.`,
+    responsibilities: [
+      "Lead a remote engineering team: hiring, coaching, performance, and career paths.",
+      "Own delivery against the product roadmap — scope, sequencing, and quality.",
+      "Create clarity in ambiguous tokenization and compliance work; protect focus.",
+      "Partner with Product and Design on trade-offs; represent engineering in leadership forums.",
+      "Uphold engineering practices: reviews, testing, incident response, and documentation.",
+      "Stay close enough to the stack (TypeScript, Solidity, cloud) to make sound technical calls.",
+    ],
+    qualifications: [
+      "7+ years in software engineering, including 2+ years managing engineers.",
+      "Track record shipping production systems in fintech, infrastructure, or similarly regulated domains.",
+      "Ability to hire and retain strong ICs; you know what excellent looks like.",
+      "Excellent written communication and comfort with async, global teams.",
+      "Enough technical depth to review architecture and unblock without taking over the work.",
+    ],
+    niceToHave: [
+      "Experience with blockchain, custody, or payments platforms.",
+      "Prior role at a high-growth startup or a large product organization (FAANG / equivalent).",
+      "Familiarity with SOC 2, ISO 27001, or similar control environments.",
     ],
   },
 ];

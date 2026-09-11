@@ -13,14 +13,25 @@ import ApplyPage from "./pages/ApplyPage.tsx";
 import Company from "./pages/Company.tsx";
 import Docs from "./pages/Docs.tsx";
 import DocChapter from "./pages/DocChapter.tsx";
+import { Privacy, Terms, Security } from "./pages/Legal.tsx";
 
 const queryClient = new QueryClient();
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+const ScrollManager = () => {
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
+    if (hash) {
+      const id = decodeURIComponent(hash.replace("#", ""));
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+      });
+      return;
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
+  }, [pathname, hash]);
+
   return null;
 };
 
@@ -30,7 +41,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
+        <ScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services/:slug" element={<ServicePage />} />
@@ -40,7 +51,9 @@ const App = () => (
           <Route path="/company" element={<Company />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/docs/:slug" element={<DocChapter />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/security" element={<Security />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

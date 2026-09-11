@@ -1,4 +1,8 @@
-import { Coins, Layers, ShieldCheck, Cpu, Network, FileCode2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Coins, Cpu, FileCode2, Layers, Network, ShieldCheck } from "lucide-react";
+import { SectionHeading } from "@/components/site/SectionHeading";
+import { Reveal } from "@/components/site/Reveal";
 import rwaImg from "@/assets/services/rwa-tokenization.jpg";
 import auditsImg from "@/assets/services/audits.jpg";
 import layersImg from "@/assets/services/layers.jpg";
@@ -9,94 +13,89 @@ import aiImg from "@/assets/services/ai-analytics.jpg";
 const services = [
   {
     icon: Coins,
-    title: "RWA Tokenization",
-    desc: "Tokenize real estate, treasuries, commodities and private credit with compliant, transferable on-chain instruments.",
-    accent: "primary",
+    title: "RWA tokenization",
+    desc: "Issue compliant, transferable instruments for real estate, treasuries, commodities, and private credit — including lifecycle events and redemptions.",
+    href: "/services/rwa-tokenization",
     image: rwaImg,
   },
   {
     icon: ShieldCheck,
-    title: "Smart Contract Audits",
-    desc: "Formal verification, fuzzing and manual review by senior auditors — for Solidity, Move and Rust.",
-    accent: "accent",
+    title: "Smart contract assurance",
+    desc: "Senior review, fuzzing, and test harnesses for Solidity, Move, and Rust before anything reaches mainnet.",
+    href: "/services/blockchain-development",
     image: auditsImg,
   },
   {
     icon: Layers,
-    title: "L1 / L2 Engineering",
-    desc: "Custom rollups, app-chains and bridge infrastructure designed for institutional-grade throughput.",
-    accent: "primary",
+    title: "L1 / L2 engineering",
+    desc: "Rollups, app-chains, and conservative bridge design for throughput without improvising trust assumptions.",
+    href: "/services/blockchain-development",
     image: layersImg,
   },
   {
     icon: FileCode2,
-    title: "Compliance & KYC Rails",
-    desc: "On-chain identity, transfer restrictions and ERC-3643 / T-REX implementations ready for regulators.",
-    accent: "highlight",
+    title: "Compliance & identity rails",
+    desc: "On-chain identity, transfer restrictions, and ERC-3643 / T-REX implementations that map to real jurisdictions.",
+    href: "/services/rwa-tokenization",
     image: complianceImg,
   },
   {
     icon: Network,
-    title: "Liquidity & Market Infra",
-    desc: "AMMs, order books, oracle feeds and tokenized fund settlement layers — battle-tested in production.",
-    accent: "accent",
+    title: "Liquidity & market infra",
+    desc: "AMMs, order books, oracles, and settlement layers for tokenized funds that already have investors to serve.",
+    href: "/services/rwa-tokenization",
     image: liquidityImg,
   },
   {
     icon: Cpu,
-    title: "AI × On-chain Analytics",
-    desc: "Real-time risk dashboards, anomaly detection and AI agents that act on verifiable on-chain data.",
-    accent: "primary",
+    title: "On-chain analytics & AI",
+    desc: "Risk dashboards, anomaly detection, and agents that act on verifiable chain data — not dashboards that go stale.",
+    href: "/services/ai-ml-development",
     image: aiImg,
   },
 ];
 
-const accentMap: Record<string, string> = {
-  primary: "from-primary/20 to-primary-glow/10 text-primary",
-  accent: "from-accent/20 to-accent-glow/10 text-accent",
-  highlight: "from-highlight/20 to-highlight/5 text-highlight",
-};
-
 export const Services = () => {
   return (
-    <section id="solutions" className="py-24 md:py-32">
+    <section id="solutions" className="scroll-mt-24 border-b border-border py-20 md:py-28">
       <div className="container">
-        <div className="max-w-3xl">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            Our Core Services
-          </span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight lg:whitespace-nowrap">
-            End-to-end <span className="text-gradient">blockchain engineering</span> for real assets
-          </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            From tokenization design to audited deployment, TokenBrickLabs is the technical
-            backbone behind some of the most ambitious RWA platforms in market.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Services"
+          title={
+            <>
+              Engineering for assets that already exist in the real world
+            </>
+          }
+          description="We take tokenization from term sheet to audited contracts, investor onboarding, and day-two operations — not a slide deck."
+        />
 
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc, accent, image }) => (
-            <article
-              key={title}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-card border border-border p-7 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1"
-            >
-              <div
-                className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-15 group-hover:opacity-30 transition-opacity duration-500"
-                style={{ backgroundImage: `url(${image})` }}
-                aria-hidden="true"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" aria-hidden="true" />
-              <div className="relative">
-              <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${accentMap[accent]}`}>
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed">{desc}</p>
-              <div className="absolute inset-x-7 bottom-7 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </article>
+        <ul className="mt-14 divide-y divide-border border-y border-border">
+          {services.map(({ icon: Icon, title, desc, href, image }, i) => (
+            <li key={title}>
+              <Reveal delayMs={i * 40}>
+                <Link
+                  to={href}
+                  className="group grid gap-6 py-8 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-8 md:py-10"
+                >
+                  <div className="relative hidden h-20 w-32 overflow-hidden border border-border sm:block">
+                    <img src={image} alt="" width={256} height={160} loading="lazy" className="h-full w-full object-cover" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-3">
+                      <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                      <h3 className="font-display text-xl font-semibold tracking-tight">{title}</h3>
+                    </div>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">{desc}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    View service
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

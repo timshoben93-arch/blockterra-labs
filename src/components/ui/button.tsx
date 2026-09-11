@@ -5,19 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-sans text-sm font-medium tracking-[-0.01em] ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        outline:
+          "border border-border bg-transparent text-foreground hover:bg-secondary hover:border-foreground/20",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-primary text-primary-foreground shadow-elevated hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300",
-        accent: "bg-gradient-accent text-accent-foreground shadow-elevated hover:shadow-[var(--shadow-accent-glow)] hover:-translate-y-0.5 transition-all duration-300",
-        soft: "bg-secondary text-foreground border border-border hover:bg-background hover:border-primary/40 transition-all",
+        hero: "bg-primary text-primary-foreground shadow-soft hover:bg-primary/90 active:translate-y-px transition-all duration-200",
+        accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent/90 active:translate-y-px transition-all duration-200",
+        soft: "bg-transparent text-foreground border border-border hover:bg-secondary hover:border-foreground/25 active:translate-y-px transition-all duration-200",
         dark: "bg-surface-dark text-surface-dark-foreground hover:bg-surface-dark/90",
       },
       size: {

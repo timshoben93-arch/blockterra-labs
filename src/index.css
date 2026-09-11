@@ -36,7 +36,7 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217 33% 14%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 16% 72%;
 
     --destructive: 0 74% 55%;
     --destructive-foreground: 0 0% 100%;
@@ -45,11 +45,14 @@
     --input: 217 33% 18%;
     --ring: 217 91% 62%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
     /* Surfaces */
     --surface-dark: 222 47% 4%;
     --surface-dark-foreground: 210 40% 98%;
+    --surface-raised: 217 32% 10%;
+    --surface-muted: 217 28% 8.2%;
+    --flow-h: clamp(2.75rem, 6.5vw, 5.25rem);
 
     /* Gradients */
     --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(217 91% 22%) 0%, hsl(222 47% 6%) 60%);
@@ -59,11 +62,11 @@
     --gradient-accent: linear-gradient(135deg, hsl(162 75% 42%), hsl(190 95% 55%));
     --gradient-card: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 8%));
 
-    /* Shadows */
-    --shadow-soft: 0 1px 2px hsl(222 47% 8% / 0.04), 0 4px 16px hsl(217 91% 55% / 0.06);
-    --shadow-elevated: 0 10px 40px -10px hsl(217 91% 55% / 0.25);
-    --shadow-glow: 0 0 60px hsl(190 95% 60% / 0.35);
-    --shadow-accent-glow: 0 0 60px hsl(162 75% 50% / 0.3);
+    /* Shadows — restrained depth, not glow-first */
+    --shadow-soft: 0 1px 0 hsl(210 40% 98% / 0.04), 0 8px 24px hsl(222 47% 2% / 0.35);
+    --shadow-elevated: 0 1px 0 hsl(210 40% 98% / 0.06), 0 16px 40px hsl(222 47% 2% / 0.45);
+    --shadow-glow: 0 12px 32px hsl(217 91% 40% / 0.22);
+    --shadow-accent-glow: 0 12px 32px hsl(162 75% 30% / 0.18);
 
     /* Motion */
     --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -85,17 +88,75 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground antialiased;
-    overflow-x: hidden;
-    font-feature-settings: "ss01", "cv11";
-  }
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    color-scheme: dark;
+    @apply font-sans antialiased;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: clip;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    letter-spacing: -0.011em;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans;
+    letter-spacing: -0.028em;
+    line-height: 1.18;
+    font-weight: 600;
+  }
+  p {
+    line-height: 1.65;
+  }
+  button,
+  input,
+  optgroup,
+  select,
+  textarea,
+  label {
+    font-family: inherit;
+    letter-spacing: inherit;
+  }
+  table {
+    @apply font-sans;
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 @layer utilities {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground;
+  }
+
   .text-gradient {
     background: var(--gradient-text);
     -webkit-background-clip: text;
@@ -165,5 +226,30 @@
   }
   .marquee-fade {
     mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+
+  /* Flowing section transitions */
+  .section-flow {
+    position: relative;
+    isolation: isolate;
+  }
+  .section-flow-pad {
+    padding-bottom: calc(var(--flow-h) + 0.75rem);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hairline {
+    box-shadow: inset 0 0 0 1px hsl(var(--border));
   }
 }

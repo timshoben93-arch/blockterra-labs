@@ -1,36 +1,32 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SITE } from "@/lib/site";
 
 export const CTA = () => {
   return (
-    <section className="py-24 md:py-32">
+    <section className="border-b border-border py-20 md:py-28" aria-labelledby="cta-heading">
       <div className="container">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-primary px-8 py-16 md:px-16 md:py-24 text-primary-foreground shadow-elevated">
-          <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-accent/40 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-highlight/30 blur-3xl" />
-
-          <div className="relative max-w-3xl">
-            <span className="inline-flex rounded-full bg-primary-foreground/10 backdrop-blur px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
-              Ready when you are
-            </span>
-            <h2 className="mt-6 font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight md:whitespace-nowrap">
-              Let's bring your asset on-chain
+        <div className="grid gap-10 border border-border bg-card p-8 md:grid-cols-[1fr_auto] md:items-end md:p-12 lg:p-16">
+          <div className="max-w-2xl">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">Next step</p>
+            <h2 id="cta-heading" className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              Map the issuance path in thirty minutes
             </h2>
-            <p className="mt-5 text-lg md:text-xl text-primary-foreground/85 max-w-2xl">
-              Book a 30-minute discovery call. We'll map your tokenization journey,
-              regulatory path, and a realistic launch timeline — at no cost.
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Bring the asset class, jurisdiction, and constraint that is actually blocking you. You leave with a
+              written sequence — contracts, identity, custody, and a realistic launch window.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button variant="default" size="xl" className="bg-background text-foreground hover:bg-background/90 group" asChild>
-                <a href="https://calendly.com/tokenbricklabs-support/30min" target="_blank" rel="noopener noreferrer">
-                  Book a Discovery Call
-                  <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="xl" className="text-primary-foreground hover:bg-primary-foreground/10" asChild>
-                <a href="mailto:support@tokenbricklabs.com">support@tokenbricklabs.com</a>
-              </Button>
-            </div>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+            <Button variant="hero" size="lg" className="group" asChild>
+              <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
+                Book a discovery call
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </Button>
+            <Button variant="soft" size="lg" asChild>
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            </Button>
           </div>
         </div>
       </div>

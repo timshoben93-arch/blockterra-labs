@@ -27,7 +27,7 @@ const ServicePage = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Header />
-      <main>
+      <main id="main">
         {/* Hero */}
         <section className="relative overflow-hidden bg-hero-radial">
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
