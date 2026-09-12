@@ -13,7 +13,7 @@ export const Footer = () => {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link to="/" className="inline-flex items-center gap-2.5">
-              <img src={logo} alt="" width={40} height={40} className="h-9 w-9 object-contain" />
+              <img src={logo} alt="" width={40} height={40} className="h-9 w-9 rounded-[10px] object-cover" />
               <span className="leading-tight">
                 <span className="block font-display text-base font-semibold tracking-tight">{SITE.name}</span>
                 <span className="block text-[10px] uppercase tracking-[0.18em] text-surface-dark-foreground/50">

@@ -87,6 +87,20 @@ const TalentPage = () => {
                       </dt>
                       <dd className="mt-1">{talent.employmentType}</dd>
                     </div>
+                    <div>
+                      <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                        Posted on
+                      </dt>
+                      <dd className="mt-1">Posted 5 Days Ago</dd>
+                    </div>
+                    {talent.requisitionId ? (
+                      <div>
+                        <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                          Job requisition id
+                        </dt>
+                        <dd className="mt-1 tabular-nums">{talent.requisitionId}</dd>
+                      </div>
+                    ) : null}
                     {talent.reportsTo ? (
                       <div>
                         <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -132,16 +146,17 @@ const TalentPage = () => {
 
               <section>
                 <h2 className="font-sans text-2xl font-semibold tracking-tight">What you’ll do</h2>
-                <ol className="mt-5 divide-y divide-border border-y border-border">
-                  {talent.responsibilities.map((item, i) => (
-                    <li key={item} className="flex gap-4 py-4">
-                      <span className="w-8 shrink-0 text-sm font-semibold tabular-nums text-primary">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <p className="text-foreground/85 leading-relaxed">{item}</p>
-                    </li>
-                  ))}
-                </ol>
+                <ul className="mt-5 space-y-3">
+                  {talent.responsibilities.map((item) => {
+                    const text = /[.!?]$/.test(item.trim()) ? item.trim() : `${item.trim()}.`;
+                    return (
+                      <li key={item} className="flex gap-3 text-foreground/85 leading-relaxed">
+                        <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                        {text}
+                      </li>
+                    );
+                  })}
+                </ul>
               </section>
 
               <section>

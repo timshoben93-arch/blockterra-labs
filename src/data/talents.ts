@@ -29,6 +29,7 @@ export type Talent = {
   department: Department;
   location: string;
   employmentType: string;
+  requisitionId?: string;
   overview: string;
   responsibilities: string[];
   qualifications: string[];
@@ -39,8 +40,57 @@ export type Talent = {
   techStack?: { category: string; items: string[] }[];
 };
 
-const PROJECT_CONTEXT =
-  "TokenBrickLabs is building a Real-World Asset (RWA) platform that enables fractional ownership of real estate through blockchain tokenization, enhanced with AI-driven personalization and immersive 3D property exploration.";
+const STUDIO_INTRO =
+  "TokenBrickLabs is a Seattle-based blockchain studio that designs, audits, and ships production Real-World Asset tokenization — issuance, identity, custody, and settlement rails for funds, fintechs, and operators. We hire globally and build for institutional security, compliance, and day-two operations, not slide-deck prototypes.";
+
+const SHARED_BENEFITS = [
+  "Opportunity to work at the bleeding edge of Web3 / crypto / DeFi.",
+  "Flexible working conditions.",
+  "Remote work location.",
+  "Offer token/equity packages.",
+  "Sponsored global events and travel.",
+  "Annual global 2-week offsite.",
+  "Signing and performance bonuses.",
+  "Competitive remuneration (attractive salary, benefits, and incentives, including tokens and bonus opportunities).",
+];
+
+const ENGINEERING_CULTURE = {
+  heading: "Engineering Organization & Culture",
+  body: "At TokenBrickLabs, we are engineering the institutional standard for Real-World Asset tokenization. Our mission is to ship platforms centered on security and compliance, requiring a commitment to technical excellence that extends beyond simply delivering code. As a global organization, we set a high bar for those driven to do their best work alongside world-class peers.\n\nWe value engineers who treat development as a craft and own the outcome from concept to deployment. We expect our teams to bring structure to ambiguity and shape the frameworks that support our studio. We refuse to compromise on quality and seek problem solvers who thrive on high-impact technical challenges.",
+};
+
+const DESIGN_CULTURE = {
+  heading: "Design Organization & Culture",
+  body: "At TokenBrickLabs, design is how institutional complexity becomes operable. Issuance, identity, and custody only work if operators and investors can see the system clearly. We hold a high bar for craft, systems thinking, and written rationale — not slide-deck aesthetics.\n\nWe look for designers who treat product surfaces as part of the control environment: every empty state, error, and confirmation has to survive legal and compliance review. We work remotely, document decisions, and partner tightly with engineering and product.",
+};
+
+const PRODUCT_CULTURE = {
+  heading: "Product Organization & Culture",
+  body: "At TokenBrickLabs, product is the sequencing of contracts, identity, custody, and the operator workflows that keep an issuance alive after launch. We do not ship theater. We ship systems institutions can run.\n\nProduct managers here write clearly, cut scope without losing the risk surface, and stay close to engineering. We expect you to bring structure to ambiguous tokenization work and to own outcomes from discovery through day-two operations.",
+};
+
+const GTM_CULTURE = {
+  heading: "Go-to-market Organization & Culture",
+  body: "At TokenBrickLabs, go-to-market is how we put production tokenization in front of funds, fintechs, and operators who already have a fiduciary duty. We sell rigor — audits, controls, and operable rails — not a prototype narrative.\n\nWe look for people who can hold a technical conversation, structure a deal, and leave a room with a sequencing of work rather than a vague “next step.” High ownership, written follow-through, and respect for compliance are non-negotiable.",
+};
+
+const OPERATIONS_CULTURE = {
+  heading: "Operations Organization & Culture",
+  body: "At TokenBrickLabs, operations is the delivery system around protocol, product, and partners. Audits, releases, and issuance calendars do not tolerate loose coordination.\n\nWe look for operators who make work visible, surface risk early, and keep remote teams honest about dates. Ceremony is light; accountability is not.",
+};
+
+const aboutRole = (paragraph: string) => `${STUDIO_INTRO}\n\n${paragraph}`;
+
+const jdExtras = (
+  reportsTo: string,
+  culture: { heading: string; body: string },
+  teamHeading: string,
+  teamBody: string,
+) => [
+  { heading: "Reports to:", body: reportsTo },
+  culture,
+  { heading: teamHeading, body: teamBody },
+];
 
 export const TALENTS: Talent[] = [
   {
@@ -52,8 +102,16 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview:
-      "We’re looking for a Blockchain Architect to help design and build the core Web3 infrastructure behind this project. This role sits at the intersection of smart contract architecture, backend integration, and product scalability — working closely with our engineering, product, and DevOps teams to bring secure, production-ready blockchain features to life.",
+    requisitionId: "JR2001234",
+    overview: aboutRole(
+      "As a Blockchain Architect, you will own the on-chain architecture of that stack: contract boundaries, upgrade paths, multi-chain strategy, and the security model that issuance and custody products depend on.",
+    ),
+    extraSections: jdExtras(
+      "Director, Engineering",
+      ENGINEERING_CULTURE,
+      "The Team: Protocol Architecture",
+      "Protocol Architecture sets the contract and systems design for TokenBrickLabs issuances. We define token standards, identity hooks, upgradeability, and how protocol work lands in backend and operator products. The bar is production: audit-ready, gas-aware, and operable in regulated jurisdictions.",
+    ),
     responsibilities: [
       "Design and implement smart contract architecture for NFT-based property ownership, transfers, and fractionalization.",
       "Build and maintain contracts using Solidity (Hardhat), ensuring security, upgradeability, and gas efficiency.",
@@ -74,6 +132,18 @@ export const TALENTS: Talent[] = [
       "Understanding of security patterns and audit preparation.",
       "Ability to work in fast-paced startup environments.",
     ],
+    niceToHave: [
+      "Experience designing upgradeable, permissioned, or RWA token systems.",
+      "Prior work preparing protocols for external security audits.",
+      "Familiarity with L2s, account abstraction, or institutional custody models.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Blockchain", items: ["Solidity", "Ethereum", "Polygon", "Arbitrum"] },
+      { category: "Smart Contract Development", items: ["Hardhat", "Foundry", "OpenZeppelin", "Ethers.js"] },
+      { category: "Architecture", items: ["ERC-721", "ERC-1155", "Upgradeability", "Multisig"] },
+      { category: "Infrastructure", items: ["AWS", "Docker", "GitHub Actions"] },
+    ],
   },
   {
     slug: "solidity-smart-contract-developer",
@@ -83,9 +153,10 @@ export const TALENTS: Talent[] = [
     icon: Code2,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
+    requisitionId: "JR2001233",
     overview:
-      "TokenBrickLabs is an institutionally focused global digital asset platform that provides market infrastructure and information services. These include: TokenBrickLabs Exchange – a regulated and institutionally focused digital assets spot and derivatives exchange, integrating a high-performance central limit order book matching engine with automated market making to provide deep and predictable liquidity. TokenBrickLabs Exchange is regulated in Germany, Hong Kong, and Gibraltar. TokenBrickLabs Indices – a collection of tradable proprietary and single-asset benchmarks and indices that track the performance of digital assets for global institutions in the digital assets and traditional finance industries. TokenBrickLabs Data – a broad suite of digital assets market data and analytics, providing real-time insights into prices, trends, and market dynamics. TokenBrickLabs Insights – a digital asset media and events provider covering news and insights about digital assets, the underlying markets, policy, and blockchain technology.",
+      "TokenBrickLabs is a Seattle-based blockchain studio that designs, audits, and ships production Real-World Asset tokenization — issuance, identity, custody, and settlement rails for funds, fintechs, and operators. We hire globally and build for institutional security, compliance, and day-two operations, not slide-deck prototypes.\n\nAs a Blockchain Developer (Smart Contracts), you will own the Solidity layer of that stack: permissioned tokens, transfer restrictions, and the contract surfaces that investor and issuer products depend on.",
     extraSections: [
       {
         heading: "Reports to:",
@@ -93,11 +164,11 @@ export const TALENTS: Talent[] = [
       },
       {
         heading: "Engineering Organization & Culture",
-        body: "At TokenBrickLabs, we are engineering the institutional standard for the digital asset industry. Our mission is to build a platform centered on security and compliance, requiring a commitment to technical excellence that extends beyond simply delivering code. As a global organization, we set a high bar for those driven to do their best work alongside world-class peers.\n\nWe value engineers who treat development as a craft and own the outcome from concept to deployment. We expect our teams to bring structure to ambiguity and shape the frameworks that support our global organization. We refuse to compromise on quality and seek problem solvers who thrive on high-impact technical challenges.",
+        body: "At TokenBrickLabs, we are engineering the institutional standard for Real-World Asset tokenization. Our mission is to ship platforms centered on security and compliance, requiring a commitment to technical excellence that extends beyond simply delivering code. As a global organization, we set a high bar for those driven to do their best work alongside world-class peers.\n\nWe value engineers who treat development as a craft and own the outcome from concept to deployment. We expect our teams to bring structure to ambiguity and shape the frameworks that support our studio. We refuse to compromise on quality and seek problem solvers who thrive on high-impact technical challenges.",
       },
       {
-        heading: "The Team: Clearing Engineering",
-        body: "The Clearing Engineering Team builds the mission-critical infrastructure for TokenBrickLabs Clearing. We mitigate systemic risk through automated default management and ensure operational integrity via high-precision data validation. Our proprietary netting algorithms drive capital efficiency and market velocity, reducing liquidity requirements while accelerated settlement cycles provide participants with faster access to funds. We solve complex distributed systems challenges on a modern cloud-native stack, rejecting \"good enough\" in favor of the engineering rigor required to operate within highly regulated jurisdictions.",
+        heading: "The Team: Protocol Engineering",
+        body: "The Protocol Engineering team builds the smart-contract and on-chain infrastructure behind TokenBrickLabs issuances. We design permissioned token standards, transfer rules, identity rails, and lifecycle events (NAV, coupons, redemptions) that operations teams can actually run. We solve complex distributed-systems problems on a modern stack, rejecting “good enough” in favor of the engineering rigor required in regulated jurisdictions.",
       },
     ],
     responsibilities: [
@@ -157,7 +228,16 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a Web3 Developer, you will build the dApp layer that connects investors to tokenized properties — wallets, transactions, indexing and on-chain data flows.`,
+    requisitionId: "JR2001235",
+    overview: aboutRole(
+      "As a Web3 Developer, you will own the dApp layer of that stack: wallets, signatures, indexing, and the transaction flows that connect investors and issuers to tokenized assets.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Product Engineering (Web3)",
+      "Product Engineering (Web3) connects protocol surfaces to investor and issuer products. We integrate wallets, transaction UX, and on-chain reads so operators can run issuances without treating the chain as a black box. We optimize for security, gas, and a mental model that non-crypto stakeholders can actually follow.",
+    ),
     responsibilities: [
       "Develop and deploy smart contracts for property tokenization (NFTs), ownership transfer, and transaction flows.",
       "Integrate blockchain interactions into the frontend using Web3.js / Ethers.js (wallets, transactions, signatures).",
@@ -170,8 +250,19 @@ export const TALENTS: Talent[] = [
       "Strong experience with Solidity and tools like Hardhat.",
       "Hands-on experience integrating wallets (MetaMask, WalletConnect).",
       "Good understanding of Ethereum ecosystem, tokens (ERC-721 / ERC-1155), and transaction flows.",
-      "Familiarity with Node.js or backend APIs is a plus.",
       "Ability to work in a fast-moving, product-focused environment.",
+    ],
+    niceToHave: [
+      "Familiarity with Node.js or backend APIs.",
+      "Experience with indexing (The Graph, custom indexers) or account abstraction.",
+      "Prior work on fintech or RWA investor products.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Blockchain", items: ["Solidity", "Ethereum", "Polygon", "WalletConnect"] },
+      { category: "Client Integration", items: ["Ethers.js", "viem", "Wagmi", "TypeScript"] },
+      { category: "Frontend", items: ["React", "Next.js"] },
+      { category: "Tooling", items: ["Hardhat", "Foundry"] },
     ],
   },
   {
@@ -183,20 +274,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a Backend Developer, you will design and build the APIs, services and data pipelines that power property listings, KYC, payments, AI personalization and on-chain orchestration.`,
+    requisitionId: "JR2001236",
+    overview: aboutRole(
+      "As a Backend Developer, you will own the off-chain core of that stack: APIs, services, and data pipelines that power listings, KYC, payments, and on-chain orchestration for operators and investors.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Platform Engineering",
+      "Platform Engineering builds the services that sit between protocol, identity, and product. We design APIs, reconciliation, and workflow systems that issuers can run after launch — KYC, payments, documents, and state that must match the chain. Reliability and auditability matter as much as feature velocity.",
+    ),
     responsibilities: [
       "Design and build scalable REST/GraphQL APIs and microservices.",
-      "Implement KYC/AML integrations, payment rails (fiat & stablecoin) and document workflows.",
+      "Implement KYC/AML integrations, payment rails (fiat and stablecoin), and document workflows.",
       "Develop services that orchestrate on-chain transactions and reconcile on-chain/off-chain state.",
-      "Build robust data models for properties, investors, valuations and distributions.",
-      "Own observability, performance and security of backend systems.",
+      "Build robust data models for properties, investors, valuations, and distributions.",
+      "Own observability, performance, and security of backend systems.",
     ],
     qualifications: [
       "4+ years of backend engineering with Node.js, Go, or Python.",
-      "Strong experience with PostgreSQL, Redis and message queues (Kafka, RabbitMQ, SQS).",
-      "Proficiency with Docker, Kubernetes and cloud platforms (AWS / GCP).",
-      "Solid grasp of authentication, authorization and secure API design.",
-      "Bonus: experience integrating with blockchain nodes, KYC providers, or payment processors.",
+      "Strong experience with PostgreSQL, Redis, and message queues (Kafka, RabbitMQ, SQS).",
+      "Proficiency with Docker, Kubernetes, and cloud platforms (AWS / GCP).",
+      "Solid grasp of authentication, authorization, and secure API design.",
+    ],
+    niceToHave: [
+      "Experience integrating blockchain nodes, KYC providers, or payment processors.",
+      "Background in fintech ledgering, reconciliation, or workflow engines.",
+      "Familiarity with event-driven architectures and idempotent payment flows.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Languages", items: ["TypeScript", "Node.js", "Go", "Python"] },
+      { category: "APIs & Services", items: ["REST", "GraphQL", "gRPC"] },
+      { category: "Data", items: ["PostgreSQL", "Redis", "Kafka"] },
+      { category: "Infrastructure", items: ["AWS", "Docker", "Kubernetes"] },
     ],
   },
   {
@@ -208,20 +319,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a Frontend Developer, you will build the investor-facing web application — property discovery, portfolio dashboards, KYC onboarding and immersive 3D exploration.`,
+    requisitionId: "JR2001237",
+    overview: aboutRole(
+      "As a Frontend Developer, you will own the investor- and issuer-facing web surfaces: property discovery, portfolio dashboards, KYC onboarding, and the high-clarity flows that make tokenization feel as considered as a top-tier fintech.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Product Engineering (Web)",
+      "Product Engineering (Web) ships the applications operators and investors use every day. We partner with design on a coherent system, integrate backend and Web3 SDKs, and treat accessibility and empty/error states as part of the product — not polish after launch.",
+    ),
     responsibilities: [
-      "Implement responsive, accessible UI using React, TypeScript and Tailwind CSS.",
-      "Build dashboards for portfolio performance, distributions and transaction history.",
+      "Implement responsive, accessible UI using React, TypeScript, and Tailwind CSS.",
+      "Build dashboards for portfolio performance, distributions, and transaction history.",
       "Integrate with backend APIs and on-chain SDKs in collaboration with Web3 engineers.",
       "Partner with design to ship a polished, conversion-focused investor experience.",
       "Maintain a reusable component library and design system.",
     ],
     qualifications: [
       "3+ years of frontend experience with React and TypeScript.",
-      "Strong skills in Tailwind CSS, modern state management and performance tuning.",
-      "Experience with data-heavy dashboards, charts and complex forms.",
-      "Eye for design, accessibility and motion.",
-      "Bonus: experience with Web3 dApps, Three.js / React Three Fiber, or fintech UIs.",
+      "Strong skills in Tailwind CSS, modern state management, and performance tuning.",
+      "Experience with data-heavy dashboards, charts, and complex forms.",
+      "Eye for design, accessibility, and motion.",
+    ],
+    niceToHave: [
+      "Experience with Web3 dApps, Three.js / React Three Fiber, or fintech UIs.",
+      "Prior work on design-system implementation with engineers and designers.",
+      "Familiarity with WCAG and complex form/KYC flows.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Vite"] },
+      { category: "State & Data", items: ["TanStack Query", "Zustand", "REST APIs"] },
+      { category: "Quality", items: ["Playwright", "Storybook", "Accessibility (WCAG)"] },
+      { category: "Web3 (as needed)", items: ["viem", "Wagmi"] },
     ],
   },
   {
@@ -233,20 +364,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As an AI / ML Developer, you will design recommendation systems, valuation models and AI-driven assistants that personalize how investors discover and evaluate tokenized properties.`,
+    requisitionId: "JR2001238",
+    overview: aboutRole(
+      "As an AI / ML Developer, you will own recommendation, valuation, and assistant systems that help investors discover and evaluate tokenized properties — with production monitoring, not notebook demos.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Applied Intelligence",
+      "Applied Intelligence builds models and LLM surfaces that sit on TokenBrickLabs product data: discovery, risk signals, and operator assistants. We ship through APIs, own evaluation, and refuse to treat generative features as ungrounded chat. Retrieval, permissions, and auditability come first.",
+    ),
     responsibilities: [
       "Build recommendation and personalization models for property discovery.",
       "Develop valuation and risk-scoring models using market and on-chain data.",
       "Design and ship LLM-powered assistants with retrieval-augmented generation (RAG).",
-      "Own data pipelines, feature stores and model monitoring in production.",
+      "Own data pipelines, feature stores, and model monitoring in production.",
       "Collaborate with product and backend teams to integrate models via APIs.",
     ],
     qualifications: [
-      "3+ years of ML engineering with Python, PyTorch or TensorFlow.",
-      "Experience with recommender systems, NLP and/or time-series forecasting.",
-      "Hands-on experience with LLMs, embeddings, vector databases and RAG.",
-      "Strong MLOps fundamentals — training infra, deployment and monitoring.",
-      "Bonus: experience in real estate, fintech or on-chain analytics.",
+      "3+ years of ML engineering with Python, PyTorch, or TensorFlow.",
+      "Experience with recommender systems, NLP, and/or time-series forecasting.",
+      "Hands-on experience with LLMs, embeddings, vector databases, and RAG.",
+      "Strong MLOps fundamentals — training infra, deployment, and monitoring.",
+    ],
+    niceToHave: [
+      "Experience in real estate, fintech, or on-chain analytics.",
+      "Familiarity with evaluation harnesses and permissioned retrieval.",
+      "Prior production work on ranking or risk models.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "ML", items: ["Python", "PyTorch", "scikit-learn"] },
+      { category: "LLMs & Retrieval", items: ["Embeddings", "Vector DBs", "RAG"] },
+      { category: "Data", items: ["PostgreSQL", "Feature pipelines", "On-chain datasets"] },
+      { category: "Serving", items: ["FastAPI", "AWS", "Docker"] },
     ],
   },
   {
@@ -258,20 +409,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a Mobile App Developer, you will design and build our iOS and Android apps so investors can browse properties, manage portfolios and explore 3D listings on the go.`,
+    requisitionId: "JR2001239",
+    overview: aboutRole(
+      "As a Mobile App Developer, you will own iOS and Android experiences so investors can browse assets, manage portfolios, and complete high-stakes flows — KYC, wallets, and distributions — on the go.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Product Engineering (Mobile)",
+      "Product Engineering (Mobile) extends TokenBrickLabs products beyond the desktop operator console. We treat biometrics, secure storage, and store-release discipline as part of the control environment. The same issuance and portfolio truths must hold on a phone as they do on the web.",
+    ),
     responsibilities: [
       "Build cross-platform mobile apps using React Native or Flutter (or native iOS/Android).",
-      "Implement secure wallet flows, biometrics and KYC onboarding on mobile.",
+      "Implement secure wallet flows, biometrics, and KYC onboarding on mobile.",
       "Integrate 3D property tours and rich media for immersive exploration.",
-      "Optimize for performance, offline support and push notifications.",
-      "Collaborate with backend, design and QA to ship reliable releases.",
+      "Optimize for performance, offline support, and push notifications.",
+      "Collaborate with backend, design, and QA to ship reliable releases.",
     ],
     qualifications: [
       "3+ years of mobile development experience.",
-      "Strong skills in React Native, Flutter, Swift or Kotlin.",
+      "Strong skills in React Native, Flutter, Swift, or Kotlin.",
       "Experience publishing apps to the App Store and Google Play.",
-      "Familiarity with mobile security, biometrics and secure storage.",
-      "Bonus: experience with WalletConnect, fintech apps, or AR/3D content.",
+      "Familiarity with mobile security, biometrics, and secure storage.",
+    ],
+    niceToHave: [
+      "Experience with WalletConnect, fintech apps, or AR/3D content.",
+      "Prior work on offline-first or high-security consumer finance apps.",
+      "Familiarity with React Native New Architecture or native modules.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Mobile", items: ["React Native", "Swift", "Kotlin"] },
+      { category: "Security", items: ["Biometrics", "Secure storage", "WalletConnect"] },
+      { category: "Release", items: ["App Store", "Google Play", "CI"] },
+      { category: "Backend", items: ["REST APIs", "TypeScript"] },
     ],
   },
   {
@@ -283,20 +454,39 @@ export const TALENTS: Talent[] = [
     department: "Go-to-market",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a BD Manager, you will drive partnerships with real-estate developers, asset managers and institutional investors to bring high-quality assets and capital onto the platform.`,
+    requisitionId: "JR2001240",
+    overview: aboutRole(
+      "As a Business Development Manager, you will own partnerships with real-estate sponsors, asset managers, and institutional investors — bringing assets and capital onto rails we can actually operate after close.",
+    ),
+    extraSections: jdExtras(
+      "Head of Growth",
+      GTM_CULTURE,
+      "The Team: Partnerships",
+      "Partnerships originates and structures TokenBrickLabs issuances with sponsors and allocators. We work with legal and product so a signed term sheet maps to a deliverable stack — contracts, identity, custody — not a vague integration. Pipeline discipline and written deal rooms are how we scale.",
+    ),
     responsibilities: [
-      "Identify, pitch and close partnerships with real-estate sponsors and institutional investors.",
+      "Identify, pitch, and close partnerships with real-estate sponsors and institutional investors.",
       "Build and manage a structured pipeline of deals from prospecting to close.",
-      "Represent TokenBrickLabs at industry events, conferences and partner meetings.",
+      "Represent TokenBrickLabs at industry events, conferences, and partner meetings.",
       "Work with legal and product teams to structure compliant tokenization deals.",
-      "Own KPIs around partnerships, AUM onboarded and revenue.",
+      "Own KPIs around partnerships, AUM onboarded, and revenue.",
     ],
     qualifications: [
-      "5+ years in business development, sales or partnerships in fintech, real estate or Web3.",
-      "Strong network in real estate, asset management or institutional crypto.",
-      "Excellent communication, negotiation and storytelling skills.",
-      "Comfort with deal structuring, term sheets and basic financial modeling.",
-      "Bonus: prior experience launching RWA, tokenization or alternative-asset products.",
+      "5+ years in business development, sales, or partnerships in fintech, real estate, or Web3.",
+      "Strong network in real estate, asset management, or institutional crypto.",
+      "Excellent communication, negotiation, and storytelling skills.",
+      "Comfort with deal structuring, term sheets, and basic financial modeling.",
+    ],
+    niceToHave: [
+      "Prior experience launching RWA, tokenization, or alternative-asset products.",
+      "Existing relationships with funds, issuers, or regulated intermediaries.",
+      "Familiarity with securities tokenization and cross-border distribution.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Pipeline", items: ["CRM", "Deal rooms", "Notion"] },
+      { category: "Materials", items: ["Issuance briefs", "Financial models"] },
+      { category: "Domain", items: ["RWA", "Real estate", "Institutional crypto"] },
     ],
   },
   {
@@ -308,20 +498,39 @@ export const TALENTS: Talent[] = [
     department: "Operations",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a Project Manager, you will coordinate engineering, design, product and external partners to deliver complex tokenization, AI and 3D features end-to-end.`,
+    requisitionId: "JR2001241",
+    overview: aboutRole(
+      "As a Project Manager, you will coordinate engineering, design, product, and external partners so tokenization, audits, and releases land on time — with risk visible before it becomes a date miss.",
+    ),
+    extraSections: jdExtras(
+      "Director, Operations",
+      OPERATIONS_CULTURE,
+      "The Team: Delivery",
+      "Delivery keeps TokenBrickLabs issuances and platform work sequenced across protocol, product, and vendors. We run roadmaps, audit calendars, and partner integrations with written status — not status theater. The job is to make dependencies and quality bars explicit.",
+    ),
     responsibilities: [
-      "Plan and run delivery cycles across engineering, design, product and partners.",
-      "Maintain roadmaps, milestones and clear status reporting to leadership.",
-      "Identify risks, dependencies and blockers — and drive them to resolution.",
+      "Plan and run delivery cycles across engineering, design, product, and partners.",
+      "Maintain roadmaps, milestones, and clear status reporting to leadership.",
+      "Identify risks, dependencies, and blockers — and drive them to resolution.",
       "Run rituals (standups, planning, retros) that keep teams focused and unblocked.",
-      "Coordinate releases, audits and partner integrations.",
+      "Coordinate releases, audits, and partner integrations.",
     ],
     qualifications: [
-      "4+ years managing software delivery in fintech, Web3 or complex SaaS.",
+      "4+ years managing software delivery in fintech, Web3, or complex SaaS.",
       "Strong command of Agile/Scrum and modern PM tooling (Jira, Linear, Notion).",
       "Excellent stakeholder management and written communication.",
-      "Comfort with technical concepts in blockchain, AI and platform engineering.",
-      "Bonus: PMP, Scrum Master or PSPO certifications.",
+      "Comfort with technical concepts in blockchain, AI, and platform engineering.",
+    ],
+    niceToHave: [
+      "PMP, Scrum Master, or PSPO certifications.",
+      "Experience coordinating security audits or regulated-product launches.",
+      "Prior work with globally distributed engineering teams.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Delivery", items: ["Linear", "Jira", "Notion"] },
+      { category: "Communication", items: ["Written status", "Async rituals"] },
+      { category: "Domain", items: ["Audits", "Releases", "Partner integrations"] },
     ],
   },
   {
@@ -333,8 +542,16 @@ export const TALENTS: Talent[] = [
     department: "Product",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview:
-      "This is a technology platform focused on tokenizing real-world assets (RWA) — starting with real estate — by combining blockchain, AI, and data-driven insights. Our goal is to make real estate investment more transparent, efficient, and accessible through modern technology.\n\nWe’re looking for a visionary Product Manager to lead the strategy, planning, and execution of this platform — a next-generation ecosystem combining blockchain, gaming, and real estate. The Product Manager will act as the bridge between business, design, and engineering, ensuring smooth delivery of features that align with our long-term vision.",
+    requisitionId: "JR2001242",
+    overview: aboutRole(
+      "As a Product Manager, you will own strategy, planning, and execution for TokenBrickLabs products — translating issuance, identity, and custody into requirements engineering and design can ship, and operators can run.",
+    ),
+    extraSections: jdExtras(
+      "Head of Product",
+      PRODUCT_CULTURE,
+      "The Team: Product",
+      "Product sits between business, design, and engineering. We turn tokenization models into sequenced work: investor flows, issuer consoles, and the compliance surfaces in between. We measure what ships, write the spec, and stay in the room when legal and protocol disagree.",
+    ),
     responsibilities: [
       "Collaborate with engineering, design, blockchain, and AI teams to translate business goals into clear product requirements and user stories.",
       "Lead end-to-end product lifecycle from ideation, specification, and development to launch and iteration.",
@@ -349,6 +566,17 @@ export const TALENTS: Talent[] = [
       "Ability to balance big-picture vision with detailed execution.",
       "Familiarity with agile methodologies and product management tools (Jira, Trello, Notion).",
     ],
+    niceToHave: [
+      "Experience shipping regulated or compliance-heavy products.",
+      "Familiarity with RWA issuance, KYC/AML, or custody workflows.",
+      "Comfort writing technical specs alongside engineering.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Product", items: ["Linear", "Notion", "FigJam"] },
+      { category: "Analytics", items: ["KPIs", "User interviews", "Funnels"] },
+      { category: "Domain", items: ["RWA", "Web3", "Fintech"] },
+    ],
   },
   {
     slug: "devops-engineer",
@@ -359,20 +587,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a DevOps Engineer, you will design and operate the cloud, CI/CD and observability foundations that keep our RWA platform secure, compliant and always-on.`,
+    requisitionId: "JR2001243",
+    overview: aboutRole(
+      "As a DevOps Engineer, you will own cloud, CI/CD, and observability so TokenBrickLabs platforms stay secure, compliant, and operable — the substrate institutions expect before they put capital on-chain.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Infrastructure & Reliability",
+      "Infrastructure & Reliability runs the environments protocol and product ship into. We treat Terraform, Kubernetes, secrets, and SLOs as part of the control plane. Progressive delivery, audit logs, and least privilege are how we earn the right to host issuance workloads.",
+    ),
     responsibilities: [
       "Design and manage cloud infrastructure on AWS or GCP using Terraform.",
-      "Operate Kubernetes clusters with GitOps, autoscaling and policy enforcement.",
+      "Operate Kubernetes clusters with GitOps, autoscaling, and policy enforcement.",
       "Build secure, fast CI/CD pipelines with progressive delivery and rollbacks.",
       "Implement observability — metrics, logs, traces — and SLOs for critical services.",
-      "Champion security best practices, secret management and compliance readiness.",
+      "Champion security best practices, secret management, and compliance readiness.",
     ],
     qualifications: [
       "4+ years of DevOps / SRE experience in production environments.",
-      "Strong skills with Kubernetes, Terraform and a major cloud (AWS / GCP / Azure).",
+      "Strong skills with Kubernetes, Terraform, and a major cloud (AWS / GCP / Azure).",
       "Experience with CI/CD (GitHub Actions, ArgoCD) and observability stacks (Prometheus, Grafana, OpenTelemetry).",
-      "Solid networking, Linux and security fundamentals.",
-      "Bonus: experience operating blockchain nodes or fintech-grade compliance environments.",
+      "Solid networking, Linux, and security fundamentals.",
+    ],
+    niceToHave: [
+      "Experience operating blockchain nodes or fintech-grade compliance environments.",
+      "Familiarity with SOC 2, ISO 27001, or similar control frameworks.",
+      "Prior work on GitOps, policy-as-code, or secrets platforms.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Cloud", items: ["AWS", "GCP", "Terraform"] },
+      { category: "Orchestration", items: ["Kubernetes", "ArgoCD", "GitHub Actions"] },
+      { category: "Observability", items: ["Prometheus", "Grafana", "OpenTelemetry"] },
+      { category: "Security", items: ["IAM", "Secrets", "Policy-as-code"] },
     ],
   },
   {
@@ -384,20 +632,40 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    overview: `${PROJECT_CONTEXT} As a QA Engineer, you will design and execute test strategies that ensure our tokenization, payment and investor flows are accurate, secure and reliable.`,
+    requisitionId: "JR2001244",
+    overview: aboutRole(
+      "As a QA Engineer, you will own test strategy for tokenization, payments, and investor flows — so money, identity, and on-chain state stay correct under change.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Quality Engineering",
+      "Quality Engineering is embedded with product and protocol squads. We automate the paths that move capital and identity, validate contracts on testnets, and shift testing left in CI. “Looks fine in staging” is not a release criterion when settlement is involved.",
+    ),
     responsibilities: [
-      "Design test plans and automated test suites across web, mobile and APIs.",
+      "Design test plans and automated test suites across web, mobile, and APIs.",
       "Build end-to-end tests for critical investor flows (KYC, purchase, distributions).",
       "Validate on-chain interactions on testnets and staging environments.",
-      "Drive regression, performance and security testing in CI.",
+      "Drive regression, performance, and security testing in CI.",
       "Partner with engineering to improve quality processes and shift testing left.",
     ],
     qualifications: [
       "3+ years of QA / test automation experience in web and mobile products.",
-      "Strong skills with Playwright, Cypress, Detox or Appium.",
-      "Experience testing APIs, payment flows and complex stateful systems.",
+      "Strong skills with Playwright, Cypress, Detox, or Appium.",
+      "Experience testing APIs, payment flows, and complex stateful systems.",
       "Solid understanding of CI/CD and test infrastructure.",
-      "Bonus: experience testing dApps, fintech, or RWA platforms.",
+    ],
+    niceToHave: [
+      "Experience testing dApps, fintech, or RWA platforms.",
+      "Familiarity with contract testing or testnet orchestration.",
+      "Background in performance or security testing.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Automation", items: ["Playwright", "Cypress", "API tests"] },
+      { category: "Mobile", items: ["Detox", "Appium"] },
+      { category: "CI", items: ["GitHub Actions", "Test reporting"] },
+      { category: "Domain", items: ["KYC", "Payments", "Testnets"] },
     ],
   },
   {
@@ -409,8 +677,16 @@ export const TALENTS: Talent[] = [
     department: "Design",
     location: "Remote · Global",
     employmentType: "Full-time",
-    reportsTo: "Head of Product",
-    overview: `${PROJECT_CONTEXT} As a Product Designer, you will own end-to-end product design — from problem framing and information architecture to high-fidelity systems — so tokenization, KYC, and portfolio flows feel as considered as a top-tier fintech.`,
+    requisitionId: "JR2001245",
+    overview: aboutRole(
+      "As a Product Designer, you will own end-to-end product design — from problem framing and information architecture to high-fidelity systems — so tokenization, KYC, and portfolio flows feel as considered as a top-tier fintech.",
+    ),
+    extraSections: jdExtras(
+      "Head of Product",
+      DESIGN_CULTURE,
+      "The Team: Product Design",
+      "Product Design owns the surfaces investors, issuers, and operators use. We turn ambiguous asset and compliance requirements into structure, then into a system engineering can implement. We prototype, test with real users, and present rationale — not just screens — to founders and legal partners.",
+    ),
     responsibilities: [
       "Lead design for investor, issuer, and operator journeys across web (and later mobile).",
       "Translate ambiguous asset and compliance requirements into clear product structure.",
@@ -432,6 +708,12 @@ export const TALENTS: Talent[] = [
       "Motion and prototyping (Figma, Principle, or code).",
       "Familiarity with Web3 wallets and on-chain mental models.",
     ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Design", items: ["Figma", "FigJam", "Prototyping"] },
+      { category: "Systems", items: ["Design tokens", "Components", "Documentation"] },
+      { category: "Research", items: ["Usability tests", "Journey maps"] },
+    ],
   },
   {
     slug: "ui-ux-designer",
@@ -442,8 +724,16 @@ export const TALENTS: Talent[] = [
     department: "Design",
     location: "Remote · Global",
     employmentType: "Full-time",
-    reportsTo: "Product Designer",
-    overview: `${PROJECT_CONTEXT} As a UI/UX Designer, you will refine interaction patterns, visual hierarchy, and usability across property discovery, onboarding, and operational tools — with a bar that matches global consumer-fintech products.`,
+    requisitionId: "JR2001246",
+    overview: aboutRole(
+      "As a UI/UX Designer, you will own interaction patterns, visual hierarchy, and usability across property discovery, onboarding, and operational tools — with a bar that matches global consumer-fintech products.",
+    ),
+    extraSections: jdExtras(
+      "Product Designer",
+      DESIGN_CULTURE,
+      "The Team: Product Design",
+      "UI/UX on the Product Design team raises craft on every state: empty, loading, error, success. We map journeys, specify for frontend, and treat accessibility as a shipping requirement. High-stakes financial flows do not get a pass for unclear hierarchy.",
+    ),
     responsibilities: [
       "Design interface states (empty, loading, error, success) for high-stakes financial flows.",
       "Map user journeys and wireframes for KYC, purchase, and distribution experiences.",
@@ -464,6 +754,12 @@ export const TALENTS: Talent[] = [
       "Basic HTML/CSS familiarity for tighter collaboration with frontend.",
       "Motion design or 3D/property visualization work.",
     ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Design", items: ["Figma", "Prototyping", "Redlines"] },
+      { category: "Quality", items: ["WCAG", "Responsive layouts", "Handoff"] },
+      { category: "Craft", items: ["Typography", "Color", "Motion"] },
+    ],
   },
   {
     slug: "engineering-manager",
@@ -474,8 +770,16 @@ export const TALENTS: Talent[] = [
     department: "Engineering",
     location: "Remote · Global",
     employmentType: "Full-time",
-    reportsTo: "Chief Technology Officer",
-    overview: `${PROJECT_CONTEXT} As an Engineering Manager, you will lead a squad spanning protocol, backend, and product engineering. You set the delivery bar, grow people, and keep the technical standard high enough for institutional partners — without becoming a bottleneck.`,
+    requisitionId: "JR2001247",
+    overview: aboutRole(
+      "As an Engineering Manager, you will lead a squad spanning protocol, backend, and product engineering. You set the delivery bar, grow people, and keep the technical standard high enough for institutional partners — without becoming a bottleneck.",
+    ),
+    extraSections: jdExtras(
+      "Chief Technology Officer",
+      ENGINEERING_CULTURE,
+      "The Team: Engineering Leadership",
+      "Engineering Managers at TokenBrickLabs lead remote squads that ship issuance infrastructure. You hire and coach ICs, sequence work with Product, and stay close enough to TypeScript, Solidity, and cloud to make sound calls. You represent engineering in leadership forums and protect focus when tokenization work is ambiguous.",
+    ),
     responsibilities: [
       "Lead a remote engineering team: hiring, coaching, performance, and career paths.",
       "Own delivery against the product roadmap — scope, sequencing, and quality.",
@@ -493,11 +797,16 @@ export const TALENTS: Talent[] = [
     ],
     niceToHave: [
       "Experience with blockchain, custody, or payments platforms.",
-      "Prior role at a high-growth startup or a large product organization (FAANG / equivalent).",
+      "Prior role at a high-growth startup or a large product organization.",
       "Familiarity with SOC 2, ISO 27001, or similar control environments.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Delivery", items: ["Linear", "GitHub", "Written RFCs"] },
+      { category: "Stack fluency", items: ["TypeScript", "Solidity", "AWS"] },
+      { category: "Practices", items: ["Code review", "Incidents", "Hiring"] },
     ],
   },
 ];
 
-export const getTalentBySlug = (slug: string) =>
-  TALENTS.find((t) => t.slug === slug);
+export const getTalentBySlug = (slug: string) => TALENTS.find((t) => t.slug === slug);

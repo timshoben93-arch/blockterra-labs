@@ -13,7 +13,7 @@ const Logo = () => (
       alt=""
       width={40}
       height={40}
-      className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
+      className="h-9 w-9 shrink-0 rounded-[10px] object-cover sm:h-10 sm:w-10 sm:rounded-xl"
     />
     <div className="min-w-0 leading-tight">
       <div className="truncate font-display text-sm font-semibold tracking-tight text-foreground sm:text-base">
