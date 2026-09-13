@@ -1,9 +1,19 @@
-import { MapPin, Mail, Linkedin } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TEAM, COMPANY_LOCATION } from "@/data/company";
+import { Button } from "@/components/ui/button";
+import { COMPANY_LOCATION } from "@/data/company";
+import { SITE } from "@/lib/site";
+import studioCharts from "@/assets/studio-charts.jpg";
+import studioSession from "@/assets/studio-session.jpg";
+import studioConversation from "@/assets/studio-conversation.jpg";
+
+const STUDIO = [
+  { src: studioCharts, alt: "Hands around charts, notes, and a tablet dashboard during a working session" },
+  { src: studioSession, alt: "A working conversation in a glass-walled meeting room" },
+  { src: studioConversation, alt: "A focused conversation between colleagues across a table" },
+] as const;
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
@@ -54,7 +64,57 @@ const Company = () => {
           </div>
         </section>
 
-        {/* Team */}
+        <section id="studio" className="border-b border-border/60">
+          <div className="container py-20 lg:py-28">
+            <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-2 lg:gap-y-14 lg:items-center">
+              <div>
+                <Eyebrow>Company · Introduction</Eyebrow>
+                <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
+                  The tables where real assets become <span className="text-gradient">on-chain</span>
+                </h2>
+                <p className="mt-7 text-base md:text-lg leading-relaxed text-muted-foreground">
+                  TokenBrickLabs is a Seattle studio of engineers, designers, and operators. We design, audit, and
+                  deploy tokenization stacks that funds, fintechs, and asset operators can actually run — from
+                  compliant issuance to custody, NAV, and secondary settlement.
+                </p>
+              </div>
+              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+                <img src={STUDIO[0].src} alt={STUDIO[0].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
+              </figure>
+
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+                This is the work, not the pitch deck. Spreadsheets and dashboards on the table. A tablet with the
+                numbers everyone is pointing at. A room that goes quiet while someone walks through transfer rules,
+                identity rails, or how a coupon actually pays. Then the conversation opens up again — the hard
+                questions, the sequencing, the path from structure to issuance to operations.
+              </p>
+              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+                <img src={STUDIO[1].src} alt={STUDIO[1].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
+              </figure>
+
+              <div>
+                <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+                  We sit with the asset, the jurisdiction, and the operating reality first. Real estate is where we
+                  start. The standard is production, not theater.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Button variant="hero" size="lg" asChild>
+                    <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
+                      Book a discovery call
+                    </a>
+                  </Button>
+                  <Button variant="soft" size="lg" asChild>
+                    <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                  </Button>
+                </div>
+              </div>
+              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+                <img src={STUDIO[2].src} alt={STUDIO[2].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
+              </figure>
+            </div>
+          </div>
+        </section>
+
         {/* HQ + Map */}
         <section id="hq" className="border-t border-border/60 bg-secondary/30">
           <div className="container py-24 lg:py-28">
