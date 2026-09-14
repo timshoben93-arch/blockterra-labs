@@ -11,6 +11,7 @@ import {
   Settings,
   ShieldCheck,
   Network,
+  Blocks,
   PenTool,
   Palette,
   UsersRound,
@@ -101,10 +102,10 @@ export const TALENTS: Talent[] = [
     icon: Network,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001234",
     overview: aboutRole(
-      "As a Blockchain Architect, you will own the on-chain architecture of that stack: contract boundaries, upgrade paths, multi-chain strategy, and the security model that issuance and custody products depend on.",
+      "As a Blockchain Architect, you will own the on-chain architecture of that stack: contract boundaries, upgrade paths, multi-chain strategy, and the security model that issuance and custody products depend on. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Director, Engineering",
@@ -143,6 +144,57 @@ export const TALENTS: Talent[] = [
       { category: "Smart Contract Development", items: ["Hardhat", "Foundry", "OpenZeppelin", "Ethers.js"] },
       { category: "Architecture", items: ["ERC-721", "ERC-1155", "Upgradeability", "Multisig"] },
       { category: "Infrastructure", items: ["AWS", "Docker", "GitHub Actions"] },
+    ],
+  },
+  {
+    slug: "protocol-engineer",
+    title: "Protocol Engineer",
+    short: "Protocol Engineer",
+    tagline: "Build the on-chain protocol that tokenized issuances actually run on.",
+    icon: Blocks,
+    department: "Engineering",
+    location: "Remote · Global",
+    employmentType: "Full-time / Part-time",
+    requisitionId: "JR2001248",
+    overview: aboutRole(
+      "As a Protocol Engineer, you will own the on-chain protocol layer of that stack: permissioned token mechanics, identity and transfer rules, lifecycle events, and the test harnesses that keep issuances audit-ready. You sit between architecture and product engineering — shipping protocol, not just reviewing it. The role is open as full-time or part-time.",
+    ),
+    extraSections: jdExtras(
+      "Director, Engineering",
+      ENGINEERING_CULTURE,
+      "The Team: Protocol Engineering",
+      "The Protocol Engineering team builds the smart-contract and on-chain infrastructure behind TokenBrickLabs issuances. We design permissioned token standards, transfer rules, identity rails, and lifecycle events (NAV, coupons, redemptions) that operations teams can actually run. We solve complex distributed-systems problems on a modern stack, rejecting “good enough” in favor of the engineering rigor required in regulated jurisdictions.",
+    ),
+    responsibilities: [
+      "Design, implement, and maintain the core issuance protocol — permissioned tokens, identity hooks, and transfer restrictions.",
+      "Specify and ship lifecycle events: NAV updates, coupons, corporate actions, and redemptions.",
+      "Write protocol specs, invariants, and test vectors that architecture, audits, and product can share.",
+      "Build Foundry/Hardhat suites: unit, fuzz, invariant, and fork tests against realistic issuance flows.",
+      "Own upgrade paths, pause/admin controls, and multisig operational procedures.",
+      "Integrate protocol surfaces with backend indexers, oracles, and operator APIs.",
+      "Prepare releases for external security audits and drive remediation to close.",
+      "Evaluate L2 and app-chain trade-offs when a new issuance needs different settlement assumptions.",
+    ],
+    qualifications: [
+      "3+ years of protocol or smart-contract engineering in production.",
+      "Strong Solidity (or Move/Rust) with Hardhat or Foundry, including fuzzing and invariant testing.",
+      "Deep familiarity with token standards and permissioned models (ERC-20, ERC-721, ERC-3643 / T-REX or equivalent).",
+      "Understanding of upgradeability, access control, and operational security (multisig, timelocks).",
+      "Ability to write clear protocol documentation and work with auditors.",
+      "Comfort collaborating with backend, architecture, and legal on compliance-mapped transfer rules.",
+    ],
+    niceToHave: [
+      "Prior work on RWA, security-token, or DeFi protocol teams.",
+      "Experience with oracles, account abstraction, or cross-chain messaging.",
+      "Familiarity with formal methods, Slither, Echidna, or similar tooling.",
+      "Contributions to public protocol repos or EIPs.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Protocol", items: ["Solidity", "ERC-3643 / T-REX", "OpenZeppelin", "Upgradeability"] },
+      { category: "Testing & Security", items: ["Foundry", "Hardhat", "Fuzzing", "Invariant tests"] },
+      { category: "Chains", items: ["Ethereum", "Polygon", "Arbitrum"] },
+      { category: "Integration", items: ["Ethers.js", "Node.js", "Oracles"] },
     ],
   },
   {
@@ -227,10 +279,10 @@ export const TALENTS: Talent[] = [
     icon: Globe2,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001235",
     overview: aboutRole(
-      "As a Web3 Developer, you will own the dApp layer of that stack: wallets, signatures, indexing, and the transaction flows that connect investors and issuers to tokenized assets.",
+      "As a Web3 Developer, you will own the dApp layer of that stack: wallets, signatures, indexing, and the transaction flows that connect investors and issuers to tokenized assets. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Engineering Manager",
@@ -273,10 +325,10 @@ export const TALENTS: Talent[] = [
     icon: Server,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001236",
     overview: aboutRole(
-      "As a Backend Developer, you will own the off-chain core of that stack: APIs, services, and data pipelines that power listings, KYC, payments, and on-chain orchestration for operators and investors.",
+      "As a Backend Developer, you will own the off-chain core of that stack: APIs, services, and data pipelines that power listings, KYC, payments, and on-chain orchestration for operators and investors. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Engineering Manager",
@@ -318,10 +370,10 @@ export const TALENTS: Talent[] = [
     icon: Layout,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001237",
     overview: aboutRole(
-      "As a Frontend Developer, you will own the investor- and issuer-facing web surfaces: property discovery, portfolio dashboards, KYC onboarding, and the high-clarity flows that make tokenization feel as considered as a top-tier fintech.",
+      "As a Frontend Developer, you will own the investor- and issuer-facing web surfaces: property discovery, portfolio dashboards, KYC onboarding, and the high-clarity flows that make tokenization feel as considered as a top-tier fintech. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Engineering Manager",
@@ -363,10 +415,10 @@ export const TALENTS: Talent[] = [
     icon: Brain,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001238",
     overview: aboutRole(
-      "As an AI / ML Developer, you will own recommendation, valuation, and assistant systems that help investors discover and evaluate tokenized properties — with production monitoring, not notebook demos.",
+      "As an AI / ML Developer, you will own recommendation, valuation, and assistant systems that help investors discover and evaluate tokenized properties — with production monitoring, not notebook demos. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Engineering Manager",
@@ -408,10 +460,10 @@ export const TALENTS: Talent[] = [
     icon: Smartphone,
     department: "Engineering",
     location: "Remote · Global",
-    employmentType: "Full-time",
+    employmentType: "Full-time / Part-time",
     requisitionId: "JR2001239",
     overview: aboutRole(
-      "As a Mobile App Developer, you will own iOS and Android experiences so investors can browse assets, manage portfolios, and complete high-stakes flows — KYC, wallets, and distributions — on the go.",
+      "As a Mobile App Developer, you will own iOS and Android experiences so investors can browse assets, manage portfolios, and complete high-stakes flows — KYC, wallets, and distributions — on the go. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Engineering Manager",

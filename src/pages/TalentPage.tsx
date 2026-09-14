@@ -35,6 +35,9 @@ const TalentPage = () => {
 
   if (!talent) return <Navigate to="/talents" replace />;
 
+  const openAsFullOrPart =
+    talent.employmentType.includes("Full-time") && talent.employmentType.includes("Part-time");
+
   const sameTeam = TALENTS.filter((t) => t.slug !== talent.slug && t.department === talent.department);
   const rest = TALENTS.filter((t) => t.slug !== talent.slug && t.department !== talent.department);
   const more = [...sameTeam, ...rest].slice(0, 5);
@@ -86,6 +89,9 @@ const TalentPage = () => {
                         Type
                       </dt>
                       <dd className="mt-1">{talent.employmentType}</dd>
+                      {openAsFullOrPart ? (
+                        <p className="mt-1 text-xs text-muted-foreground">Apply as full-time or part-time.</p>
+                      ) : null}
                     </div>
                     <div>
                       <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -115,7 +121,9 @@ const TalentPage = () => {
                 <aside className="border border-border bg-card p-6 lg:sticky lg:top-24">
                   <p className="font-sans text-sm font-semibold tracking-tight">Apply for this role</p>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    We review every application. Typical response is a few business days.
+                    {openAsFullOrPart
+                      ? "This role is open as full-time or part-time. We review every application; typical response is a few business days."
+                      : "We review every application. Typical response is a few business days."}
                   </p>
                   <Button variant="hero" size="lg" className="mt-5 w-full" type="button" onClick={() => handleApplyOpenChange(true)}>
                     Apply now
