@@ -13,8 +13,6 @@ import ApplyPage from "./pages/ApplyPage.tsx";
 import Company from "./pages/Company.tsx";
 import Docs from "./pages/Docs.tsx";
 import DocChapter from "./pages/DocChapter.tsx";
-import WhitePaper from "./pages/WhitePaper.tsx";
-import ApplicationAdmin from "./pages/ApplicationAdmin.tsx";
 import { Privacy, Terms, Security } from "./pages/Legal.tsx";
 
 const queryClient = new QueryClient();
@@ -53,11 +51,9 @@ const App = () => (
           <Route path="/company" element={<Company />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/docs/:slug" element={<DocChapter />} />
-          <Route path="/whitepaper" element={<WhitePaper />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/security" element={<Security />} />
-          <Route path="/application_" element={<ApplicationAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

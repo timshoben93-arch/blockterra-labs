@@ -20,17 +20,7 @@ export const Insights = () => {
           description="Long-form chapters on constraints, vision, and consensus — written for engineers and counsel, not a blog farm."
         />
 
-        <div className="mt-10">
-          <Link
-            to="/whitepaper"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline hover:underline-offset-4"
-          >
-            Company white paper
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <ul className="mt-10 divide-y divide-border border-y border-border">
+        <ul className="mt-14 divide-y divide-border border-y border-border">
           {picks.map((doc) => (
             <li key={doc.slug}>
               <Link

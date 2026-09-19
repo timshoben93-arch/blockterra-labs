@@ -1,5 +1,4 @@
 import { MapPin, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Card } from "@/components/ui/card";
@@ -105,7 +104,7 @@ const Company = () => {
                     </a>
                   </Button>
                   <Button variant="soft" size="lg" asChild>
-                    <Link to="/whitepaper">Read the company white paper</Link>
+                    <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
                   </Button>
                 </div>
               </div>

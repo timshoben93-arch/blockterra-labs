@@ -31,9 +31,6 @@ const Docs = () => {
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
-              <Button variant="soft" size="pill" asChild>
-                <Link to="/whitepaper">Company white paper</Link>
-              </Button>
             </div>
           </div>
         </section>
