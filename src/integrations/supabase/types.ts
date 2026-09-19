@@ -14,6 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      application_status_history: {
+        Row: {
+          application_id: string
+          changed_at: string
+          changed_by: string | null
+          from_status: Database["public"]["Enums"]["application_status"] | null
+          id: string
+          to_status: Database["public"]["Enums"]["application_status"]
+        }
+        Insert: {
+          application_id: string
+          changed_at?: string
+          changed_by?: string | null
+          from_status?: Database["public"]["Enums"]["application_status"] | null
+          id?: string
+          to_status: Database["public"]["Enums"]["application_status"]
+        }
+        Update: {
+          application_id?: string
+          changed_at?: string
+          changed_by?: string | null
+          from_status?: Database["public"]["Enums"]["application_status"] | null
+          id?: string
+          to_status?: Database["public"]["Enums"]["application_status"]
+        }
+        Relationships: []
+      }
+      applications: {
+        Row: {
+          contact_channel: string
+          created_at: string
+          email: string
+          first_name: string
+          full_name: string
+          id: string
+          idempotency_key: string | null
+          internal_notes: string | null
+          last_name: string
+          linkedin_url: string | null
+          location: string | null
+          phone: string | null
+          portfolio_url: string | null
+          position_applied_for: string
+          position_slug: string
+          resume_storage_path: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["application_status"]
+          updated_at: string
+          years_of_experience: number | null
+        }
+        Insert: {
+          contact_channel: string
+          created_at?: string
+          email: string
+          first_name: string
+          full_name: string
+          id?: string
+          idempotency_key?: string | null
+          internal_notes?: string | null
+          last_name: string
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          position_applied_for: string
+          position_slug: string
+          resume_storage_path?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          years_of_experience?: number | null
+        }
+        Update: {
+          contact_channel?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          full_name?: string
+          id?: string
+          idempotency_key?: string | null
+          internal_notes?: string | null
+          last_name?: string
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          position_applied_for?: string
+          position_slug?: string
+          resume_storage_path?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          years_of_experience?: number | null
+        }
+        Relationships: []
+      }
       job_applications: {
         Row: {
           country: string | null
@@ -64,10 +181,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_staff: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      application_status:
+        | "new"
+        | "reviewing"
+        | "interviewing"
+        | "offered"
+        | "rejected"
+        | "hired"
+        | "withdrawn"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -194,6 +321,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      application_status: [
+        "new",
+        "reviewing",
+        "interviewing",
+        "offered",
+        "rejected",
+        "hired",
+        "withdrawn",
+      ],
+    },
   },
 } as const

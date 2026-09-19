@@ -75,12 +75,12 @@ const TalentsIndex = () => {
         <section className="border-b border-border">
           <div className="container py-16 sm:py-20 lg:py-24">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">Careers</p>
-            <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end">
+            <h1 className="mt-5 whitespace-nowrap font-sans text-[clamp(1.25rem,4.1vw,3.75rem)] font-semibold leading-none tracking-tight">
+              Build the rails for real-world assets
+            </h1>
+            <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end">
               <div>
-                <h1 className="font-sans text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-                  Build the rails for real-world assets
-                </h1>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
                   TokenBrickLabs is a Seattle-based studio hiring globally. We design, audit, and operate
                   tokenization infrastructure for funds, fintechs, and operators.
                 </p>

@@ -1,22 +1,11 @@
 import { useState } from "react";
 import { CheckCircle2, Upload } from "lucide-react";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { applySchema } from "@/lib/applyPayload";
 import type { Talent } from "@/data/talents";
-
-const applySchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required").max(80),
-  lastName: z.string().trim().min(1, "Last name is required").max(80),
-  email: z.string().trim().email("Invalid email").max(255),
-  contact: z.string().trim().min(3, "Contact is required").max(150),
-  location: z.string().trim().min(2, "Location is required").max(150),
-  social: z.string().trim().min(4, "LinkedIn or X profile is required").max(255),
-  experience: z.coerce.number().min(0, "Must be 0 or more").max(60, "Must be 60 or less"),
-});
 
 type FieldErrors = Partial<
   Record<"firstName" | "lastName" | "email" | "contact" | "location" | "social" | "experience" | "resume", string>
@@ -76,39 +65,55 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
 
     setSubmitting(true);
 
+    const submitKey = crypto.randomUUID();
+    const body = new FormData();
+    body.set("firstName", parsed.data.firstName);
+    body.set("lastName", parsed.data.lastName);
+    body.set("email", parsed.data.email);
+    body.set("contact", parsed.data.contact);
+    body.set("location", parsed.data.location);
+    body.set("social", parsed.data.social);
+    body.set("experience", String(parsed.data.experience));
+    body.set("jobId", talent.slug);
+    body.set("jobTitle", talent.title);
+    body.set("idempotencyKey", submitKey);
+    body.set("resume", resume);
+
+    const endpoint = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-application`;
+    const publishable = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+
     try {
-      let resumeUrl: string | null = null;
-      if (resume) {
-        const safeName = resume.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const path = `${talent.slug}/${crypto.randomUUID()}-${safeName}`;
-        const { error: uploadError } = await supabase.storage
-          .from("resumes")
-          .upload(path, resume, { cacheControl: "3600", upsert: false });
-        if (uploadError) throw uploadError;
-        resumeUrl = path;
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          apikey: publishable ?? "",
+          Authorization: `Bearer ${publishable ?? ""}`,
+        },
+        body,
+      });
+
+      let payload: { ok?: boolean; error?: string; duplicate?: boolean } = {};
+      try {
+        payload = (await response.json()) as typeof payload;
+      } catch {
+        payload = {};
       }
 
-      const { error: insertError } = await supabase.from("job_applications").insert({
-        job_id: talent.slug,
-        job_title: talent.title,
-        first_name: parsed.data.firstName,
-        last_name: parsed.data.lastName,
-        email: parsed.data.email,
-        whatsapp_tg_disc: parsed.data.contact,
-        linkedin_url: parsed.data.social,
-        country: parsed.data.location,
-        resume_url: resumeUrl,
-        experience: String(parsed.data.experience),
-      });
-      if (insertError) throw insertError;
+      if (!response.ok || !payload.ok) {
+        toast({
+          title: "Submission failed",
+          description: payload.error || "Something went wrong while submitting your application. Please try again in a moment.",
+          variant: "destructive",
+        });
+        return;
+      }
 
       form.reset();
       setResume(null);
       setErrors({});
       setSubmitted(true);
       toast({ title: "Your application has been submitted successfully." });
-    } catch (err) {
-      console.error("Application submission failed:", err);
+    } catch {
       toast({
         title: "Submission failed",
         description: "Something went wrong while submitting your application. Please try again in a moment.",
