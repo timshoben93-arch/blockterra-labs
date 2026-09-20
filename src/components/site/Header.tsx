@@ -29,6 +29,7 @@ const Logo = () => (
 const PAGE_LINKS = [
   { label: "Company", to: "/company" },
   { label: "Talent", to: "/talents" },
+  { label: "Applications", to: "/applications" },
   { label: "Docs", to: "/docs" },
 ];
 

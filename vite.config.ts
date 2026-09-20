@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
     watch: {
-      ignored: ["**/*.rar", "**/*.zip"],
+      ignored: ["**/*.rar", "**/*.zip", "**/dist/**"],
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),

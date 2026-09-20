@@ -14,6 +14,7 @@ import Company from "./pages/Company.tsx";
 import Docs from "./pages/Docs.tsx";
 import DocChapter from "./pages/DocChapter.tsx";
 import { Privacy, Terms, Security } from "./pages/Legal.tsx";
+import Applications from "./pages/Applications.tsx";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/talents" element={<TalentsIndex />} />
           <Route path="/talents/:slug/apply" element={<ApplyPage />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/applications" element={<Applications />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/docs/:slug" element={<DocChapter />} />
           <Route path="/privacy" element={<Privacy />} />
