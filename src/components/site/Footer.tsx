@@ -95,17 +95,32 @@ export const Footer = () => {
           <p className="text-xs text-surface-dark-foreground/55">
             © {year} {SITE.name}. All rights reserved.
           </p>
-          <nav className="flex flex-wrap gap-6 text-xs text-surface-dark-foreground/55" aria-label="Legal">
-            <Link to="/privacy" className="transition-colors hover:text-surface-dark-foreground">
-              Privacy
-            </Link>
-            <Link to="/terms" className="transition-colors hover:text-surface-dark-foreground">
-              Terms
-            </Link>
-            <Link to="/security" className="transition-colors hover:text-surface-dark-foreground">
-              Security
-            </Link>
-          </nav>
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-8">
+            <nav className="flex flex-wrap gap-6 text-xs text-surface-dark-foreground/55" aria-label="Social">
+              {SITE.social.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-surface-dark-foreground"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <nav className="flex flex-wrap gap-6 text-xs text-surface-dark-foreground/55" aria-label="Legal">
+              <Link to="/privacy" className="transition-colors hover:text-surface-dark-foreground">
+                Privacy
+              </Link>
+              <Link to="/terms" className="transition-colors hover:text-surface-dark-foreground">
+                Terms
+              </Link>
+              <Link to="/security" className="transition-colors hover:text-surface-dark-foreground">
+                Security
+              </Link>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>
