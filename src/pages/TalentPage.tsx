@@ -89,9 +89,6 @@ const TalentPage = () => {
                         Type
                       </dt>
                       <dd className="mt-1">{talent.employmentType}</dd>
-                      {openAsFullOrPart ? (
-                        <p className="mt-1 text-xs text-muted-foreground">Apply as full-time or part-time.</p>
-                      ) : null}
                     </div>
                     <div>
                       <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">

@@ -3,24 +3,19 @@ import {
   Globe2,
   Server,
   Layout,
-  Brain,
-  Smartphone,
-  Briefcase,
   ClipboardList,
   Package,
   Settings,
-  ShieldCheck,
   Network,
   Blocks,
   PenTool,
-  Palette,
   UsersRound,
   UserCog,
   Megaphone,
   type LucideIcon,
 } from "lucide-react";
 
-export const DEPARTMENTS = ["Engineering", "Design", "Product", "Go-to-market", "Operations"] as const;
+export const DEPARTMENTS = ["Engineering", "Design", "Product", "Operations"] as const;
 export type Department = (typeof DEPARTMENTS)[number];
 
 export type Talent = {
@@ -72,11 +67,6 @@ const PRODUCT_CULTURE = {
   body: "At TokenBrickLabs, product is the sequencing of contracts, identity, custody, and the operator workflows that keep an issuance alive after launch. We do not ship theater. We ship systems institutions can run.\n\nProduct managers here write clearly, cut scope without losing the risk surface, and stay close to engineering. We expect you to bring structure to ambiguous tokenization work and to own outcomes from discovery through day-two operations.",
 };
 
-const GTM_CULTURE = {
-  heading: "Go-to-market Organization & Culture",
-  body: "At TokenBrickLabs, go-to-market is how we put production tokenization in front of funds, fintechs, and operators who already have a fiduciary duty. We sell rigor — audits, controls, and operable rails — not a prototype narrative.\n\nWe look for people who can hold a technical conversation, structure a deal, and leave a room with a sequencing of work rather than a vague “next step.” High ownership, written follow-through, and respect for compliance are non-negotiable.",
-};
-
 const OPERATIONS_CULTURE = {
   heading: "Operations Organization & Culture",
   body: "At TokenBrickLabs, operations is the delivery system around protocol, product, and partners. Audits, releases, and issuance calendars do not tolerate loose coordination.\n\nWe look for operators who make work visible, surface risk early, and keep remote teams honest about dates. Ceremony is light; accountability is not.",
@@ -103,7 +93,7 @@ export const TALENTS: Talent[] = [
     tagline: "Architect the secure, scalable Web3 core of our RWA platform.",
     icon: Network,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001234",
     overview: aboutRole(
@@ -155,7 +145,7 @@ export const TALENTS: Talent[] = [
     tagline: "Build the on-chain protocol that tokenized issuances actually run on.",
     icon: Blocks,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001248",
     overview: aboutRole(
@@ -206,7 +196,7 @@ export const TALENTS: Talent[] = [
     tagline: "Design and ship production smart contracts for tokenized assets.",
     icon: Code2,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001233",
     overview:
@@ -280,7 +270,7 @@ export const TALENTS: Talent[] = [
     tagline: "Bridge users, wallets and contracts into a seamless RWA experience.",
     icon: Globe2,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001235",
     overview: aboutRole(
@@ -326,7 +316,7 @@ export const TALENTS: Talent[] = [
     tagline: "Power the off-chain core of our RWA platform.",
     icon: Server,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001236",
     overview: aboutRole(
@@ -371,7 +361,7 @@ export const TALENTS: Talent[] = [
     tagline: "Craft a beautiful, trustworthy investor experience.",
     icon: Layout,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001237",
     overview: aboutRole(
@@ -410,147 +400,13 @@ export const TALENTS: Talent[] = [
     ],
   },
   {
-    slug: "ai-ml-developer",
-    title: "AI / ML Developer",
-    short: "AI / ML Developer",
-    tagline: "Personalize the way investors discover real-world assets.",
-    icon: Brain,
-    department: "Engineering",
-    location: "Remote · Global",
-    employmentType: "Full-time / Part-time",
-    requisitionId: "JR2001238",
-    overview: aboutRole(
-      "As an AI / ML Developer, you will own recommendation, valuation, and assistant systems that help investors discover and evaluate tokenized properties — with production monitoring, not notebook demos. The role is open as full-time or part-time.",
-    ),
-    extraSections: jdExtras(
-      "Engineering Manager",
-      ENGINEERING_CULTURE,
-      "The Team: Applied Intelligence",
-      "Applied Intelligence builds models and LLM surfaces that sit on TokenBrickLabs product data: discovery, risk signals, and operator assistants. We ship through APIs, own evaluation, and refuse to treat generative features as ungrounded chat. Retrieval, permissions, and auditability come first.",
-    ),
-    responsibilities: [
-      "Build recommendation and personalization models for property discovery.",
-      "Develop valuation and risk-scoring models using market and on-chain data.",
-      "Design and ship LLM-powered assistants with retrieval-augmented generation (RAG).",
-      "Own data pipelines, feature stores, and model monitoring in production.",
-      "Collaborate with product and backend teams to integrate models via APIs.",
-    ],
-    qualifications: [
-      "3+ years of ML engineering with Python, PyTorch, or TensorFlow.",
-      "Experience with recommender systems, NLP, and/or time-series forecasting.",
-      "Hands-on experience with LLMs, embeddings, vector databases, and RAG.",
-      "Strong MLOps fundamentals — training infra, deployment, and monitoring.",
-    ],
-    niceToHave: [
-      "Experience in real estate, fintech, or on-chain analytics.",
-      "Familiarity with evaluation harnesses and permissioned retrieval.",
-      "Prior production work on ranking or risk models.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "ML", items: ["Python", "PyTorch", "scikit-learn"] },
-      { category: "LLMs & Retrieval", items: ["Embeddings", "Vector DBs", "RAG"] },
-      { category: "Data", items: ["PostgreSQL", "Feature pipelines", "On-chain datasets"] },
-      { category: "Serving", items: ["FastAPI", "AWS", "Docker"] },
-    ],
-  },
-  {
-    slug: "mobile-app-developer",
-    title: "Mobile App Developer",
-    short: "Mobile App Developer",
-    tagline: "Put fractional real estate in every investor's pocket.",
-    icon: Smartphone,
-    department: "Engineering",
-    location: "Remote · Global",
-    employmentType: "Full-time / Part-time",
-    requisitionId: "JR2001239",
-    overview: aboutRole(
-      "As a Mobile App Developer, you will own iOS and Android experiences so investors can browse assets, manage portfolios, and complete high-stakes flows — KYC, wallets, and distributions — on the go. The role is open as full-time or part-time.",
-    ),
-    extraSections: jdExtras(
-      "Engineering Manager",
-      ENGINEERING_CULTURE,
-      "The Team: Product Engineering (Mobile)",
-      "Product Engineering (Mobile) extends TokenBrickLabs products beyond the desktop operator console. We treat biometrics, secure storage, and store-release discipline as part of the control environment. The same issuance and portfolio truths must hold on a phone as they do on the web.",
-    ),
-    responsibilities: [
-      "Build cross-platform mobile apps using React Native or Flutter (or native iOS/Android).",
-      "Implement secure wallet flows, biometrics, and KYC onboarding on mobile.",
-      "Integrate 3D property tours and rich media for immersive exploration.",
-      "Optimize for performance, offline support, and push notifications.",
-      "Collaborate with backend, design, and QA to ship reliable releases.",
-    ],
-    qualifications: [
-      "3+ years of mobile development experience.",
-      "Strong skills in React Native, Flutter, Swift, or Kotlin.",
-      "Experience publishing apps to the App Store and Google Play.",
-      "Familiarity with mobile security, biometrics, and secure storage.",
-    ],
-    niceToHave: [
-      "Experience with WalletConnect, fintech apps, or AR/3D content.",
-      "Prior work on offline-first or high-security consumer finance apps.",
-      "Familiarity with React Native New Architecture or native modules.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Mobile", items: ["React Native", "Swift", "Kotlin"] },
-      { category: "Security", items: ["Biometrics", "Secure storage", "WalletConnect"] },
-      { category: "Release", items: ["App Store", "Google Play", "CI"] },
-      { category: "Backend", items: ["REST APIs", "TypeScript"] },
-    ],
-  },
-  {
-    slug: "bd-manager",
-    title: "Business Development Manager",
-    short: "BD Manager",
-    tagline: "Grow our network of property partners and institutional investors.",
-    icon: Briefcase,
-    department: "Go-to-market",
-    location: "Remote · Global",
-    employmentType: "Full-time",
-    requisitionId: "JR2001240",
-    overview: aboutRole(
-      "As a Business Development Manager, you will own partnerships with real-estate sponsors, asset managers, and institutional investors — bringing assets and capital onto rails we can actually operate after close.",
-    ),
-    extraSections: jdExtras(
-      "Head of Growth",
-      GTM_CULTURE,
-      "The Team: Partnerships",
-      "Partnerships originates and structures TokenBrickLabs issuances with sponsors and allocators. We work with legal and product so a signed term sheet maps to a deliverable stack — contracts, identity, custody — not a vague integration. Pipeline discipline and written deal rooms are how we scale.",
-    ),
-    responsibilities: [
-      "Identify, pitch, and close partnerships with real-estate sponsors and institutional investors.",
-      "Build and manage a structured pipeline of deals from prospecting to close.",
-      "Represent TokenBrickLabs at industry events, conferences, and partner meetings.",
-      "Work with legal and product teams to structure compliant tokenization deals.",
-      "Own KPIs around partnerships, AUM onboarded, and revenue.",
-    ],
-    qualifications: [
-      "5+ years in business development, sales, or partnerships in fintech, real estate, or Web3.",
-      "Strong network in real estate, asset management, or institutional crypto.",
-      "Excellent communication, negotiation, and storytelling skills.",
-      "Comfort with deal structuring, term sheets, and basic financial modeling.",
-    ],
-    niceToHave: [
-      "Prior experience launching RWA, tokenization, or alternative-asset products.",
-      "Existing relationships with funds, issuers, or regulated intermediaries.",
-      "Familiarity with securities tokenization and cross-border distribution.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Pipeline", items: ["CRM", "Deal rooms", "Notion"] },
-      { category: "Materials", items: ["Issuance briefs", "Financial models"] },
-      { category: "Domain", items: ["RWA", "Real estate", "Institutional crypto"] },
-    ],
-  },
-  {
     slug: "project-manager",
     title: "Project Manager",
     short: "Project Manager",
     tagline: "Keep cross-functional RWA delivery on time and on quality.",
     icon: ClipboardList,
     department: "Operations",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001241",
     overview: aboutRole(
@@ -594,7 +450,7 @@ export const TALENTS: Talent[] = [
     tagline: "Lead the vision bridging blockchain, gaming, and real estate.",
     icon: Package,
     department: "Product",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001242",
     overview: aboutRole(
@@ -639,7 +495,7 @@ export const TALENTS: Talent[] = [
     tagline: "Build the reliable, secure infra that institutions trust.",
     icon: Settings,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001243",
     overview: aboutRole(
@@ -678,58 +534,13 @@ export const TALENTS: Talent[] = [
     ],
   },
   {
-    slug: "qa-engineer",
-    title: "QA Engineer",
-    short: "QA Engineer",
-    tagline: "Guard the quality bar where money meets blockchain.",
-    icon: ShieldCheck,
-    department: "Engineering",
-    location: "Remote · Global",
-    employmentType: "Full-time",
-    requisitionId: "JR2001244",
-    overview: aboutRole(
-      "As a QA Engineer, you will own test strategy for tokenization, payments, and investor flows — so money, identity, and on-chain state stay correct under change.",
-    ),
-    extraSections: jdExtras(
-      "Engineering Manager",
-      ENGINEERING_CULTURE,
-      "The Team: Quality Engineering",
-      "Quality Engineering is embedded with product and protocol squads. We automate the paths that move capital and identity, validate contracts on testnets, and shift testing left in CI. “Looks fine in staging” is not a release criterion when settlement is involved.",
-    ),
-    responsibilities: [
-      "Design test plans and automated test suites across web, mobile, and APIs.",
-      "Build end-to-end tests for critical investor flows (KYC, purchase, distributions).",
-      "Validate on-chain interactions on testnets and staging environments.",
-      "Drive regression, performance, and security testing in CI.",
-      "Partner with engineering to improve quality processes and shift testing left.",
-    ],
-    qualifications: [
-      "3+ years of QA / test automation experience in web and mobile products.",
-      "Strong skills with Playwright, Cypress, Detox, or Appium.",
-      "Experience testing APIs, payment flows, and complex stateful systems.",
-      "Solid understanding of CI/CD and test infrastructure.",
-    ],
-    niceToHave: [
-      "Experience testing dApps, fintech, or RWA platforms.",
-      "Familiarity with contract testing or testnet orchestration.",
-      "Background in performance or security testing.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Automation", items: ["Playwright", "Cypress", "API tests"] },
-      { category: "Mobile", items: ["Detox", "Appium"] },
-      { category: "CI", items: ["GitHub Actions", "Test reporting"] },
-      { category: "Domain", items: ["KYC", "Payments", "Testnets"] },
-    ],
-  },
-  {
     slug: "product-designer",
     title: "Product Designer",
     short: "Product Designer",
     tagline: "Shape the product surfaces investors and issuers use every day.",
     icon: PenTool,
     department: "Design",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001245",
     overview: aboutRole(
@@ -770,59 +581,13 @@ export const TALENTS: Talent[] = [
     ],
   },
   {
-    slug: "ui-ux-designer",
-    title: "UI/UX Designer",
-    short: "UI/UX Designer",
-    tagline: "Craft accessible, high-clarity interfaces for tokenized markets.",
-    icon: Palette,
-    department: "Design",
-    location: "Remote · Global",
-    employmentType: "Full-time",
-    requisitionId: "JR2001246",
-    overview: aboutRole(
-      "As a UI/UX Designer, you will own interaction patterns, visual hierarchy, and usability across property discovery, onboarding, and operational tools — with a bar that matches global consumer-fintech products.",
-    ),
-    extraSections: jdExtras(
-      "Product Designer",
-      DESIGN_CULTURE,
-      "The Team: Product Design",
-      "UI/UX on the Product Design team raises craft on every state: empty, loading, error, success. We map journeys, specify for frontend, and treat accessibility as a shipping requirement. High-stakes financial flows do not get a pass for unclear hierarchy.",
-    ),
-    responsibilities: [
-      "Design interface states (empty, loading, error, success) for high-stakes financial flows.",
-      "Map user journeys and wireframes for KYC, purchase, and distribution experiences.",
-      "Raise visual craft: typography, spacing, color, and component consistency.",
-      "Run usability reviews and synthesize feedback into iteration plans.",
-      "Produce production-ready specs, redlines, and assets for frontend engineers.",
-      "Champion accessibility (WCAG) and inclusive design in every surface you touch.",
-    ],
-    qualifications: [
-      "3+ years of UI/UX design shipped to production.",
-      "Portfolio demonstrating interaction design, visual systems, and before/after thinking.",
-      "Strong Figma craft and an eye for detail at 1x and 2x.",
-      "Working knowledge of accessibility, responsive layouts, and design-to-dev handoff.",
-      "Ability to work from product briefs without waiting for pixel-perfect direction.",
-    ],
-    niceToHave: [
-      "Experience with design systems or contributing to component libraries.",
-      "Basic HTML/CSS familiarity for tighter collaboration with frontend.",
-      "Motion design or 3D/property visualization work.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Design", items: ["Figma", "Prototyping", "Redlines"] },
-      { category: "Quality", items: ["WCAG", "Responsive layouts", "Handoff"] },
-      { category: "Craft", items: ["Typography", "Color", "Motion"] },
-    ],
-  },
-  {
     slug: "tech-lead",
     title: "Tech Lead",
     short: "Tech Lead",
     tagline: "Set the technical bar and sequence the work that ships production RWA rails.",
     icon: UserCog,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001249",
     overview: aboutRole(
@@ -869,7 +634,7 @@ export const TALENTS: Talent[] = [
     tagline: "Turn TokenBrickLabs protocol and APIs into tools builders can actually ship with.",
     icon: Megaphone,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001250",
     overview: aboutRole(
@@ -918,7 +683,7 @@ export const TALENTS: Talent[] = [
     tagline: "Lead a multi-disciplinary squad shipping production RWA infrastructure.",
     icon: UsersRound,
     department: "Engineering",
-    location: "Remote · Global",
+    location: "Remote/Hybrid",
     employmentType: "Full-time",
     requisitionId: "JR2001247",
     overview: aboutRole(

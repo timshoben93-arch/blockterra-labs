@@ -52,7 +52,7 @@ const TalentsIndex = () => {
     if (desc) {
       desc.setAttribute(
         "content",
-        "Open roles at TokenBrickLabs. Join a remote-first studio building production RWA tokenization — engineering, design, product, and go-to-market.",
+        "Open roles at TokenBrickLabs. Join a remote-first studio building production RWA tokenization — engineering, design, product, and operations.",
       );
     }
   }, []);

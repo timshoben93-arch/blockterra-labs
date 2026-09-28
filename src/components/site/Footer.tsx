@@ -44,7 +44,6 @@ export const Footer = () => {
                   { label: "Services", to: "/#solutions" },
                   { label: "Company", to: "/company" },
                   { label: "Talent", to: "/talents" },
-                  { label: "Applications", to: "/applications" },
                   { label: "Docs", to: "/docs" },
                 ].map((item) => (
                   <li key={item.label}>
