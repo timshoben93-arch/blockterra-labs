@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/header-logo.png";
 import { SITE } from "@/lib/site";
 
 const Logo = () => (
@@ -13,7 +13,7 @@ const Logo = () => (
       alt=""
       width={40}
       height={40}
-      className="h-9 w-9 shrink-0 rounded-[10px] object-cover sm:h-10 sm:w-10 sm:rounded-xl"
+      className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
     />
     <div className="min-w-0 leading-tight">
       <div className="truncate font-display text-sm font-semibold tracking-tight text-foreground sm:text-base">
