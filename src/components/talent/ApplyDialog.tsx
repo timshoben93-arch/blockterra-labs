@@ -17,7 +17,7 @@ export const ApplyDialog = ({ talent, open, onOpenChange }: ApplyDialogProps) =>
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="flex h-[100dvh] max-h-[100dvh] w-full max-w-none translate-x-0 translate-y-0 left-0 top-0 rounded-none border-0 p-0 gap-0 overflow-hidden [&>button]:right-3 [&>button]:top-3 [&>button]:inline-flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full sm:left-1/2 sm:top-1/2 sm:h-[min(92dvh,900px)] sm:max-h-[min(92dvh,900px)] sm:w-[min(calc(100%-2rem),48rem)] sm:max-w-[min(calc(100%-2rem),48rem)] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-2xl sm:border"
+        className="flex h-auto max-h-[min(92dvh,44rem)] w-[min(calc(100%-1.5rem),36rem)] max-w-[min(calc(100%-1.5rem),36rem)] flex-col gap-0 overflow-hidden rounded-2xl p-0 sm:max-h-[min(92dvh,42rem)] sm:w-[min(calc(100%-2rem),40rem)] sm:max-w-[min(calc(100%-2rem),40rem)] [&>button]:right-3 [&>button]:top-3 [&>button]:inline-flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col overflow-hidden">

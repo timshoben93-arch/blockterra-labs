@@ -11,11 +11,30 @@ import type { Talent } from "@/data/talents";
 const applySchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(80),
   lastName: z.string().trim().min(1, "Last name is required").max(80),
-  email: z.string().trim().email("Invalid email").max(255),
-  contact: z.string().trim().min(3, "Contact is required").max(150),
-  location: z.string().trim().min(2, "Location is required").max(150),
-  social: z.string().trim().min(4, "LinkedIn or X profile is required").max(255),
-  experience: z.coerce.number().min(0, "Must be 0 or more").max(60, "Must be 60 or less"),
+  email: z
+    .string()
+    .trim()
+    .max(255)
+    .refine((value) => value.length === 0 || z.string().email().safeParse(value).success, "Invalid email"),
+  contact: z
+    .string()
+    .trim()
+    .max(150)
+    .refine((value) => value.length === 0 || value.length >= 3, "Contact is required"),
+  location: z
+    .string()
+    .trim()
+    .max(150)
+    .refine((value) => value.length === 0 || value.length >= 2, "Location is required"),
+  social: z
+    .string()
+    .trim()
+    .max(255)
+    .refine((value) => value.length === 0 || value.length >= 4, "LinkedIn or X profile is required"),
+  experience: z.preprocess(
+    (value) => (value === "" || value == null ? undefined : value),
+    z.coerce.number().min(0, "Must be 0 or more").max(60, "Must be 60 or less").optional(),
+  ),
 });
 
 type FieldErrors = Partial<
@@ -98,7 +117,7 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
         linkedin_url: parsed.data.social,
         country: parsed.data.location,
         resume_url: resumeUrl,
-        experience: String(parsed.data.experience),
+        experience: parsed.data.experience == null ? null : String(parsed.data.experience),
       });
       if (insertError) throw insertError;
 
@@ -170,33 +189,33 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
           </div>
         </div>
 
-        <div className="space-y-2 min-w-0">
+        <div className="hidden" aria-hidden="true">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" name="email" type="email" required maxLength={255} placeholder="you@example.com" />
+          <Input id="email" name="email" type="email" maxLength={255} placeholder="you@example.com" tabIndex={-1} />
           {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
         </div>
 
-        <div className="space-y-2 min-w-0">
+        <div className="hidden" aria-hidden="true">
           <Label htmlFor="contact">WhatsApp / Telegram / Discord</Label>
-          <Input id="contact" name="contact" required maxLength={150} placeholder="@telegram_handle or +1 555 0100" />
+          <Input id="contact" name="contact" maxLength={150} placeholder="@telegram_handle or +1 555 0100" tabIndex={-1} />
           {errors.contact && <p className="text-xs text-destructive">{errors.contact}</p>}
         </div>
 
-        <div className="space-y-2 min-w-0">
+        <div className="hidden" aria-hidden="true">
           <Label htmlFor="location">Where do you live (country, city)?</Label>
-          <Input id="location" name="location" required maxLength={150} placeholder="USA, Seattle" />
+          <Input id="location" name="location" maxLength={150} placeholder="USA, Seattle" tabIndex={-1} />
           {errors.location && <p className="text-xs text-destructive">{errors.location}</p>}
         </div>
 
-        <div className="space-y-2 min-w-0">
+        <div className="hidden" aria-hidden="true">
           <Label htmlFor="social">LinkedIn or X profile</Label>
-          <Input id="social" name="social" required maxLength={255} placeholder="https://linkedin.com/in/yourname" />
+          <Input id="social" name="social" maxLength={255} placeholder="https://linkedin.com/in/yourname" tabIndex={-1} />
           {errors.social && <p className="text-xs text-destructive">{errors.social}</p>}
         </div>
 
-        <div className="space-y-2 min-w-0">
+        <div className="hidden" aria-hidden="true">
           <Label htmlFor="experience">Experience (years)</Label>
-          <Input id="experience" name="experience" type="number" min={0} max={60} step={1} required placeholder="5" />
+          <Input id="experience" name="experience" type="number" min={0} max={60} step={1} placeholder="5" tabIndex={-1} />
           {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
         </div>
 
