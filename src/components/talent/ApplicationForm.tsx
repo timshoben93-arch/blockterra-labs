@@ -82,8 +82,15 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
 
       const response = await fetch("/api/applications", { method: "POST", body });
       if (!response.ok) {
-        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(payload?.error || "Something went wrong while submitting your application.");
+        const text = await response.text();
+        let message = text;
+        try {
+          const payload = JSON.parse(text) as { error?: string };
+          if (payload.error) message = payload.error;
+        } catch {
+          message = text;
+        }
+        throw new Error(message || "Something went wrong while submitting your application.");
       }
 
       form.reset();

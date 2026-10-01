@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { Readable } from "node:stream";
 import Busboy from "busboy";
 import { FieldValue } from "firebase-admin/firestore";
 import { adminDb } from "./firebaseAdmin";
@@ -22,6 +23,10 @@ export function sendJson(res: ServerResponse, status: number, body: unknown) {
 }
 
 function readRawBody(req: IncomingMessage) {
+  const preset = (req as IncomingMessage & { body?: unknown }).body;
+  if (Buffer.isBuffer(preset)) return Promise.resolve(preset);
+  if (typeof preset === "string") return Promise.resolve(Buffer.from(preset));
+  if (req.readableEnded) return Promise.resolve(Buffer.alloc(0));
   return new Promise<Buffer>((resolve, reject) => {
     const chunks: Buffer[] = [];
     req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
@@ -31,33 +36,36 @@ function readRawBody(req: IncomingMessage) {
 }
 
 function readMultipart(req: IncomingMessage) {
-  return new Promise<{ fields: Record<string, string>; file: UploadedFile | null }>((resolve, reject) => {
-    const fields: Record<string, string> = {};
-    let file: UploadedFile | null = null;
-    const busboy = Busboy({
-      headers: req.headers,
-      limits: { fileSize: MAX_RESUME_BYTES, files: 1, fields: 12 },
-    });
+  return readRawBody(req).then(
+    (raw) =>
+      new Promise<{ fields: Record<string, string>; file: UploadedFile | null }>((resolve, reject) => {
+        const fields: Record<string, string> = {};
+        let file: UploadedFile | null = null;
+        const busboy = Busboy({
+          headers: req.headers,
+          limits: { fileSize: MAX_RESUME_BYTES, files: 1, fields: 12 },
+        });
 
-    busboy.on("field", (name, value) => {
-      fields[name] = value;
-    });
-    busboy.on("file", (_name, stream, info) => {
-      const chunks: Buffer[] = [];
-      let tooLarge = false;
-      stream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
-      stream.on("limit", () => {
-        tooLarge = true;
-      });
-      stream.on("end", () => {
-        if (tooLarge) return;
-        file = { filename: info.filename, mime: info.mimeType, buffer: Buffer.concat(chunks) };
-      });
-    });
-    busboy.on("error", reject);
-    busboy.on("finish", () => resolve({ fields, file }));
-    req.pipe(busboy);
-  });
+        busboy.on("field", (name, value) => {
+          fields[name] = value;
+        });
+        busboy.on("file", (_name, stream, info) => {
+          const chunks: Buffer[] = [];
+          let tooLarge = false;
+          stream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+          stream.on("limit", () => {
+            tooLarge = true;
+          });
+          stream.on("end", () => {
+            if (tooLarge) return;
+            file = { filename: info.filename, mime: info.mimeType, buffer: Buffer.concat(chunks) };
+          });
+        });
+        busboy.on("error", reject);
+        busboy.on("finish", () => resolve({ fields, file }));
+        Readable.from(raw).pipe(busboy);
+      }),
+  );
 }
 
 function normalizeGithubUsername(value: string) {
@@ -67,7 +75,7 @@ function normalizeGithubUsername(value: string) {
 }
 
 function adminKeyMatches(provided: string | undefined) {
-  const expected = process.env.ADMIN_DASHBOARD_KEY ?? "";
+  const expected = (process.env.ADMIN_DASHBOARD_KEY ?? "").trim().replace(/^["']|["']$/g, "");
   if (!expected || !provided) return false;
   const left = Buffer.from(provided);
   const right = Buffer.from(expected);

@@ -32,8 +32,14 @@ async function adminFetch(key: string, init?: RequestInit) {
       ...init?.headers,
     },
   });
-  const payload = (await response.json().catch(() => null)) as { error?: string; applications?: ApplicationRow[] } | null;
-  if (!response.ok) throw new Error(payload?.error || "Could not load applications.");
+  const text = await response.text();
+  let payload: { error?: string; applications?: ApplicationRow[] } | null = null;
+  try {
+    payload = text ? (JSON.parse(text) as { error?: string; applications?: ApplicationRow[] }) : null;
+  } catch {
+    payload = null;
+  }
+  if (!response.ok) throw new Error(payload?.error || text || "Could not load applications.");
   return payload;
 }
 
