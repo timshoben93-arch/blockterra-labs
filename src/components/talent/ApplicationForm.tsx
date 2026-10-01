@@ -182,7 +182,7 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
               {resume ? (
                 <span className="text-foreground font-medium truncate">{resume.name}</span>
               ) : (
-                <span className="break-words">PDF, DOC, DOCX up to 10MB</span>
+                <span className="break-words">PDF, DOC, DOCX up to 5M</span>
               )}
             </span>
             <span className="shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-primary">
