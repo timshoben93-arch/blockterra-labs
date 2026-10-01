@@ -228,7 +228,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <Header />
-      <main id="main" className="container py-12 sm:py-16">
+      <main id="main" className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Admin</p>
         <h1 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Applications</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
@@ -276,19 +276,19 @@ const AdminDashboard = () => {
             </div>
             {error ? <p className="mt-4 text-sm text-destructive">{error}</p> : null}
             <div className="mt-6 rounded-2xl border border-border bg-card">
-              <Table>
+              <Table className="table-fixed">
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Reviewed</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>GitHub</TableHead>
-                    <TableHead>Platform</TableHead>
-                    <TableHead>Wallet</TableHead>
-                    <TableHead>Country</TableHead>
-                    <TableHead>Resume</TableHead>
-                    <TableHead>Submitted</TableHead>
-                    <TableHead>Remarks</TableHead>
+                    <TableHead className="w-[6%] px-2">Reviewed</TableHead>
+                    <TableHead className="w-[10%] px-2">Name</TableHead>
+                    <TableHead className="w-[12%] px-2">Role</TableHead>
+                    <TableHead className="w-[9%] px-2">GitHub</TableHead>
+                    <TableHead className="w-[8%] px-2">Platform</TableHead>
+                    <TableHead className="w-[7%] px-2">Wallet</TableHead>
+                    <TableHead className="w-[7%] px-2">Country</TableHead>
+                    <TableHead className="w-[11%] px-2">Resume</TableHead>
+                    <TableHead className="w-[10%] px-2">Submitted</TableHead>
+                    <TableHead className="w-[20%] px-2">Remarks</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -301,7 +301,7 @@ const AdminDashboard = () => {
                   ) : (
                     applicationsByDate.map((application) => (
                       <TableRow key={application.id}>
-                        <TableCell>
+                        <TableCell className="px-2">
                           <Checkbox
                             checked={application.reviewed}
                             disabled={savingId === application.id}
@@ -309,19 +309,19 @@ const AdminDashboard = () => {
                             aria-label={`Mark ${application.fullName} as reviewed`}
                           />
                         </TableCell>
-                        <TableCell className="font-medium">{application.fullName}</TableCell>
-                        <TableCell>{application.role}</TableCell>
-                        <TableCell>{application.githubUsername}</TableCell>
-                        <TableCell>{application.platform}</TableCell>
-                        <TableCell>
+                        <TableCell className="break-words px-2 font-medium">{application.fullName}</TableCell>
+                        <TableCell className="break-words px-2">{application.role}</TableCell>
+                        <TableCell className="break-all px-2">{application.githubUsername}</TableCell>
+                        <TableCell className="break-words px-2">{application.platform}</TableCell>
+                        <TableCell className="break-words px-2">
                           {application.hasCryptoWallet ? application.cryptoWallets.join(", ") : "None"}
                         </TableCell>
-                        <TableCell>{application.country}</TableCell>
-                        <TableCell>
+                        <TableCell className="break-words px-2">{application.country}</TableCell>
+                        <TableCell className="px-2">
                           {application.resumeFileName ? (
                             <button
                               type="button"
-                              className="text-primary underline-offset-4 hover:underline"
+                              className="break-all text-left text-primary underline-offset-4 hover:underline"
                               onClick={() => void downloadResume(application)}
                             >
                               {application.resumeFileName}
@@ -330,10 +330,17 @@ const AdminDashboard = () => {
                             "—"
                           )}
                         </TableCell>
-                        <TableCell className="whitespace-nowrap text-muted-foreground">
-                          {application.createdAt ? new Date(application.createdAt).toLocaleString() : "—"}
+                        <TableCell className="px-2 text-muted-foreground">
+                          {application.createdAt ? (
+                            <>
+                              <span className="block">{new Date(application.createdAt).toLocaleDateString()}</span>
+                              <span className="block">{new Date(application.createdAt).toLocaleTimeString()}</span>
+                            </>
+                          ) : (
+                            "—"
+                          )}
                         </TableCell>
-                        <TableCell className="min-w-72">
+                        <TableCell className="px-2">
                           <div className="flex items-start gap-2">
                             <Textarea
                               value={remarkDrafts[application.id] ?? application.remarks ?? ""}
@@ -342,31 +349,33 @@ const AdminDashboard = () => {
                               rows={2}
                               placeholder="Add a comment"
                               aria-label={`Remarks for ${application.fullName}`}
-                              className="min-h-16 min-w-48 text-sm"
+                              className="min-h-16 min-w-0 flex-1 text-sm"
                               onChange={(event) =>
                                 setRemarkDrafts((current) => ({ ...current, [application.id]: event.target.value }))
                               }
                               onBlur={(event) => void saveRemarks(application, event.target.value.trim())}
                             />
-                            <div className="flex shrink-0 flex-col gap-2">
+                            <div className="flex w-6 shrink-0 flex-col gap-2">
                               <Button
                                 type="button"
                                 variant="outline"
                                 size="sm"
+                                title="Delete application"
+                                aria-label={`Delete ${application.fullName}'s application`}
+                                className="h-6 w-6 min-w-6 border-transparent bg-red-600 p-0 text-white hover:bg-red-700"
                                 disabled={savingId === application.id}
                                 onClick={() => void deleteApplication(application)}
-                              >
-                                Delete
-                              </Button>
+                              />
                               <Button
                                 type="button"
                                 variant="outline"
                                 size="sm"
+                                title="Delete resume"
+                                aria-label={`Delete resume for ${application.fullName}`}
+                                className="h-6 w-6 min-w-6 border-transparent bg-blue-600 p-0 text-white hover:bg-blue-700"
                                 disabled={savingId === application.id || !application.resumeFileName}
                                 onClick={() => void deleteResume(application)}
-                              >
-                                Delete resume
-                              </Button>
+                              />
                             </div>
                           </div>
                         </TableCell>
