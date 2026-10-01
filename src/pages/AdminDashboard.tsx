@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const ADMIN_KEY_STORAGE = "tbl-admin-key";
@@ -20,6 +21,7 @@ type ApplicationRow = {
   hasCryptoWallet: boolean;
   country: string;
   reviewed: boolean;
+  remarks: string;
   createdAt: string | null;
 };
 
@@ -50,6 +52,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [remarkDrafts, setRemarkDrafts] = useState<Record<string, string>>({});
 
   const load = useCallback(async (key: string) => {
     setLoading(true);
@@ -57,6 +60,7 @@ const AdminDashboard = () => {
     try {
       const payload = await adminFetch(key);
       setApplications(payload?.applications ?? []);
+      setRemarkDrafts({});
     } catch (err) {
       setApplications([]);
       setError(err instanceof Error ? err.message : "Could not load applications.");
@@ -72,6 +76,16 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (adminKey) void load(adminKey);
   }, [adminKey, load]);
+
+  const applicationsByDate = useMemo(
+    () =>
+      [...applications].sort((left, right) => {
+        const leftTime = left.createdAt ? Date.parse(left.createdAt) : 0;
+        const rightTime = right.createdAt ? Date.parse(right.createdAt) : 0;
+        return rightTime - leftTime;
+      }),
+    [applications],
+  );
 
   const counts = useMemo(() => {
     const reviewed = applications.filter((application) => application.reviewed).length;
@@ -101,6 +115,96 @@ const AdminDashboard = () => {
     link.download = application.resumeFileName || "resume";
     link.click();
     URL.revokeObjectURL(url);
+  };
+
+  const saveRemarks = async (application: ApplicationRow, remarks: string) => {
+    if (remarks === application.remarks) {
+      setRemarkDrafts((current) => {
+        if (!(application.id in current)) return current;
+        const next = { ...current };
+        delete next[application.id];
+        return next;
+      });
+      return;
+    }
+    setSavingId(application.id);
+    setError("");
+    try {
+      await adminFetch(adminKey, {
+        method: "PATCH",
+        body: JSON.stringify({ id: application.id, remarks }),
+      });
+      setApplications((current) => current.map((row) => (row.id === application.id ? { ...row, remarks } : row)));
+      setRemarkDrafts((current) => {
+        const next = { ...current };
+        delete next[application.id];
+        return next;
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save remarks.");
+    } finally {
+      setSavingId(null);
+    }
+  };
+
+  const deleteResume = async (application: ApplicationRow) => {
+    const confirmed = window.confirm(`Delete the resume for ${application.fullName}? The application will stay.`);
+    if (!confirmed) return;
+    setSavingId(application.id);
+    setError("");
+    try {
+      const response = await fetch(`/api/admin/applications?resume=${encodeURIComponent(application.id)}`, {
+        method: "DELETE",
+        headers: { "x-admin-key": adminKey },
+      });
+      const text = await response.text();
+      let payload: { error?: string } | null = null;
+      try {
+        payload = text ? (JSON.parse(text) as { error?: string }) : null;
+      } catch {
+        payload = null;
+      }
+      if (!response.ok) throw new Error(payload?.error || text || "Could not delete that resume.");
+      setApplications((current) =>
+        current.map((row) => (row.id === application.id ? { ...row, resumeFileName: "" } : row)),
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not delete that resume.");
+    } finally {
+      setSavingId(null);
+    }
+  };
+
+  const deleteApplication = async (application: ApplicationRow) => {
+    const confirmed = window.confirm(`Delete ${application.fullName}'s application? This cannot be undone.`);
+    if (!confirmed) return;
+    setSavingId(application.id);
+    setError("");
+    try {
+      const response = await fetch(`/api/admin/applications?id=${encodeURIComponent(application.id)}`, {
+        method: "DELETE",
+        headers: { "x-admin-key": adminKey },
+      });
+      const text = await response.text();
+      let payload: { error?: string } | null = null;
+      try {
+        payload = text ? (JSON.parse(text) as { error?: string }) : null;
+      } catch {
+        payload = null;
+      }
+      if (!response.ok) throw new Error(payload?.error || text || "Could not delete that application.");
+      setApplications((current) => current.filter((row) => row.id !== application.id));
+      setRemarkDrafts((current) => {
+        if (!(application.id in current)) return current;
+        const next = { ...current };
+        delete next[application.id];
+        return next;
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not delete that application.");
+    } finally {
+      setSavingId(null);
+    }
   };
 
   const setReviewed = async (application: ApplicationRow, reviewed: boolean) => {
@@ -184,17 +288,18 @@ const AdminDashboard = () => {
                     <TableHead>Country</TableHead>
                     <TableHead>Resume</TableHead>
                     <TableHead>Submitted</TableHead>
+                    <TableHead>Remarks</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {applications.length === 0 && !loading ? (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-muted-foreground">
+                      <TableCell colSpan={10} className="text-muted-foreground">
                         No applications stored yet.
                       </TableCell>
                     </TableRow>
                   ) : (
-                    applications.map((application) => (
+                    applicationsByDate.map((application) => (
                       <TableRow key={application.id}>
                         <TableCell>
                           <Checkbox
@@ -227,6 +332,43 @@ const AdminDashboard = () => {
                         </TableCell>
                         <TableCell className="whitespace-nowrap text-muted-foreground">
                           {application.createdAt ? new Date(application.createdAt).toLocaleString() : "—"}
+                        </TableCell>
+                        <TableCell className="min-w-72">
+                          <div className="flex items-start gap-2">
+                            <Textarea
+                              value={remarkDrafts[application.id] ?? application.remarks ?? ""}
+                              disabled={savingId === application.id}
+                              maxLength={2000}
+                              rows={2}
+                              placeholder="Add a comment"
+                              aria-label={`Remarks for ${application.fullName}`}
+                              className="min-h-16 min-w-48 text-sm"
+                              onChange={(event) =>
+                                setRemarkDrafts((current) => ({ ...current, [application.id]: event.target.value }))
+                              }
+                              onBlur={(event) => void saveRemarks(application, event.target.value.trim())}
+                            />
+                            <div className="flex shrink-0 flex-col gap-2">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                disabled={savingId === application.id}
+                                onClick={() => void deleteApplication(application)}
+                              >
+                                Delete
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                disabled={savingId === application.id || !application.resumeFileName}
+                                onClick={() => void deleteResume(application)}
+                              >
+                                Delete resume
+                              </Button>
+                            </div>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))

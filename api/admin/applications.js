@@ -99,9 +99,17 @@ async function adminApplications(req, res) {
       sendJson(res, 404, { error: "Application not found." });
       return;
     }
+    const data = application.data() ?? {};
+    if (!data.resumeFileName) {
+      sendJson(res, 404, { error: "Resume not found." });
+      return;
+    }
     const chunks = await applicationRef.collection("chunks").orderBy("index").get();
     const file = Buffer.concat(chunks.docs.map((chunk) => Buffer.from(String(chunk.data().data || ""), "base64")));
-    const data = application.data() ?? {};
+    if (file.length === 0) {
+      sendJson(res, 404, { error: "Resume not found." });
+      return;
+    }
     const filename = String(data.resumeFileName || "resume").replace(/["\r\n]/g, "");
     res.statusCode = 200;
     res.setHeader("Content-Type", String(data.resumeContentType || "application/octet-stream"));
@@ -125,8 +133,13 @@ async function adminApplications(req, res) {
         hasCryptoWallet: Boolean(data.hasCryptoWallet),
         country: data.country ?? "",
         reviewed: Boolean(data.reviewed),
+        remarks: typeof data.remarks === "string" ? data.remarks : "",
         createdAt
       };
+    }).sort((left, right) => {
+      const leftTime = left.createdAt ? Date.parse(left.createdAt) : 0;
+      const rightTime = right.createdAt ? Date.parse(right.createdAt) : 0;
+      return rightTime - leftTime;
     });
     sendJson(res, 200, { applications });
     return;
@@ -134,12 +147,64 @@ async function adminApplications(req, res) {
   if (req.method === "PATCH") {
     const raw = await readRawBody(req);
     const body = JSON.parse(raw.toString("utf8") || "{}");
-    if (!body.id || typeof body.reviewed !== "boolean") {
-      sendJson(res, 400, { error: "Application id and reviewed flag are required." });
+    if (!body.id) {
+      sendJson(res, 400, { error: "Application id is required." });
       return;
     }
-    await adminDb().collection("applications").doc(body.id).update({ reviewed: body.reviewed });
-    sendJson(res, 200, { id: body.id, reviewed: body.reviewed });
+    const update = {};
+    if (typeof body.reviewed === "boolean") update.reviewed = body.reviewed;
+    if (typeof body.remarks === "string") update.remarks = body.remarks.trim().slice(0, 2e3);
+    if (update.reviewed === void 0 && update.remarks === void 0) {
+      sendJson(res, 400, { error: "Nothing to update." });
+      return;
+    }
+    await adminDb().collection("applications").doc(body.id).update(update);
+    sendJson(res, 200, { id: body.id, ...update });
+    return;
+  }
+  if (req.method === "DELETE" && requestUrl.searchParams.has("resume")) {
+    const id = requestUrl.searchParams.get("resume") || "";
+    if (!id) {
+      sendJson(res, 400, { error: "Application id is required." });
+      return;
+    }
+    const applicationRef = adminDb().collection("applications").doc(id);
+    const application = await applicationRef.get();
+    if (!application.exists) {
+      sendJson(res, 404, { error: "Application not found." });
+      return;
+    }
+    const chunks = await applicationRef.collection("chunks").get();
+    const batch = adminDb().batch();
+    chunks.docs.forEach((chunk) => batch.delete(chunk.ref));
+    batch.update(applicationRef, {
+      resumeFileName: "",
+      resumeContentType: "",
+      resumeChunkCount: 0
+    });
+    await batch.commit();
+    sendJson(res, 200, { id });
+    return;
+  }
+  if (req.method === "DELETE") {
+    let id = requestUrl.searchParams.get("id") || "";
+    if (!id) {
+      const raw = await readRawBody(req);
+      const body = JSON.parse(raw.toString("utf8") || "{}");
+      id = body.id || "";
+    }
+    if (!id) {
+      sendJson(res, 400, { error: "Application id is required." });
+      return;
+    }
+    const applicationRef = adminDb().collection("applications").doc(id);
+    const application = await applicationRef.get();
+    if (!application.exists) {
+      sendJson(res, 404, { error: "Application not found." });
+      return;
+    }
+    await adminDb().recursiveDelete(applicationRef);
+    sendJson(res, 200, { id });
     return;
   }
   sendJson(res, 405, { error: "Method not allowed" });

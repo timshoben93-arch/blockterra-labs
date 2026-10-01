@@ -175,6 +175,7 @@ async function createApplication(req, res) {
     hasCryptoWallet: cryptoWallets.length > 0,
     country,
     reviewed: false,
+    remarks: "",
     createdAt: FieldValue.serverTimestamp()
   });
   await batch.commit();
