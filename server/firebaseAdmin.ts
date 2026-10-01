@@ -8,9 +8,15 @@ import { getStorage } from "firebase-admin/storage";
 const PROJECT_ID = "tokenbricklabs-7b9ec";
 const STORAGE_BUCKETS = [`${PROJECT_ID}.appspot.com`, `${PROJECT_ID}.firebasestorage.app`, `${PROJECT_ID}-resumes`];
 
+function parseServiceAccount(raw: string): ServiceAccount {
+  const trimmed = raw.trim().replace(/^["']|["']$/g, "");
+  const json = trimmed.startsWith("{") ? trimmed : Buffer.from(trimmed, "base64").toString("utf8");
+  return JSON.parse(json) as ServiceAccount;
+}
+
 function loadServiceAccount(): ServiceAccount {
   const fromEnv = process.env.FIREBASE_SERVICE_ACCOUNT?.trim();
-  if (fromEnv) return JSON.parse(fromEnv) as ServiceAccount;
+  if (fromEnv) return parseServiceAccount(fromEnv);
   const filePath = path.resolve(process.cwd(), "secrets", "firebase-admin.json");
   return JSON.parse(readFileSync(filePath, "utf8")) as ServiceAccount;
 }
