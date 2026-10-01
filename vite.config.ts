@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { devApiPlugin } from "./server/devApi";
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -12,10 +14,10 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
     watch: {
-      ignored: ["**/*.rar", "**/*.zip", "**/*.mp4", "**/public/**"],
+      ignored: ["**/*.rar", "**/*.zip", "**/*.mp4", "**/public/**", "**/secrets/**"],
     },
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [devApiPlugin(), react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

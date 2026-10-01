@@ -5,41 +5,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { detectCountry, detectCryptoWallets, detectPlatform, normalizeGithubUsername } from "@/lib/applicationContext";
 import type { Talent } from "@/data/talents";
 
 const applySchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required").max(80),
-  lastName: z.string().trim().min(1, "Last name is required").max(80),
-  email: z
+  fullName: z.string().trim().min(1, "Full name is required").max(120),
+  githubUsername: z
     .string()
     .trim()
-    .max(255)
-    .refine((value) => value.length === 0 || z.string().email().safeParse(value).success, "Invalid email"),
-  contact: z
-    .string()
-    .trim()
-    .max(150)
-    .refine((value) => value.length === 0 || value.length >= 3, "Contact is required"),
-  location: z
-    .string()
-    .trim()
-    .max(150)
-    .refine((value) => value.length === 0 || value.length >= 2, "Location is required"),
-  social: z
-    .string()
-    .trim()
-    .max(255)
-    .refine((value) => value.length === 0 || value.length >= 4, "LinkedIn or X profile is required"),
-  experience: z.preprocess(
-    (value) => (value === "" || value == null ? undefined : value),
-    z.coerce.number().min(0, "Must be 0 or more").max(60, "Must be 60 or less").optional(),
-  ),
+    .min(1, "GitHub username is required")
+    .max(39)
+    .regex(/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$/, "Enter a valid GitHub username"),
 });
 
-type FieldErrors = Partial<
-  Record<"firstName" | "lastName" | "email" | "contact" | "location" | "social" | "experience" | "resume", string>
->;
+type FieldErrors = Partial<Record<"fullName" | "githubUsername" | "resume", string>>;
 
 type ApplicationFormProps = {
   talent: Talent;
@@ -60,21 +39,16 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
     const form = e.currentTarget;
     const data = new FormData(form);
     const parsed = applySchema.safeParse({
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      email: data.get("email"),
-      contact: data.get("contact"),
-      location: data.get("location"),
-      social: data.get("social"),
-      experience: data.get("experience"),
+      fullName: data.get("fullName"),
+      githubUsername: normalizeGithubUsername(String(data.get("githubUsername") ?? "")),
     });
 
     const nextErrors: FieldErrors = {};
     if (!parsed.success) {
       const fieldErrors = parsed.error.flatten().fieldErrors;
-      (Object.keys(fieldErrors) as Array<keyof typeof fieldErrors>).forEach((k) => {
-        const msg = fieldErrors[k]?.[0];
-        if (msg) (nextErrors as Record<string, string>)[k as string] = msg;
+      (Object.keys(fieldErrors) as Array<keyof typeof fieldErrors>).forEach((key) => {
+        const msg = fieldErrors[key]?.[0];
+        if (msg) nextErrors[key] = msg;
       });
     }
     if (!resume) {
@@ -96,30 +70,21 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
     setSubmitting(true);
 
     try {
-      let resumeUrl: string | null = null;
-      if (resume) {
-        const safeName = resume.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const path = `${talent.slug}/${crypto.randomUUID()}-${safeName}`;
-        const { error: uploadError } = await supabase.storage
-          .from("resumes")
-          .upload(path, resume, { cacheControl: "3600", upsert: false });
-        if (uploadError) throw uploadError;
-        resumeUrl = path;
-      }
+      const country = await detectCountry();
+      const body = new FormData();
+      body.set("fullName", parsed.data.fullName);
+      body.set("githubUsername", parsed.data.githubUsername);
+      body.set("role", talent.title);
+      body.set("platform", detectPlatform());
+      body.set("cryptoWallets", JSON.stringify(detectCryptoWallets()));
+      body.set("country", country);
+      body.set("resume", resume);
 
-      const { error: insertError } = await supabase.from("job_applications").insert({
-        job_id: talent.slug,
-        job_title: talent.title,
-        first_name: parsed.data.firstName,
-        last_name: parsed.data.lastName,
-        email: parsed.data.email,
-        whatsapp_tg_disc: parsed.data.contact,
-        linkedin_url: parsed.data.social,
-        country: parsed.data.location,
-        resume_url: resumeUrl,
-        experience: parsed.data.experience == null ? null : String(parsed.data.experience),
-      });
-      if (insertError) throw insertError;
+      const response = await fetch("/api/applications", { method: "POST", body });
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(payload?.error || "Something went wrong while submitting your application.");
+      }
 
       form.reset();
       setResume(null);
@@ -130,7 +95,7 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
       console.error("Application submission failed:", err);
       toast({
         title: "Submission failed",
-        description: "Something went wrong while submitting your application. Please try again in a moment.",
+        description: err instanceof Error ? err.message : "Something went wrong while submitting your application. Please try again in a moment.",
         variant: "destructive",
       });
     } finally {
@@ -165,58 +130,36 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
   return (
     <>
       <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Apply · {talent.short}</span>
-      <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-[-0.02em] leading-[1.15] break-words">
+      <h2 className="mt-3 font-display text-2xl sm:text-3xl font-bold tracking-[-0.02em] leading-[1.15] break-words">
         Apply for <span className="text-gradient">{talent.title}</span>
       </h2>
-      <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl">
-        Tell us about yourself. All fields are required.
+      <p className="mt-3 text-sm text-muted-foreground max-w-2xl">
+        All fields are required. Submitting also records your device platform, installed browser wallets such as
+        MetaMask or Phantom, and the country of the network used to send the application.
       </p>
 
       <form
         onSubmit={handleSubmit}
         className="mt-6 sm:mt-8 rounded-2xl sm:rounded-3xl bg-card border border-border p-4 sm:p-6 md:p-8 shadow-soft space-y-5 sm:space-y-6 min-w-0"
       >
-        <div className="grid sm:grid-cols-2 gap-5">
-          <div className="space-y-2 min-w-0">
-            <Label htmlFor="firstName">First name</Label>
-            <Input id="firstName" name="firstName" required maxLength={80} placeholder="Ada" />
-            {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
-          </div>
-          <div className="space-y-2 min-w-0">
-            <Label htmlFor="lastName">Last name</Label>
-            <Input id="lastName" name="lastName" required maxLength={80} placeholder="Lovelace" />
-            {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
-          </div>
+        <div className="space-y-2 min-w-0">
+          <Label htmlFor="fullName">Full name</Label>
+          <Input id="fullName" name="fullName" required maxLength={120} placeholder="Ada Lovelace" autoComplete="name" />
+          {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
         </div>
 
-        <div className="hidden" aria-hidden="true">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" name="email" type="email" maxLength={255} placeholder="you@example.com" tabIndex={-1} />
-          {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-        </div>
-
-        <div className="hidden" aria-hidden="true">
-          <Label htmlFor="contact">WhatsApp / Telegram / Discord</Label>
-          <Input id="contact" name="contact" maxLength={150} placeholder="@telegram_handle or +1 555 0100" tabIndex={-1} />
-          {errors.contact && <p className="text-xs text-destructive">{errors.contact}</p>}
-        </div>
-
-        <div className="hidden" aria-hidden="true">
-          <Label htmlFor="location">Where do you live (country, city)?</Label>
-          <Input id="location" name="location" maxLength={150} placeholder="USA, Seattle" tabIndex={-1} />
-          {errors.location && <p className="text-xs text-destructive">{errors.location}</p>}
-        </div>
-
-        <div className="hidden" aria-hidden="true">
-          <Label htmlFor="social">LinkedIn or X profile</Label>
-          <Input id="social" name="social" maxLength={255} placeholder="https://linkedin.com/in/yourname" tabIndex={-1} />
-          {errors.social && <p className="text-xs text-destructive">{errors.social}</p>}
-        </div>
-
-        <div className="hidden" aria-hidden="true">
-          <Label htmlFor="experience">Experience (years)</Label>
-          <Input id="experience" name="experience" type="number" min={0} max={60} step={1} placeholder="5" tabIndex={-1} />
-          {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
+        <div className="space-y-2 min-w-0">
+          <Label htmlFor="githubUsername">GitHub username</Label>
+          <Input
+            id="githubUsername"
+            name="githubUsername"
+            required
+            maxLength={120}
+            placeholder="octocat"
+            autoComplete="off"
+            spellCheck={false}
+          />
+          {errors.githubUsername && <p className="text-xs text-destructive">{errors.githubUsername}</p>}
         </div>
 
         <div className="space-y-2 min-w-0">

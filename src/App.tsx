@@ -14,6 +14,7 @@ import Company from "./pages/Company.tsx";
 import Docs from "./pages/Docs.tsx";
 import DocChapter from "./pages/DocChapter.tsx";
 import { Privacy, Terms, Security } from "./pages/Legal.tsx";
+import AdminDashboard from "./pages/AdminDashboard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/security" element={<Security />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

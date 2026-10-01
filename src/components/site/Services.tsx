@@ -13,36 +13,37 @@ const services = [
     icon: Coins,
     title: "RWA tokenization",
     desc: "Issue compliant, transferable instruments for real estate, treasuries, commodities, and private credit — including lifecycle events and redemptions.",
+    href: "/services/rwa-tokenization",
     image: rwaImg,
   },
   {
     icon: ShieldCheck,
     title: "Smart contract assurance",
-    desc: "Senior review, fuzzing, and test harnesses for Solidity, Move, and Rust before anything reaches mainnet.",
+    href: "/services/blockchain-development",
     image: auditsImg,
   },
   {
     icon: Layers,
     title: "L1 / L2 engineering",
-    desc: "Rollups, app-chains, and conservative bridge design for throughput without improvising trust assumptions.",
+    href: "/services/blockchain-development",
     image: layersImg,
   },
   {
     icon: FileCode2,
     title: "Compliance & identity rails",
-    desc: "On-chain identity, transfer restrictions, and ERC-3643 / T-REX implementations that map to real jurisdictions.",
+    href: "/services/rwa-tokenization",
     image: complianceImg,
   },
   {
     icon: Network,
     title: "Liquidity & market infra",
-    desc: "AMMs, order books, oracles, and settlement layers for tokenized funds that already have investors to serve.",
+    href: "/services/rwa-tokenization",
     image: liquidityImg,
   },
   {
     icon: Cpu,
     title: "On-chain analytics & AI",
-    desc: "Risk dashboards, anomaly detection, and agents that act on verifiable chain data — not dashboards that go stale.",
+    href: "/services/ai-ml-development",
     image: aiImg,
   },
 ];
@@ -61,7 +62,7 @@ export const Services = () => {
           description="We take tokenization from term sheet to audited contracts, investor onboarding, and day-two operations — not a slide deck."
         />
 
-        <ul className="mt-14 divide-y divide-border border-y border-border">
+        <ul className="mt-4 divide-y divide-border border-t border-border">
           {services.map(({ icon: Icon, title, desc, image }, i) => (
             <li key={title}>
               <Reveal delayMs={i * 40}>
