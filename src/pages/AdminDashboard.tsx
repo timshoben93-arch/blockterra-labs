@@ -16,6 +16,7 @@ type ApplicationRow = {
   role: string;
   githubUsername: string;
   resumeFileName: string;
+  resumeAvailable: boolean;
   platform: string;
   cryptoWallets: string[];
   hasCryptoWallet: boolean;
@@ -148,7 +149,9 @@ const AdminDashboard = () => {
   };
 
   const deleteResume = async (application: ApplicationRow) => {
-    const confirmed = window.confirm(`Delete the resume for ${application.fullName}? The application will stay.`);
+    const confirmed = window.confirm(
+      `Delete the resume file for ${application.fullName}? The filename will stay on the application.`,
+    );
     if (!confirmed) return;
     setSavingId(application.id);
     setError("");
@@ -166,7 +169,7 @@ const AdminDashboard = () => {
       }
       if (!response.ok) throw new Error(payload?.error || text || "Could not delete that resume.");
       setApplications((current) =>
-        current.map((row) => (row.id === application.id ? { ...row, resumeFileName: "" } : row)),
+        current.map((row) => (row.id === application.id ? { ...row, resumeAvailable: false } : row)),
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not delete that resume.");
@@ -318,7 +321,7 @@ const AdminDashboard = () => {
                         </TableCell>
                         <TableCell className="break-words px-2">{application.country}</TableCell>
                         <TableCell className="px-2">
-                          {application.resumeFileName ? (
+                          {application.resumeFileName && application.resumeAvailable ? (
                             <button
                               type="button"
                               className="break-all text-left text-primary underline-offset-4 hover:underline"
@@ -326,6 +329,8 @@ const AdminDashboard = () => {
                             >
                               {application.resumeFileName}
                             </button>
+                          ) : application.resumeFileName ? (
+                            <span className="break-all text-sky-300">{application.resumeFileName}</span>
                           ) : (
                             "—"
                           )}
@@ -373,7 +378,7 @@ const AdminDashboard = () => {
                                 title="Delete resume"
                                 aria-label={`Delete resume for ${application.fullName}`}
                                 className="h-6 w-6 min-w-6 border-transparent bg-blue-600 p-0 text-white hover:bg-blue-700"
-                                disabled={savingId === application.id || !application.resumeFileName}
+                                disabled={savingId === application.id || !application.resumeAvailable}
                                 onClick={() => void deleteResume(application)}
                               />
                             </div>

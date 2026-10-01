@@ -128,6 +128,7 @@ async function adminApplications(req, res) {
         role: data.role ?? "",
         githubUsername: data.githubUsername ?? "",
         resumeFileName: data.resumeFileName ?? "",
+        resumeAvailable: Number(data.resumeChunkCount) > 0,
         platform: data.platform ?? "",
         cryptoWallets: Array.isArray(data.cryptoWallets) ? data.cryptoWallets : [],
         hasCryptoWallet: Boolean(data.hasCryptoWallet),
@@ -178,7 +179,6 @@ async function adminApplications(req, res) {
     const batch = adminDb().batch();
     chunks.docs.forEach((chunk) => batch.delete(chunk.ref));
     batch.update(applicationRef, {
-      resumeFileName: "",
       resumeContentType: "",
       resumeChunkCount: 0
     });

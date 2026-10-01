@@ -90,12 +90,6 @@ const TalentPage = () => {
                       </dt>
                       <dd className="mt-1">{talent.employmentType}</dd>
                     </div>
-                    <div>
-                      <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                        Posted on
-                      </dt>
-                      <dd className="mt-1">Posted 5 Days Ago</dd>
-                    </div>
                     {talent.requisitionId ? (
                       <div>
                         <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
