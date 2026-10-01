@@ -349,7 +349,7 @@ const AdminDashboard = () => {
                               rows={2}
                               placeholder="Add a comment"
                               aria-label={`Remarks for ${application.fullName}`}
-                              className="min-h-16 min-w-0 flex-1 text-sm"
+                              className="min-h-16 min-w-0 flex-1 text-sm placeholder:text-white/20"
                               onChange={(event) =>
                                 setRemarkDrafts((current) => ({ ...current, [application.id]: event.target.value }))
                               }
