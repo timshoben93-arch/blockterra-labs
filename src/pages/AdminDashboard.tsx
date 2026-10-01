@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -98,10 +97,7 @@ const AdminDashboard = () => {
     [applications],
   );
 
-  const counts = useMemo(() => {
-    const reviewed = applications.filter((application) => application.reviewed).length;
-    return { total: applications.length, reviewed, pending: applications.length - reviewed };
-  }, [applications]);
+  const counts = useMemo(() => ({ total: applications.length }), [applications]);
 
   const signIn = (event: React.FormEvent) => {
     event.preventDefault();
@@ -220,24 +216,6 @@ const AdminDashboard = () => {
     }
   };
 
-  const setReviewed = async (application: ApplicationRow, reviewed: boolean) => {
-    setSavingId(application.id);
-    setApplications((current) => current.map((row) => (row.id === application.id ? { ...row, reviewed } : row)));
-    try {
-      await adminFetch(adminKey, {
-        method: "PATCH",
-        body: JSON.stringify({ id: application.id, reviewed }),
-      });
-    } catch (err) {
-      setApplications((current) =>
-        current.map((row) => (row.id === application.id ? { ...row, reviewed: application.reviewed } : row)),
-      );
-      setError(err instanceof Error ? err.message : "Could not update the review flag.");
-    } finally {
-      setSavingId(null);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <Header />
@@ -245,8 +223,7 @@ const AdminDashboard = () => {
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Admin</p>
         <h1 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Applications</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Review submissions stored in Firestore. The checkbox marks whether an administrator has reviewed the
-          application.
+          Review submissions stored in Firestore.
         </p>
 
         {!adminKey ? (
@@ -269,8 +246,6 @@ const AdminDashboard = () => {
           <>
             <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
               <span className="rounded-full border border-border px-3 py-1">{counts.total} total</span>
-              <span className="rounded-full border border-border px-3 py-1">{counts.pending} awaiting review</span>
-              <span className="rounded-full border border-border px-3 py-1">{counts.reviewed} reviewed</span>
               <Button type="button" variant="outline" size="sm" onClick={() => void load(adminKey)} disabled={loading}>
                 {loading ? "Refreshing..." : "Refresh"}
               </Button>
@@ -292,7 +267,6 @@ const AdminDashboard = () => {
               <Table className="table-fixed">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[6%] px-2">Reviewed</TableHead>
                     <TableHead className="w-[10%] px-2">Name</TableHead>
                     <TableHead className="w-[11%] px-2">Role</TableHead>
                     <TableHead className="w-[8%] px-2">GitHub</TableHead>
@@ -301,27 +275,19 @@ const AdminDashboard = () => {
                     <TableHead className="w-[12%] px-2">Country</TableHead>
                     <TableHead className="w-[11%] px-2">Resume</TableHead>
                     <TableHead className="w-[10%] px-2">Submitted</TableHead>
-                    <TableHead className="w-[17%] px-2">Remarks</TableHead>
+                    <TableHead className="w-[23%] px-2">Remarks</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {applications.length === 0 && !loading ? (
                     <TableRow>
-                      <TableCell colSpan={10} className="text-muted-foreground">
+                      <TableCell colSpan={9} className="text-muted-foreground">
                         No applications stored yet.
                       </TableCell>
                     </TableRow>
                   ) : (
                     applicationsByDate.map((application) => (
                       <TableRow key={application.id}>
-                        <TableCell className="px-2">
-                          <Checkbox
-                            checked={application.reviewed}
-                            disabled={savingId === application.id}
-                            onCheckedChange={(checked) => void setReviewed(application, checked === true)}
-                            aria-label={`Mark ${application.fullName} as reviewed`}
-                          />
-                        </TableCell>
                         <TableCell className="break-words px-2 font-medium">{application.fullName}</TableCell>
                         <TableCell className="break-words px-2">{application.role}</TableCell>
                         <TableCell className="break-all px-2">{application.githubUsername}</TableCell>
