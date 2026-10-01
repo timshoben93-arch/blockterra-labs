@@ -10,6 +10,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 const ADMIN_KEY_STORAGE = "tbl-admin-key";
 
+function formatLocation(application: Pick<ApplicationRow, "city" | "region" | "country">) {
+  const parts = [application.city, application.region, application.country]
+    .map((part) => (part ?? "").trim())
+    .filter(Boolean);
+  const unique = parts.filter((part, index) => parts.findIndex((item) => item.toLowerCase() === part.toLowerCase()) === index);
+  return unique.join(", ") || "—";
+}
+
 type ApplicationRow = {
   id: string;
   fullName: string;
@@ -20,6 +28,8 @@ type ApplicationRow = {
   platform: string;
   cryptoWallets: string[];
   hasCryptoWallet: boolean;
+  city: string;
+  region: string;
   country: string;
   reviewed: boolean;
   remarks: string;
@@ -284,14 +294,14 @@ const AdminDashboard = () => {
                   <TableRow>
                     <TableHead className="w-[6%] px-2">Reviewed</TableHead>
                     <TableHead className="w-[10%] px-2">Name</TableHead>
-                    <TableHead className="w-[12%] px-2">Role</TableHead>
-                    <TableHead className="w-[9%] px-2">GitHub</TableHead>
+                    <TableHead className="w-[11%] px-2">Role</TableHead>
+                    <TableHead className="w-[8%] px-2">GitHub</TableHead>
                     <TableHead className="w-[8%] px-2">Platform</TableHead>
                     <TableHead className="w-[7%] px-2">Wallet</TableHead>
-                    <TableHead className="w-[7%] px-2">Country</TableHead>
+                    <TableHead className="w-[12%] px-2">Country</TableHead>
                     <TableHead className="w-[11%] px-2">Resume</TableHead>
                     <TableHead className="w-[10%] px-2">Submitted</TableHead>
-                    <TableHead className="w-[20%] px-2">Remarks</TableHead>
+                    <TableHead className="w-[17%] px-2">Remarks</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -319,7 +329,7 @@ const AdminDashboard = () => {
                         <TableCell className="break-words px-2">
                           {application.hasCryptoWallet ? application.cryptoWallets.join(", ") : "None"}
                         </TableCell>
-                        <TableCell className="break-words px-2">{application.country}</TableCell>
+                        <TableCell className="break-words px-2">{formatLocation(application)}</TableCell>
                         <TableCell className="px-2">
                           {application.resumeFileName && application.resumeAvailable ? (
                             <button

@@ -99,6 +99,8 @@ export async function createApplication(req: IncomingMessage, res: ServerRespons
   const githubUsername = normalizeGithubUsername(fields.githubUsername ?? "");
   const role = (fields.role ?? "").trim();
   const platform = (fields.platform ?? "Unknown").trim().slice(0, 80);
+  const city = (fields.city ?? "").trim().slice(0, 80);
+  const region = (fields.region ?? "").trim().slice(0, 80);
   const country = (fields.country ?? "Unknown").trim().slice(0, 80);
   let cryptoWallets: string[] = [];
   try {
@@ -154,6 +156,8 @@ export async function createApplication(req: IncomingMessage, res: ServerRespons
     platform,
     cryptoWallets,
     hasCryptoWallet: cryptoWallets.length > 0,
+    city,
+    region,
     country,
     reviewed: false,
     remarks: "",
@@ -214,6 +218,8 @@ export async function adminApplications(req: IncomingMessage, res: ServerRespons
         platform: data.platform ?? "",
         cryptoWallets: Array.isArray(data.cryptoWallets) ? data.cryptoWallets : [],
         hasCryptoWallet: Boolean(data.hasCryptoWallet),
+        city: data.city ?? "",
+        region: data.region ?? "",
         country: data.country ?? "",
         reviewed: Boolean(data.reviewed),
         remarks: typeof data.remarks === "string" ? data.remarks : "",

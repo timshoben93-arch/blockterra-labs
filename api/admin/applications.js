@@ -132,6 +132,8 @@ async function adminApplications(req, res) {
         platform: data.platform ?? "",
         cryptoWallets: Array.isArray(data.cryptoWallets) ? data.cryptoWallets : [],
         hasCryptoWallet: Boolean(data.hasCryptoWallet),
+        city: data.city ?? "",
+        region: data.region ?? "",
         country: data.country ?? "",
         reviewed: Boolean(data.reviewed),
         remarks: typeof data.remarks === "string" ? data.remarks : "",

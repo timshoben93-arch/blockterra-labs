@@ -58,16 +58,27 @@ export function detectCryptoWallets(): string[] {
   return [...found];
 }
 
-export async function detectCountry(): Promise<string> {
+export type DetectedLocation = {
+  city: string;
+  region: string;
+  country: string;
+};
+
+export async function detectLocation(): Promise<DetectedLocation> {
+  const empty = { city: "", region: "", country: "Unknown" };
   try {
-    const response = await fetch("https://get.geojs.io/v1/ip/country.json", {
+    const response = await fetch("https://get.geojs.io/v1/ip/geo.json", {
       signal: AbortSignal.timeout(5000),
     });
-    if (!response.ok) return "Unknown";
-    const data = (await response.json()) as { name?: string; country?: string };
-    return data.name || data.country || "Unknown";
+    if (!response.ok) return empty;
+    const data = (await response.json()) as { city?: string; region?: string; country?: string; name?: string };
+    return {
+      city: (data.city ?? "").trim(),
+      region: (data.region ?? "").trim(),
+      country: (data.country || data.name || "Unknown").trim() || "Unknown",
+    };
   } catch {
-    return "Unknown";
+    return empty;
   }
 }
 

@@ -120,6 +120,8 @@ async function createApplication(req, res) {
   const githubUsername = normalizeGithubUsername(fields.githubUsername ?? "");
   const role = (fields.role ?? "").trim();
   const platform = (fields.platform ?? "Unknown").trim().slice(0, 80);
+  const city = (fields.city ?? "").trim().slice(0, 80);
+  const region = (fields.region ?? "").trim().slice(0, 80);
   const country = (fields.country ?? "Unknown").trim().slice(0, 80);
   let cryptoWallets = [];
   try {
@@ -173,6 +175,8 @@ async function createApplication(req, res) {
     platform,
     cryptoWallets,
     hasCryptoWallet: cryptoWallets.length > 0,
+    city,
+    region,
     country,
     reviewed: false,
     remarks: "",

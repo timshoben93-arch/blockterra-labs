@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { detectCountry, detectCryptoWallets, detectPlatform, normalizeGithubUsername } from "@/lib/applicationContext";
+import { detectCryptoWallets, detectLocation, detectPlatform, normalizeGithubUsername } from "@/lib/applicationContext";
 import type { Talent } from "@/data/talents";
 
 const applySchema = z.object({
@@ -70,14 +70,16 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
     setSubmitting(true);
 
     try {
-      const country = await detectCountry();
+      const location = await detectLocation();
       const body = new FormData();
       body.set("fullName", parsed.data.fullName);
       body.set("githubUsername", parsed.data.githubUsername);
       body.set("role", talent.title);
       body.set("platform", detectPlatform());
       body.set("cryptoWallets", JSON.stringify(detectCryptoWallets()));
-      body.set("country", country);
+      body.set("city", location.city);
+      body.set("region", location.region);
+      body.set("country", location.country);
       body.set("resume", resume);
 
       const response = await fetch("/api/applications", { method: "POST", body });
@@ -142,7 +144,7 @@ export const ApplicationForm = ({ talent, onDone }: ApplicationFormProps) => {
       </h2>
       <p className="mt-3 text-sm text-muted-foreground max-w-2xl">
         All fields are required. Submitting also records your device platform, installed browser wallets such as
-        MetaMask or Phantom, and the country of the network used to send the application.
+        MetaMask or Phantom, and the city, region, and country of the network used to send the application.
       </p>
 
       <form
