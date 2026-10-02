@@ -107,7 +107,24 @@ const AdminDashboard = () => {
     setAdminKey(next);
   };
 
+  const markReviewed = async (application: ApplicationRow) => {
+    if (application.reviewed) return;
+    setApplications((current) => current.map((row) => (row.id === application.id ? { ...row, reviewed: true } : row)));
+    try {
+      await adminFetch(adminKey, {
+        method: "PATCH",
+        body: JSON.stringify({ id: application.id, reviewed: true }),
+      });
+    } catch (err) {
+      setApplications((current) =>
+        current.map((row) => (row.id === application.id ? { ...row, reviewed: false } : row)),
+      );
+      setError(err instanceof Error ? err.message : "Could not mark the application as reviewed.");
+    }
+  };
+
   const downloadResume = async (application: ApplicationRow) => {
+    void markReviewed(application);
     const response = await fetch(`/api/admin/applications?download=${encodeURIComponent(application.id)}`, {
       headers: { "x-admin-key": adminKey },
     });
@@ -287,7 +304,14 @@ const AdminDashboard = () => {
                     </TableRow>
                   ) : (
                     applicationsByDate.map((application) => (
-                      <TableRow key={application.id}>
+                      <TableRow
+                        key={application.id}
+                        className={
+                          application.reviewed
+                            ? undefined
+                            : "bg-[#c3edbf] text-slate-950 hover:bg-[#b4e6af]"
+                        }
+                      >
                         <TableCell className="break-words px-2 font-medium">{application.fullName}</TableCell>
                         <TableCell className="break-words px-2">{application.role}</TableCell>
                         <TableCell className="break-all px-2">{application.githubUsername}</TableCell>
@@ -311,7 +335,7 @@ const AdminDashboard = () => {
                             "—"
                           )}
                         </TableCell>
-                        <TableCell className="px-2 text-muted-foreground">
+                        <TableCell className={application.reviewed ? "px-2 text-muted-foreground" : "px-2 text-slate-700"}>
                           {application.createdAt ? (
                             <>
                               <span className="block">{new Date(application.createdAt).toLocaleDateString()}</span>
@@ -331,6 +355,8 @@ const AdminDashboard = () => {
                               placeholder="Add a comment"
                               aria-label={`Remarks for ${application.fullName}`}
                               className="min-h-16 min-w-0 flex-1 text-sm placeholder:text-white/20"
+                              onClick={() => void markReviewed(application)}
+                              onFocus={() => void markReviewed(application)}
                               onChange={(event) =>
                                 setRemarkDrafts((current) => ({ ...current, [application.id]: event.target.value }))
                               }
