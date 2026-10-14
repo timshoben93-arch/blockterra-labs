@@ -12,7 +12,7 @@ const services = [
   {
     icon: Coins,
     title: "RWA tokenization",
-    desc: "Issue compliant, transferable instruments for real estate, treasuries, commodities, and private credit — including lifecycle events and redemptions.",
+    desc: "Implement permissioned token contracts and lifecycle workflows for real estate, treasuries, commodities, and private credit — as specified with the issuer’s counsel.",
     href: "/services/rwa-tokenization",
     image: rwaImg,
   },
@@ -36,7 +36,7 @@ const services = [
   },
   {
     icon: Network,
-    title: "Liquidity & market infra",
+    title: "Transfer & settlement software",
     href: "/services/rwa-tokenization",
     image: liquidityImg,
   },
@@ -56,10 +56,10 @@ export const Services = () => {
           eyebrow="Services"
           title={
             <>
-              Engineering for assets that already exist in the real world
+              Engineering for assets that already exist in <span className="text-gradient">the real world</span>
             </>
           }
-          description="We take tokenization from term sheet to audited contracts, investor onboarding, and day-two operations — not a slide deck."
+          description="We take tokenization from a counsel-approved term sheet to reviewed contracts, investor onboarding software, and day-two operations — not a slide deck. Third-party audit is separate when the client requires it."
         />
 
         <ul className="mt-4 divide-y divide-border border-t border-border">

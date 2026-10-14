@@ -37,19 +37,21 @@ const Company = () => {
           <div className="container py-24 lg:py-32 max-w-5xl">
             <Eyebrow>About · TokenBrickLabs</Eyebrow>
             <h1 className="mt-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
-              The team building the
+              A studio for tokenizing
               <br className="hidden md:block" />{" "}
-              <span className="text-gradient">on-chain real economy</span>
+              <span className="text-gradient">real-world assets</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground font-normal">
-              We're a Seattle-based studio of engineers, designers and operators
-              tokenizing real-world assets — starting with real estate.
+              We're a Seattle-based, remote-first studio of engineers, designers and operators
+              building tokenization software — often starting with real estate structures designed
+              by the issuer’s counsel. We are a privately held services company, not a public
+              protocol or an exchange.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-4 text-sm">
               {[
-                ["Founded", "2025"],
-                ["HQ", "Seattle, WA"],
-                ["Focus", "RWA · AI · Web3"],
+                ["Studio", "Remote-first"],
+                ["Base", "Seattle, WA"],
+                ["Focus", "RWA engineering"],
               ].map(([k, v]) => (
                 <div key={k} className="flex flex-col">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -70,12 +72,13 @@ const Company = () => {
               <div>
                 <Eyebrow>Company · Introduction</Eyebrow>
                 <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-                  The tables where real assets become <span className="text-gradient">on-chain</span>
+                  The tables where structure becomes <span className="text-gradient">software</span>
                 </h2>
                 <p className="mt-7 text-base md:text-lg leading-relaxed text-muted-foreground">
-                  TokenBrickLabs is a Seattle studio of engineers, designers, and operators. We design, audit, and
-                  deploy tokenization stacks that funds, fintechs, and asset operators can actually run — from
-                  compliant issuance to custody, NAV, and secondary settlement.
+                  TokenBrickLabs is a Seattle studio of engineers, designers, and operators. We design, review, and
+                  deploy tokenization software that funds, fintechs, and asset operators can run — issuance
+                  contracts, identity integrations, and operator workflows. Custody, fund administration, and any
+                  secondary venue are appointed by the client.
                 </p>
               </div>
               <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
@@ -121,18 +124,18 @@ const Company = () => {
             <div className="max-w-2xl">
               <Eyebrow>Headquarters</Eyebrow>
               <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-                Find us in <span className="text-gradient">Seattle</span>
+                Based in <span className="text-gradient">Seattle</span>
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
-                Our studio sits in downtown Seattle, steps from the waterfront
-                and the city's growing Web3 community.
+                We are a remote-first studio with a Seattle, Washington base. We do not publish a
+                walk-in street address on this site. Reach us by email or a booked call.
               </p>
             </div>
 
             <div className="mt-12 grid lg:grid-cols-3 gap-6 items-stretch min-w-0">
               <Card className="p-6 sm:p-8 min-w-0 break-words lg:col-span-1 bg-card border-border/70 shadow-soft">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  Visit · Contact
+                  Contact
                 </div>
                 <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">
                   {name}

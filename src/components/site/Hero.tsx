@@ -45,19 +45,20 @@ export const Hero = () => {
       <div className="container relative py-16 sm:py-20 lg:py-28">
         <div className="max-w-6xl">
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">
-            Seattle · Institutional RWA engineering
+            Seattle · RWA engineering studio
           </p>
           <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4rem]">
-            Tokenize real assets
+            Tokenize <span className="text-gradient">real assets</span>
             <br />
             Ship rails institutions
             <br />
             can operate
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            TokenBrickLabs designs, audits, and deploys production tokenization stacks for funds,
-            fintechs, and operators — from compliant issuance to custody, NAV, and secondary
-            settlement.
+            TokenBrickLabs designs, reviews, and deploys tokenization software for funds, fintechs,
+            and operators — issuance contracts, identity integrations, and operator workflows.
+            Independent audit, custody, and any secondary market are appointed by the client, not
+            provided as a TokenBrickLabs license.
           </p>
         </div>
       </div>

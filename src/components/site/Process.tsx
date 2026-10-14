@@ -31,7 +31,7 @@ export const Process = () => {
         <SectionHeading
           eyebrow="Process"
           title="From term sheet to mainnet without a six-month archaeology project"
-          description="A sequence we have run enough times that the surprises stay in the asset, not in the software."
+          description="A written sequence so the surprises stay in the asset and the jurisdiction, not in undocumented software."
         />
 
         <ol className="mt-14 grid gap-px bg-surface-dark-foreground/10 md:grid-cols-2 lg:grid-cols-4">

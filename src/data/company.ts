@@ -29,9 +29,8 @@ export const TEAM: Member[] = [
 ];
 
 export const COMPANY_LOCATION = {
-  name: "TokenBrickLabs HQ",
-  address: "1208 2nd Avenue, Seattle, WA 98101",
-  // Seattle downtown bounding box (left, bottom, right, top), marker lat/lon
-  lat: 47.6079,
-  lon: -122.3375,
+  name: "TokenBrickLabs",
+  address: "Seattle, Washington, United States",
+  lat: 47.6062,
+  lon: -122.3321,
 };

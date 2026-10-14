@@ -5,6 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import { Button } from "@/components/ui/button";
 import { SERVICES, getServiceBySlug } from "@/data/services";
+import { SITE } from "@/lib/site";
 import { useEffect } from "react";
 
 const ServicePage = () => {
@@ -55,7 +56,7 @@ const ServicePage = () => {
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Button variant="hero" size="xl" className="group" asChild>
-                    <a href="/#contact">
+                    <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
                       Start a Project
                       <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </a>
@@ -71,7 +72,7 @@ const ServicePage = () => {
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary-glow/10 text-primary">
                     <Icon className="h-8 w-8" />
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-semibold">Tech we use</h3>
+                  <h3 className="mt-6 font-display text-xl font-semibold">Tools we commonly integrate</h3>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {service.technologies.map((t) => (
                       <span

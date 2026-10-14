@@ -10,12 +10,12 @@ const models = [
     icon: Landmark,
     badge: "Funds & issuers",
     title: "Tokenized fund stack",
-    desc: "A regulated issuance path we run with you: contracts, transfer-agent hooks, NAV oracle, and an investor portal that operations teams can actually use.",
+    desc: "Software for an issuance path your counsel designs: permissioned contracts, transfer-restriction hooks, administrator-supplied NAV inputs, and an investor portal operations teams can use.",
     points: [
-      "ERC-3643 / T-REX with jurisdictional transfer rules",
-      "Whitelisting, accreditation, and investor identity",
-      "Automated NAV, coupons, and corporate actions",
-      "Custodian and fund-admin integrations",
+      "ERC-3643 / T-REX or equivalent permissioned transfer rules",
+      "Allowlists wired to the client’s identity and accreditation vendors",
+      "Corporate-action workflows (NAV inputs, coupons) as the administrator defines them",
+      "Integrations with custodians and fund admins the client appoints",
     ],
     cta: "Book a stack walkthrough",
     to: SITE.calendly,
@@ -29,7 +29,7 @@ const models = [
     points: [
       "REST APIs for issuance and settlement events",
       "TypeScript and Rust SDKs",
-      "Multi-chain settlement on EVM and Solana",
+      "Deployment on EVM networks, and Solana when the client already requires it",
       "Pluggable KYC and transfer restrictions",
     ],
     cta: "Read the technical docs",
@@ -44,7 +44,11 @@ export const Models = () => {
       <div className="container">
         <SectionHeading
           eyebrow="Engagement models"
-          title="Bring the asset on-chain — as a fund, or as infrastructure"
+          title={
+            <>
+              Bring the asset on-chain — as a fund, or as <span className="text-gradient">infrastructure</span>
+            </>
+          }
           description="First issuance or an existing product that needs rails: we pick the model that matches how you already operate."
         />
 

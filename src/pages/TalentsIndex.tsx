@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const VALUES = [
   {
     title: "Craft over theater",
-    body: "We ship systems institutions can operate — contracts, identity, custody — not slide-deck prototypes.",
+    body: "We ship systems institutions can operate — contracts, identity integrations, operator workflows — not slide-deck prototypes.",
   },
   {
     title: "High ownership, low ceremony",
@@ -24,11 +24,11 @@ const VALUES = [
 ];
 
 const BENEFITS = [
-  "Competitive salary with token and equity packages",
-  "Remote work, with optional time in Seattle",
-  "Signing and performance bonuses",
-  "Sponsored conferences and an annual offsite",
-  "Equipment stipend and learning budget",
+  "Competitive salary, confirmed in a written offer",
+  "Remote-first work, with optional time in Seattle",
+  "Bonus and any equity only as stated in the offer — this site does not grant tokens",
+  "Sponsored conferences when approved for the role",
+  "Equipment stipend and learning budget, as stated in the offer",
   "Flexible hours across time zones",
 ];
 
@@ -52,7 +52,7 @@ const TalentsIndex = () => {
     if (desc) {
       desc.setAttribute(
         "content",
-        "Open roles at TokenBrickLabs. Join a remote-first studio building production RWA tokenization — engineering, design, product, and operations.",
+        "Open roles at TokenBrickLabs. Join a remote-first studio building RWA tokenization software — engineering, design, product, and operations.",
       );
     }
   }, []);
@@ -78,11 +78,12 @@ const TalentsIndex = () => {
             <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end">
               <div>
                 <h1 className="font-sans text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-                  Build the rails for real-world assets
+                  Build the rails for <span className="text-gradient">real-world assets</span>
                 </h1>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  TokenBrickLabs is a Seattle-based studio hiring globally. We design, audit, and operate
-                  tokenization infrastructure for funds, fintechs, and operators.
+                  TokenBrickLabs is a Seattle-based studio hiring globally. We design, review, and deploy
+                  tokenization software for funds, fintechs, and operators. We do not take discretionary custody
+                  of assets.
                 </p>
               </div>
               <dl className="grid grid-cols-3 gap-6 border-t border-border pt-6 lg:border-t-0 lg:pt-0">

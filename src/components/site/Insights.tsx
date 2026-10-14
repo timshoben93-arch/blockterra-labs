@@ -16,8 +16,12 @@ export const Insights = () => {
         <SectionHeading
           align="split"
           eyebrow="Insights"
-          title="Architecture notes from the protocol papers"
-          description="Long-form chapters on constraints, vision, and consensus — written for engineers and counsel, not a blog farm."
+          title={
+            <>
+              Architecture notes for <span className="text-gradient">engineers and counsel</span>
+            </>
+          }
+          description="Long-form chapters on constraints, delivery scope, and trust assumptions — not a protocol token or a public network paper."
         />
 
         <ul className="mt-14 divide-y divide-border border-y border-border">

@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export const CTA = () => {
   return (
-    <section className="border-b border-border py-20 md:py-28" aria-labelledby="cta-heading">
+    <section id="contact" className="border-b border-border py-20 md:py-28" aria-labelledby="cta-heading">
       <div className="container">
         <div className="grid gap-10 border border-border bg-card p-8 md:grid-cols-[1fr_auto] md:items-end md:p-12 lg:p-16">
           <div className="max-w-2xl">

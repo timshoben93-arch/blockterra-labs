@@ -22,8 +22,9 @@ export const Footer = () => {
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-surface-dark-foreground/70">
-              Production tokenization for real-world assets — issuance, identity, custody, and the operations layer
-              after launch. Based in {SITE.location}.
+              Engineering studio for real-world asset tokenization — issuance software, identity integrations, and
+              operator workflows after launch. Based in {SITE.location}. We do not custody client assets or offer
+              securities.
             </p>
             <a
               href={`mailto:${SITE.email}`}
@@ -56,7 +57,7 @@ export const Footer = () => {
             </nav>
             <nav aria-label="Documentation">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-surface-dark-foreground/50">
-                Papers
+                Docs
               </p>
               <ul className="mt-4 space-y-2.5">
                 {DOCS.slice(0, 4).map((d) => (
@@ -76,7 +77,7 @@ export const Footer = () => {
                 Talk to us
               </p>
               <p className="mt-4 text-sm leading-relaxed text-surface-dark-foreground/70">
-                A 30-minute discovery call. Leave with a sequencing of contracts, identity, and custody.
+                A 30-minute discovery call. Leave with a sequencing of contracts, identity rails, and custodian integrations.
               </p>
               <a
                 href={SITE.calendly}

@@ -6,6 +6,7 @@ import {
   ClipboardList,
   Package,
   Settings,
+  ServerCog,
   Network,
   Blocks,
   PenTool,
@@ -39,17 +40,14 @@ export type Talent = {
 };
 
 const STUDIO_INTRO =
-  "TokenBrickLabs is a Seattle-based blockchain studio that designs, audits, and ships production Real-World Asset tokenization — issuance, identity, custody, and settlement rails for funds, fintechs, and operators. We hire globally and build for institutional security, compliance, and day-two operations, not slide-deck prototypes.";
+  "TokenBrickLabs is a Seattle-based blockchain studio that designs, reviews, and ships Real-World Asset tokenization software — issuance contracts, identity integrations, and operator workflows for funds, fintechs, and operators. We hire globally. Independent audit and custody are appointed by the client. We do not take discretionary custody of assets.";
 
 const SHARED_BENEFITS = [
-  "Opportunity to work at the bleeding edge of Web3 / crypto / DeFi.",
-  "Flexible working conditions.",
-  "Remote work location.",
-  "Offer token/equity packages.",
-  "Sponsored global events and travel.",
-  "Annual global 2-week offsite.",
-  "Signing and performance bonuses.",
-  "Competitive remuneration (attractive salary, benefits, and incentives, including tokens and bonus opportunities).",
+  "Remote-first work with a Seattle studio base.",
+  "Flexible working hours across time zones.",
+  "Equipment stipend and learning budget, as stated in the offer.",
+  "Conference and travel support, when approved for the role.",
+  "Compensation, bonus, and any equity are confirmed in a written offer — we do not promise tokens via this listing.",
 ];
 
 const ENGINEERING_CULTURE = {
@@ -106,10 +104,10 @@ export const TALENTS: Talent[] = [
       "Protocol Architecture sets the contract and systems design for TokenBrickLabs issuances. We define token standards, identity hooks, upgradeability, and how protocol work lands in backend and operator products. The bar is production: audit-ready, gas-aware, and operable in regulated jurisdictions.",
     ),
     responsibilities: [
-      "Design and implement smart contract architecture for NFT-based property ownership, transfers, and fractionalization.",
+      "Design and implement smart contract architecture for permissioned tokenized interests, transfers, and fractional records as defined in offering documents — not legal title to land.",
       "Build and maintain contracts using Solidity (Hardhat), ensuring security, upgradeability, and gas efficiency.",
       "Integrate blockchain functionality with backend services and frontend apps.",
-      "Define and manage on-chain/off-chain data interactions (IPFS, metadata, ownership records).",
+      "Define and manage on-chain/off-chain data interactions (IPFS, metadata, and records of contractual interests).",
       "Support multi-chain strategy (Ethereum / Polygon) and evaluate L2 scaling solutions.",
       "Collaborate with product and legal teams on tokenization models and compliance.",
       "Prepare code for audits and implement security best practices.",
@@ -119,7 +117,7 @@ export const TALENTS: Talent[] = [
       "2+ years of experience in blockchain or backend engineering.",
       "Strong experience with Solidity and smart contract development.",
       "Experience with Hardhat or Truffle and contract deployment.",
-      "Understanding of Ethereum ecosystem and token standards (ERC-721, ERC-1155).",
+      "Understanding of Ethereum ecosystem and token standards (including permissioned and ERC-20 / ERC-721 patterns as applicable).",
       "Familiarity with Web3 integrations (Ethers.js or Web3.js).",
       "Experience with backend systems (Node.js or Python preferred).",
       "Understanding of security patterns and audit preparation.",
@@ -134,7 +132,7 @@ export const TALENTS: Talent[] = [
     techStack: [
       { category: "Blockchain", items: ["Solidity", "Ethereum", "Polygon", "Arbitrum"] },
       { category: "Smart Contract Development", items: ["Hardhat", "Foundry", "OpenZeppelin", "Ethers.js"] },
-      { category: "Architecture", items: ["ERC-721", "ERC-1155", "Upgradeability", "Multisig"] },
+      { category: "Architecture", items: ["ERC-3643", "Permissioned tokens", "Upgradeability", "Multisig"] },
       { category: "Infrastructure", items: ["AWS", "Docker", "GitHub Actions"] },
     ],
   },
@@ -190,6 +188,55 @@ export const TALENTS: Talent[] = [
     ],
   },
   {
+    slug: "blockchain-infrastructure",
+    title: "Blockchain Infrastructure",
+    short: "Blockchain Infrastructure",
+    tagline: "Run the nodes, RPC, and indexers that issuance software depends on.",
+    icon: ServerCog,
+    department: "Engineering",
+    location: "Remote/Hybrid",
+    employmentType: "Full-time",
+    requisitionId: "JR2001251",
+    overview: aboutRole(
+      "As a Blockchain Infrastructure engineer, you will own the chain connectivity behind TokenBrickLabs issuances: execution and consensus clients, RPC gateways, indexers, and the operational procedures that keep those systems honest. This is not cloud generalism and it is not discretionary custody of client assets. You run the infrastructure our protocol and operator software call.",
+    ),
+    extraSections: jdExtras(
+      "Engineering Manager",
+      ENGINEERING_CULTURE,
+      "The Team: Blockchain Infrastructure",
+      "Blockchain Infrastructure keeps TokenBrickLabs attached to the chains we settle on. We operate nodes, RPC, and indexers as a control plane: reproducible, observed, and ready for chain upgrades. Protocol Engineering defines the contracts. We make sure reads, writes, and admin transactions land on a healthy chain — and we say so when they do not.",
+    ),
+    responsibilities: [
+      "Operate execution and consensus clients for the networks TokenBrickLabs issuances use, including upgrades, snapshots, and peer health.",
+      "Design and run RPC gateways with failover, rate limits, and separate paths for internal, partner, and admin traffic.",
+      "Build and maintain indexers that feed operator APIs — balances, transfers, and lifecycle events — from chain data.",
+      "Own key management for deployment and protocol-admin operations. This role does not take discretionary custody of client assets.",
+      "Monitor finality, reorgs, disk, and sync lag; page on real failures and write the postmortem.",
+      "Automate node provisioning and chain upgrades so a new network is a repeatable change, not a one-off server.",
+      "Partner with Protocol Engineering and DevOps on multi-chain rollout, secrets, and audit logging.",
+    ],
+    qualifications: [
+      "4+ years operating production distributed systems, including time on blockchain nodes, RPC, or indexers.",
+      "Hands-on experience with Ethereum execution and consensus clients, or equivalent L2 node software.",
+      "Experience running RPC infrastructure: load balancing, failover, and back-pressure under real traffic.",
+      "Strong Linux, networking, and observability fundamentals.",
+      "Comfort changing infrastructure through code (Terraform, Ansible, or similar) and reviewing those changes.",
+    ],
+    niceToHave: [
+      "Production time with Geth, Reth, Nethermind, Erigon, Lighthouse, Prysm, or Teku.",
+      "Experience with The Graph, Subsquid, or a custom chain indexer.",
+      "Familiarity with permissioned or institutional chains, not only public mainnet.",
+      "Prior work in fintech change control, SOC 2, or ISO 27001 environments.",
+    ],
+    benefits: SHARED_BENEFITS,
+    techStack: [
+      { category: "Nodes", items: ["Geth", "Reth", "Lighthouse"] },
+      { category: "Access", items: ["RPC gateways", "Load balancing", "Failover"] },
+      { category: "Data", items: ["Indexers", "Snapshots", "Reorg handling"] },
+      { category: "Operations", items: ["Linux", "Terraform", "Prometheus"] },
+    ],
+  },
+  {
     slug: "solidity-smart-contract-developer",
     title: "Blockchain Developer (Smart Contracts)",
     short: "Blockchain Developer (Smart Contracts)",
@@ -200,7 +247,7 @@ export const TALENTS: Talent[] = [
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001233",
     overview:
-      "TokenBrickLabs is a Seattle-based blockchain studio that designs, audits, and ships production Real-World Asset tokenization — issuance, identity, custody, and settlement rails for funds, fintechs, and operators. We hire globally and build for institutional security, compliance, and day-two operations, not slide-deck prototypes.\n\nAs a Blockchain Developer (Smart Contracts), you will own the Solidity layer of that stack: permissioned tokens, transfer restrictions, and the contract surfaces that investor and issuer products depend on.",
+      `${STUDIO_INTRO}\n\nAs a Blockchain Developer (Smart Contracts), you will own the Solidity layer of that stack: permissioned tokens, transfer restrictions, and the contract surfaces that investor and issuer products depend on.`,
     extraSections: [
       {
         heading: "Reports to:",
@@ -245,16 +292,7 @@ export const TALENTS: Talent[] = [
       "Understanding of KYC/AML and compliance workflows.",
       "Experience with audit preparation and remediation.",
     ],
-    benefits: [
-      "Opportunity to work at the bleeding edge of Web3 / crypto / DeFi.",
-      "Flexible working conditions.",
-      "Remote work location.",
-      "Offer token/equity packages.",
-      "Sponsored global events and travel.",
-      "Annual global 2-week offsite.",
-      "Signing and performance bonuses.",
-      "Competitive remuneration (attractive salary, benefits, and incentives, including tokens and bonus opportunities).",
-    ],
+    benefits: SHARED_BENEFITS,
     techStack: [
       { category: "Blockchain", items: ["Solidity", "Ethereum", "Polygon", "Arbitrum"] },
       { category: "Smart Contract Development", items: ["Hardhat", "Foundry", "OpenZeppelin", "Ethers.js"] },
@@ -283,17 +321,17 @@ export const TALENTS: Talent[] = [
       "Product Engineering (Web3) connects protocol surfaces to investor and issuer products. We integrate wallets, transaction UX, and on-chain reads so operators can run issuances without treating the chain as a black box. We optimize for security, gas, and a mental model that non-crypto stakeholders can actually follow.",
     ),
     responsibilities: [
-      "Develop and deploy smart contracts for property tokenization (NFTs), ownership transfer, and transaction flows.",
+      "Develop and deploy integrations for tokenized property interests, transfers of contractual claims as defined in offering documents, and transaction flows.",
       "Integrate blockchain interactions into the frontend using Web3.js / Ethers.js (wallets, transactions, signatures).",
       "Work closely with backend and frontend teams to connect on-chain logic with off-chain services.",
       "Support multi-chain setups (Ethereum / Polygon) and optimize for gas, security, and scalability.",
-      "Contribute to architecture decisions around tokenization, payments, and ownership models.",
+      "Contribute to architecture decisions around tokenization, payments, and how on-chain records map to the client’s legal structure.",
     ],
     qualifications: [
       "2–4 years of experience in Web3 or blockchain development.",
       "Strong experience with Solidity and tools like Hardhat.",
       "Hands-on experience integrating wallets (MetaMask, WalletConnect).",
-      "Good understanding of Ethereum ecosystem, tokens (ERC-721 / ERC-1155), and transaction flows.",
+      "Good understanding of Ethereum ecosystem, wallets, permissioned tokens, and transaction flows.",
       "Ability to work in a fast-moving, product-focused environment.",
     ],
     niceToHave: [
@@ -447,7 +485,7 @@ export const TALENTS: Talent[] = [
     slug: "product-manager",
     title: "Product Manager",
     short: "Product Manager",
-    tagline: "Lead the vision bridging blockchain, gaming, and real estate.",
+    tagline: "Lead issuance, identity, and operator products for tokenized real-world assets.",
     icon: Package,
     department: "Product",
     location: "Remote/Hybrid",
@@ -470,8 +508,8 @@ export const TALENTS: Talent[] = [
       "Manage stakeholder communication and ensure alignment across business, tech, and marketing teams.",
     ],
     qualifications: [
-      "Proven experience as a Product Manager, preferably in blockchain, gaming, fintech, or real estate tech.",
-      "Strong understanding of Web3 ecosystems, tokenomics, NFTs, and DeFi platforms.",
+      "Proven experience as a Product Manager, preferably in blockchain, fintech, or real estate technology.",
+      "Strong understanding of Web3 product surfaces, wallets, and permissioned-token workflows.",
       "Excellent communication and leadership skills with cross-functional teams.",
       "Ability to balance big-picture vision with detailed execution.",
       "Familiarity with agile methodologies and product management tools (Jira, Trello, Notion).",
@@ -631,14 +669,14 @@ export const TALENTS: Talent[] = [
     slug: "developer-relations-engineer",
     title: "Developer Relations Engineer",
     short: "Developer Relations Engineer",
-    tagline: "Turn TokenBrickLabs protocol and APIs into tools builders can actually ship with.",
+    tagline: "Turn TokenBrickLabs APIs and client integrations into tools builders can actually ship with.",
     icon: Megaphone,
     department: "Engineering",
     location: "Remote/Hybrid",
     employmentType: "Full-time / Part-time",
     requisitionId: "JR2001250",
     overview: aboutRole(
-      "As a Developer Relations Engineer, you will own the path from protocol and APIs to external builders: SDKs, samples, docs, and the technical conversations with funds, fintechs, and integrators. You write production-quality code, not slide-deck demos — and you feed what you learn back into the product. The role is open as full-time or part-time.",
+      "As a Developer Relations Engineer, you will own the path from our client APIs and contract surfaces to external builders: SDKs, samples, docs, and technical conversations with funds, fintechs, and integrators. You write production-quality code, not slide-deck demos — and you feed what you learn back into the product. The role is open as full-time or part-time.",
     ),
     extraSections: jdExtras(
       "Director, Engineering",
@@ -648,7 +686,7 @@ export const TALENTS: Talent[] = [
     ),
     responsibilities: [
       "Build and maintain TypeScript/Rust SDKs, samples, and reference integrations for issuance, identity, and settlement APIs.",
-      "Write and own technical documentation, tutorials, and protocol explainers that engineers and counsel can both use.",
+      "Write and own technical documentation and tutorials that engineers and counsel can both use.",
       "Support partner and integrator engineering: reproduce issues, file high-signal bugs, and land sample-level fixes.",
       "Represent TokenBrickLabs at technical events, workshops, and partner deep-dives — with working code, not a pitch deck.",
       "Collect builder feedback and turn it into RFCs, DX tickets, and product changes with Protocol and Platform Engineering.",

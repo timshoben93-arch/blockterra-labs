@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Download } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -16,13 +16,13 @@ const Docs = () => {
           <div className="container relative py-20 md:py-28">
             <div className="inline-flex items-center gap-2 rounded-full border border-surface-dark-foreground/15 bg-surface-dark-foreground/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-surface-dark-foreground/70">
               <FileText className="h-3.5 w-3.5" />
-              Technical Whitepaper · v1.0 · 2026
+              Engineering notes · 2026
             </div>
             <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight sm:whitespace-nowrap">
-              TokenBrickLabs Documentation
+              TokenBrickLabs <span className="text-gradient">Documentation</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg text-surface-dark-foreground/75 leading-relaxed">
-              A decentralized real-world asset tokenization protocol powered by Cellular Automata consensus. Explore the full technical architecture, vision, and consensus model.
+              How TokenBrickLabs approaches client tokenization work: legal versus on-chain records, permissioned standards, and trust assumptions. Not a TokenBrickLabs blockchain, token, or offering.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button variant="hero" size="pill" asChild>
@@ -39,7 +39,7 @@ const Docs = () => {
           <div className="max-w-2xl">
             <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Table of Contents</div>
             <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold tracking-tight">Document structure</h2>
-            <p className="mt-3 text-muted-foreground">Six chapters covering challenges, vision, technology foundations, network architecture, consensus, and conclusions.</p>
+            <p className="mt-3 text-muted-foreground">Six chapters covering challenges, delivery scope, technology, architecture, trust assumptions, and conclusions.</p>
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 gap-5">

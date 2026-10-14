@@ -2,12 +2,12 @@ import { Banknote, Building, Gem, HousePlug, Trees, Wheat } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
 
 const industries = [
-  { icon: Building, label: "Real estate", desc: "Fractional property, SPVs, and REIT-style vehicles with transfer restrictions that match the offering." },
-  { icon: Banknote, label: "Private credit", desc: "Loans, receivables, and structured credit with servicing events on a shared ledger." },
-  { icon: Gem, label: "Commodities", desc: "Allocated metals and inventory-backed tokens with custody attestations." },
-  { icon: Trees, label: "Climate & ESG", desc: "Carbon and environmental instruments that need audit trails, not just a ticker." },
-  { icon: Wheat, label: "Agri-finance", desc: "Seasonal, crop-backed instruments with clear redemption and warehouse data." },
-  { icon: HousePlug, label: "Infrastructure", desc: "Energy and utility cash-flow tokens with long-dated operations in mind." },
+  { icon: Building, label: "Real estate", desc: "Software for interests in property vehicles (including SPVs) with transfer restrictions that match the offering documents — not a substitute for title or REIT status." },
+  { icon: Banknote, label: "Private credit", desc: "Loans, receivables, and structured credit with servicing events recorded on a shared ledger the administrator operates." },
+  { icon: Gem, label: "Commodities", desc: "Inventory-linked records with custody attestations from appointed custodians — not a claim that the token is the metal." },
+  { icon: Trees, label: "Climate & ESG", desc: "Audit trails for environmental instruments the client is authorized to issue — not a carbon exchange." },
+  { icon: Wheat, label: "Agri-finance", desc: "Seasonal, warehouse-linked instruments with redemption rules defined in the client’s documents." },
+  { icon: HousePlug, label: "Infrastructure", desc: "Long-dated project cash-flow instruments, when the client’s structure already exists, with operations in mind." },
 ];
 
 export const Industries = () => {
@@ -17,7 +17,11 @@ export const Industries = () => {
         <SectionHeading
           align="split"
           eyebrow="Industries"
-          title="Where on-chain rails change settlement, not just branding"
+          title={
+            <>
+              Where on-chain rails change <span className="text-gradient">settlement, not just branding</span>
+            </>
+          }
           description="We work in asset classes where identity, jurisdiction, and servicing already exist — and tokenization has a job to do."
         />
 
