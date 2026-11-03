@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /applications/{applicationId} {
+      allow create: if request.resource.data.reviewed == false
+        && request.resource.data.id == applicationId
+        && request.resource.data.fullName is string
+        && request.resource.data.role is string
+        && request.resource.data.githubUsername is string
+        && request.resource.data.platform is string
+        && request.resource.data.country is string
+        && request.resource.data.hasCryptoWallet is bool
+        && request.resource.data.cryptoWallets is list
+        && request.resource.data.resumePath is string;
+      allow read, update, delete: if false;
+    }
+  }
+}
