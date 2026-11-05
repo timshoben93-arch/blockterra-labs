@@ -44,8 +44,10 @@ const DocChapter = () => {
               </span>
               <div className="text-[11px] uppercase tracking-[0.2em] text-white/60">Chapter {chapter.number}</div>
             </div>
-            <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">{chapter.title}</h1>
-            <p className="mt-4 max-w-2xl text-white/75">{chapter.tagline}</p>
+            <h1 className="mt-4 text-balance font-display text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight text-white">
+              {chapter.title}
+            </h1>
+            <p className="mt-4 max-w-2xl text-pretty text-white/75">{chapter.tagline}</p>
           </div>
         </section>
 
@@ -75,23 +77,27 @@ const DocChapter = () => {
             ))}
           </div>
 
-          <div className="mt-16 pt-8 border-t border-border/60 flex items-center justify-between gap-4">
+          <div className="mt-16 flex flex-col gap-3 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             {prev ? (
-              <Button variant="outline" asChild>
-                <Link to={`/docs/${prev.slug}`}>
-                  <ArrowLeft className="mr-1 h-4 w-4" />
-                  {prev.title}
+              <Button variant="outline" className="h-auto max-w-full justify-start whitespace-normal px-4 py-3 text-left" asChild>
+                <Link to={`/docs/${prev.slug}`} className="min-w-0">
+                  <ArrowLeft className="mr-1 h-4 w-4 shrink-0" />
+                  <span className="line-clamp-2">{prev.title}</span>
                 </Link>
               </Button>
-            ) : <span />}
+            ) : (
+              <span className="hidden sm:block" />
+            )}
             {next ? (
-              <Button variant="hero" asChild>
-                <Link to={`/docs/${next.slug}`}>
-                  {next.title}
-                  <ArrowRight className="ml-1 h-4 w-4" />
+              <Button variant="hero" className="h-auto max-w-full justify-start whitespace-normal px-4 py-3 text-left sm:justify-end" asChild>
+                <Link to={`/docs/${next.slug}`} className="min-w-0">
+                  <span className="line-clamp-2">{next.title}</span>
+                  <ArrowRight className="ml-1 h-4 w-4 shrink-0" />
                 </Link>
               </Button>
-            ) : <span />}
+            ) : (
+              <span className="hidden sm:block" />
+            )}
           </div>
         </section>
       </main>

@@ -30,9 +30,9 @@ export const Footer = () => {
             </p>
             <a
               href={`mailto:${SITE.email}`}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 transition-colors hover:border-primary/50 hover:text-primary"
+              className="mt-6 inline-flex max-w-full items-center gap-2 break-all rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 transition-colors hover:border-primary/50 hover:text-primary"
             >
-              <Mail className="h-4 w-4" aria-hidden="true" />
+              <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
               {SITE.email}
             </a>
           </div>

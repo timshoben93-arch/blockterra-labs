@@ -42,7 +42,7 @@ const SECTION_LINKS = [
 ];
 
 const navClass =
-  "rounded-full px-3.5 py-2 text-sm font-medium text-foreground/75 transition-colors hover:bg-secondary hover:text-foreground";
+  "rounded-full px-2.5 py-2 text-sm font-medium text-foreground/75 transition-colors hover:bg-secondary hover:text-foreground xl:px-3.5";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -54,9 +54,9 @@ export const Header = () => {
         Skip to content
       </a>
       <div className="container pointer-events-auto">
-        <div className="flex h-14 items-center justify-between gap-3 rounded-full border border-border/80 bg-card/90 px-3 shadow-soft backdrop-blur-xl sm:h-16 sm:px-4">
+        <div className="flex h-14 min-w-0 items-center justify-between gap-2 rounded-full border border-border/80 bg-card/90 px-2.5 shadow-soft backdrop-blur-xl sm:h-16 sm:gap-3 sm:px-4">
           <Logo />
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+          <nav className="hidden min-w-0 items-center gap-0.5 xl:flex" aria-label="Primary">
             {SECTION_LINKS.map((item) => (
               <a key={item.label} href={item.href} className={navClass}>
                 {item.label}
@@ -95,7 +95,7 @@ export const Header = () => {
             </Button>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full lg:hidden" aria-label="Open menu">
+                <Button variant="ghost" size="icon" className="rounded-full xl:hidden" aria-label="Open menu">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

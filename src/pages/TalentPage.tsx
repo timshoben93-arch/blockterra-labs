@@ -67,11 +67,13 @@ const TalentPage = () => {
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">
                     {talent.department}
                   </p>
-                  <h1 className="mt-3 font-sans text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+                  <h1 className="mt-3 text-balance font-sans text-[clamp(1.75rem,5vw,3rem)] font-semibold tracking-tight">
                     {talent.title}
                   </h1>
                   {talent.tagline ? (
-                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{talent.tagline}</p>
+                    <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                      {talent.tagline}
+                    </p>
                   ) : null}
 
                   <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-sm">

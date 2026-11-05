@@ -84,22 +84,22 @@ export const Hero = () => {
           <div className="pointer-events-none absolute -right-[8%] top-[12%] h-[min(48vw,26rem)] w-[min(48vw,26rem)] rounded-full border border-[#ff671b]/35" aria-hidden="true" />
           <div className="pointer-events-none absolute right-[10%] top-[28%] h-[min(36vw,20rem)] w-[min(36vw,20rem)] rounded-full border border-[#ffc81f]/40" aria-hidden="true" />
 
-          <div className="relative flex min-h-[560px] items-end px-6 py-10 sm:min-h-[600px] sm:px-10 sm:py-14 lg:min-h-[680px] lg:px-14 lg:py-16">
-            <div className="max-w-3xl">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white/70">
+          <div className="relative flex min-h-[min(92svh,560px)] items-end px-5 py-8 sm:min-h-[600px] sm:px-10 sm:py-14 lg:min-h-[680px] lg:px-14 lg:py-16">
+            <div className="w-full min-w-0 max-w-3xl">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/70 sm:text-[0.7rem] sm:tracking-[0.22em]">
                 TokenBrickLabs · Research. Connect. Build.
               </p>
-              <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.15rem]">
+              <h1 className="mt-4 font-display text-[clamp(1.85rem,6.2vw,4.15rem)] font-semibold leading-[1.08] tracking-tight text-white sm:mt-5">
                 Advancing the Future of
                 <br />
-                <span className="whitespace-nowrap text-primary">Tokenized Real-World Assets</span>
+                <span className="text-primary xl:whitespace-nowrap">Tokenized Real-World Assets</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-white sm:mt-6 sm:text-lg">
                 We research, connect and collaborate with financial institutions and technology innovators to
                 advance the infrastructure, technology and practical application of tokenized assets.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button variant="hero" size="lg" className="group" asChild>
+              <div className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:items-center">
+                <Button variant="hero" size="lg" className="group w-full sm:w-auto" asChild>
                   <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
                     Start a conversation
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -108,7 +108,7 @@ export const Hero = () => {
                 <Button
                   variant="soft"
                   size="lg"
-                  className="border-white/35 bg-white/10 text-white hover:bg-white/18 hover:text-white"
+                  className="w-full border-white/35 bg-white/10 text-white hover:bg-white/18 hover:text-white sm:w-auto"
                   asChild
                 >
                   <Link to="/docs">Explore research</Link>

@@ -30,15 +30,15 @@ const Docs = () => {
               <FileText className="h-3.5 w-3.5" />
               Research & Insights · {WHITEPAPER.edition} · v{WHITEPAPER.version} · {WHITEPAPER.date}
             </div>
-            <h1 className="mt-6 max-w-4xl font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-6xl">
+            <h1 className="mt-6 max-w-4xl text-balance font-display text-[clamp(1.85rem,5.5vw,3.75rem)] font-bold tracking-tight text-white">
               Research on real-world asset <span className="text-gradient">tokenisation</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+            <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-white/75 md:text-lg">
               {WHITEPAPER.audience}. Independent analysis connecting financial markets, digital securities and
               tokenization infrastructure.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button variant="hero" size="pill" asChild>
+            <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+              <Button variant="hero" size="pill" className="w-full sm:w-auto" asChild>
                 <Link to={`/docs/${DOCS[0].slug}`}>
                   Start reading
                   <ArrowRight className="ml-1 h-4 w-4" />
@@ -47,7 +47,7 @@ const Docs = () => {
               <Button
                 variant="outline"
                 size="pill"
-                className="border-surface-dark-foreground/30 bg-transparent text-surface-dark-foreground hover:bg-surface-dark-foreground/10 hover:text-surface-dark-foreground"
+                className="w-full border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto"
                 asChild
               >
                 <a href="/TokenBrick_Labs_RWA_Whitepaper_v1.0.pdf" download="TokenBrick_Labs_RWA_Whitepaper_v1.0.pdf">

@@ -45,14 +45,14 @@ const Company = () => {
       <Header />
       <main id="main">
         <section className="bg-hero-radial border-b border-border/60">
-          <div className="container py-24 lg:py-32 max-w-5xl">
+          <div className="container max-w-5xl py-16 sm:py-24 lg:py-32">
             <Eyebrow>About · TokenBrickLabs</Eyebrow>
-            <h1 className="mt-6 font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.05]">
+            <h1 className="mt-6 text-balance font-display text-[clamp(1.85rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-[-0.03em]">
               An independent partner for
               <br className="hidden md:block" />{" "}
               <span className="text-gradient">tokenized real-world assets</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground font-normal">
+            <p className="mt-7 max-w-2xl text-pretty text-base font-normal leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
               We help financial institutions, asset owners and technology platforms advance the infrastructure
               and practical application of tokenized real-world assets — through research, collaboration and
               applied innovation.
@@ -81,7 +81,7 @@ const Company = () => {
             <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-2 lg:gap-y-14 lg:items-center">
               <div>
                 <Eyebrow>Purpose & identity</Eyebrow>
-                <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
+                <h2 className="mt-5 text-balance font-display text-[clamp(1.65rem,4.5vw,3rem)] font-bold leading-[1.1] tracking-[-0.02em]">
                   Bridging traditional markets and{" "}
                   <span className="text-gradient">digital asset infrastructure</span>
                 </h2>
@@ -142,7 +142,7 @@ const Company = () => {
           <div className="container py-20 lg:py-24">
             <div className="max-w-2xl">
               <Eyebrow>How we engage</Eyebrow>
-              <h2 className="mt-5 font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.1]">
+              <h2 className="mt-5 text-balance font-display text-[clamp(1.65rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.02em]">
                 Research, collaboration and applied innovation
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
@@ -178,7 +178,7 @@ const Company = () => {
           <div className="container py-20 lg:py-24">
             <div className="max-w-2xl">
               <Eyebrow>Governance & commitments</Eyebrow>
-              <h2 className="mt-5 font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.1]">
+              <h2 className="mt-5 text-balance font-display text-[clamp(1.65rem,4.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.02em]">
                 How we work with institutions
               </h2>
             </div>
@@ -209,7 +209,7 @@ const Company = () => {
           <div className="container py-24 lg:py-28">
             <div className="max-w-2xl">
               <Eyebrow>Headquarters</Eyebrow>
-              <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
+              <h2 className="mt-5 text-balance font-display text-[clamp(1.65rem,4.5vw,3rem)] font-bold leading-[1.1] tracking-[-0.02em]">
                 Based in <span className="text-gradient">Seattle</span>
               </h2>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">

@@ -77,27 +77,35 @@ const TalentsIndex = () => {
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">Careers</p>
             <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end">
               <div>
-                <h1 className="font-sans text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-                  Build the rails for <span className="text-gradient">real-world assets</span>
+                <h1 className="text-balance font-sans text-[clamp(1.85rem,5.5vw,3.75rem)] font-semibold tracking-tight">
+                  <span className="xl:whitespace-nowrap">
+                    Build the rails for <span className="text-gradient">real-world assets</span>
+                  </span>
                 </h1>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
                   TokenBrickLabs is a Seattle-based team hiring globally to build our own RWA tokenization
                   platform. The work is permissioned issuance, identity, and operator workflows. We do not
                   take discretionary custody of assets.
                 </p>
               </div>
-              <dl className="grid grid-cols-3 gap-6 border-t border-border pt-6 lg:border-t-0 lg:pt-0">
-                <div>
-                  <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Open roles</dt>
-                  <dd className="mt-2 font-sans text-2xl font-semibold tabular-nums">{TALENTS.length}</dd>
+              <dl className="grid grid-cols-3 gap-3 border-t border-border pt-6 sm:gap-6 lg:border-t-0 lg:pt-0">
+                <div className="min-w-0">
+                  <dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:text-[0.65rem] sm:tracking-[0.18em]">
+                    Open roles
+                  </dt>
+                  <dd className="mt-2 font-sans text-xl font-semibold tabular-nums sm:text-2xl">{TALENTS.length}</dd>
                 </div>
-                <div>
-                  <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Teams</dt>
-                  <dd className="mt-2 font-sans text-2xl font-semibold">{DEPARTMENTS.length}</dd>
+                <div className="min-w-0">
+                  <dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:text-[0.65rem] sm:tracking-[0.18em]">
+                    Teams
+                  </dt>
+                  <dd className="mt-2 font-sans text-xl font-semibold sm:text-2xl">{DEPARTMENTS.length}</dd>
                 </div>
-                <div>
-                  <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Where</dt>
-                  <dd className="mt-2 font-sans text-2xl font-semibold">Remote</dd>
+                <div className="min-w-0">
+                  <dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:text-[0.65rem] sm:tracking-[0.18em]">
+                    Where
+                  </dt>
+                  <dd className="mt-2 font-sans text-xl font-semibold sm:text-2xl">Remote</dd>
                 </div>
               </dl>
             </div>

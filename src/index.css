@@ -105,10 +105,17 @@
   body {
     @apply bg-background text-foreground font-sans;
     overflow-x: clip;
-    font-size: 1.0625rem;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
     line-height: 1.65;
     letter-spacing: -0.011em;
     font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  img,
+  video,
+  iframe,
+  svg {
+    max-width: 100%;
   }
   h1,
   h2,

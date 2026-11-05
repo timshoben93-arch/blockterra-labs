@@ -70,7 +70,7 @@ export const Models = () => {
               key={title}
               delayMs={i * 80}
               as="article"
-              className="rounded-4xl border border-border bg-card p-8 shadow-soft md:p-10"
+              className="rounded-4xl border border-border bg-card p-6 shadow-soft sm:p-8 md:p-10"
             >
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{badge}</p>
               <div className="mt-4 flex items-start gap-3">

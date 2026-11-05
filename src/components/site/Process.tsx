@@ -36,13 +36,13 @@ export const Process = () => {
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div className="max-w-3xl">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary">How we work</p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.85rem] md:leading-[1.1]">
+            <h2 className="mt-4 font-display text-[clamp(1.65rem,4.2vw,2.85rem)] font-semibold leading-[1.12] tracking-tight text-white">
               From market insight to
               <br />
               practical collaboration
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg lg:justify-self-end">
+          <p className="max-w-xl text-pretty text-base leading-relaxed text-white/70 sm:text-lg lg:justify-self-end">
             A clear operating philosophy for advancing tokenized real-world assets — research-led, technology-informed
             and institutionally grounded.
           </p>

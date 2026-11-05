@@ -44,19 +44,19 @@ const ServicePage = () => {
                 <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 backdrop-blur px-4 py-2 text-xs font-medium text-foreground/70 shadow-soft">
                   Research · Connect · Build
                 </span>
-                <h1 className="mt-6 font-display font-bold tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
+                <h1 className="mt-6 text-balance font-display text-[clamp(1.75rem,5vw,3.75rem)] font-bold leading-[1.1] tracking-tight">
                   <span className="text-gradient">{service.title}</span>
                 </h1>
-                <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-2xl">{service.tagline}</p>
+                <p className="mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg md:text-xl">{service.tagline}</p>
                 <p className="mt-5 text-base text-foreground/80 max-w-2xl leading-relaxed">{service.description}</p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <Button variant="hero" size="xl" className="group" asChild>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+                  <Button variant="hero" size="xl" className="group w-full sm:w-auto" asChild>
                     <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
                       Discuss this capability
                       <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>
-                  <Button variant="soft" size="xl" asChild>
+                  <Button variant="soft" size="xl" className="w-full sm:w-auto" asChild>
                     <Link to="/#what-we-do">All capabilities</Link>
                   </Button>
                 </div>
