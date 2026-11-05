@@ -1,18 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Play } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { FEATURED_VIDEO } from "@/data/featuredVideo";
 import { cn } from "@/lib/utils";
 
 export const EcosystemVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !playing) return;
-    video.play().catch(() => setPlaying(false));
-  }, [playing]);
+  const poster = `https://i.ytimg.com/vi/${FEATURED_VIDEO.youtubeId}/maxresdefault.jpg`;
 
   return (
     <section
@@ -28,23 +22,21 @@ export const EcosystemVideo = () => {
               Understanding the tokenized <span className="text-gradient">asset economy</span>
             </>
           }
-          description="A self-hosted 3–5 minute atmosphere reel of people in financial discussion — looping freely with no registration wall."
+          description="A concise live-action briefing on how asset tokenization and digital securities are reshaping institutional markets — from ownership and issuance through custody, settlement and ongoing lifecycle management."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="overflow-hidden rounded-2xl border border-border/70 bg-black shadow-elevated">
             <div className="relative aspect-video w-full">
               {playing ? (
-                <video
-                  ref={videoRef}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  src={FEATURED_VIDEO.src}
-                  poster={FEATURED_VIDEO.poster}
-                  controls
-                  autoPlay
-                  loop
-                  playsInline
-                  preload="metadata"
+                <iframe
+                  title={FEATURED_VIDEO.title}
+                  src={`https://www.youtube-nocookie.com/embed/${FEATURED_VIDEO.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
                 />
               ) : (
                 <button
@@ -54,7 +46,7 @@ export const EcosystemVideo = () => {
                   aria-label={`Play video: ${FEATURED_VIDEO.title}`}
                 >
                   <img
-                    src={FEATURED_VIDEO.poster}
+                    src={poster}
                     alt=""
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -109,8 +101,16 @@ export const EcosystemVideo = () => {
               <a href="/docs" className="font-medium text-primary hover:underline">
                 research chapters
               </a>
-              . This reel is ambient industry footage, not TokenBrickLabs original content.
+              . This video is an independent industry briefing, not TokenBrickLabs content.
             </p>
+            <a
+              href={FEATURED_VIDEO.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex text-sm font-medium text-primary hover:underline"
+            >
+              Watch on YouTube →
+            </a>
           </div>
         </div>
       </div>
