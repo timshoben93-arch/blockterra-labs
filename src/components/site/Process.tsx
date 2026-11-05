@@ -33,19 +33,32 @@ export const Process = () => {
   return (
     <section id="how-we-work" className="scroll-mt-24 border-b border-border bg-surface-dark py-20 text-surface-dark-foreground md:py-28">
       <div className="container">
-        <SectionHeading
-          eyebrow="How we work"
-          singleLineTitle
-          title="From market insight to practical collaboration"
-          description="A clear operating philosophy for advancing tokenized real-world assets — research-led, technology-informed and institutionally grounded."
-        />
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div className="max-w-3xl">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary">How we work</p>
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.85rem] md:leading-[1.1]">
+              From market insight to
+              <br />
+              practical collaboration
+            </h2>
+          </div>
+          <p className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg lg:justify-self-end">
+            A clear operating philosophy for advancing tokenized real-world assets — research-led, technology-informed
+            and institutionally grounded.
+          </p>
+        </div>
 
-        <ol className="mt-14 grid gap-px bg-surface-dark-foreground/10 md:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           {steps.map((s, i) => (
-            <Reveal key={s.n} delayMs={i * 70} as="li" className="bg-surface-dark p-7 md:p-8">
+            <Reveal
+              key={s.n}
+              delayMs={i * 70}
+              as="li"
+              className="rounded-4xl border border-white/10 bg-white/[0.04] p-7 md:p-8"
+            >
               <p className="font-display text-3xl font-semibold text-primary">{s.n}</p>
-              <h3 className="mt-6 font-display text-xl font-semibold">{s.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-surface-dark-foreground/70">{s.d}</p>
+              <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">{s.d}</p>
             </Reveal>
           ))}
         </ol>

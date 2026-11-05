@@ -10,7 +10,7 @@ export const Proof = () => {
           description="We bridge traditional financial markets and emerging tokenization infrastructure — without presenting ourselves as an exchange, issuance venue, asset manager or conventional consultancy."
         />
 
-        <div className="mt-14 grid gap-px bg-border lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {[
             [
               "Independent research",
@@ -25,7 +25,7 @@ export const Proof = () => {
               "Research, advisory and development support are distinct from regulated financial activities. We do not claim custody, brokerage or investment-management licences on this site.",
             ],
           ].map(([k, v]) => (
-            <div key={k} className="bg-background p-8">
+            <div key={k} className="rounded-4xl border border-border bg-card p-8 shadow-soft">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Principle</p>
               <p className="mt-6 font-display text-xl font-semibold tracking-tight">{k}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v}</p>

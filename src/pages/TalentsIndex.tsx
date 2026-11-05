@@ -227,9 +227,12 @@ const TalentsIndex = () => {
                 Compensation and benefits are calibrated for senior operators. Details are confirmed in the offer.
               </p>
             </div>
-            <ul className="grid gap-px bg-border sm:grid-cols-2">
+            <ul className="grid gap-4 sm:grid-cols-2">
               {BENEFITS.map((b) => (
-                <li key={b} className="bg-background px-5 py-4 text-sm leading-relaxed text-foreground/85">
+                <li
+                  key={b}
+                  className="rounded-4xl border border-border bg-card px-5 py-4 text-sm leading-relaxed text-foreground/85 shadow-soft"
+                >
                   {b}
                 </li>
               ))}

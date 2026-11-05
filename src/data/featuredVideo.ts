@@ -1,21 +1,13 @@
 /**
- * Homepage RWA tokenization videos.
+ * Hero background — self-hosted MP4 only (never YouTube / never login wall).
+ * Royalty-free Pexels ambient (Pressmaster #3129671), muted + looped locally.
  *
- * Selected for topical coverage of real-world asset tokenization — not ambient
- * office/street B-roll and not music-led montage. Hosted via YouTube privacy
- * embeds (no TokenBrickLabs account / no publisher registration wall).
- *
- * Primary film (4:10): institutional journey from asset qualification through
- * legal/custody design to issuance, settlement and servicing.
- * Supporting shorts: tokenization definition, custody, tokenized real estate,
- * and institutional trust architecture.
- *
- * Source: RWA Avaitar (Geneva) — institutional RWA education channel.
+ * Ecosystem films below are separate click-to-play RWA explainers (RWA Avaitar).
  */
 export const HERO_VIDEO = {
-  youtubeId: "PfWi4GWwhCQ",
-  title: "RWA Tokenization: From Real-World Asset to Structured Digital Capital",
-  duration: "4:10",
+  src: "/videos/hero-background.mp4",
+  srcMobile: "/videos/hero-background-mobile.mp4",
+  poster: "/videos/hero-poster.jpg",
 } as const;
 
 export const FEATURED_VIDEO = {

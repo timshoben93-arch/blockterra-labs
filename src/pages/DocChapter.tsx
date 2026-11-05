@@ -34,18 +34,18 @@ const DocChapter = () => {
         <section className="relative overflow-hidden bg-surface-dark text-surface-dark-foreground">
           <div className="pointer-events-none absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
           <div className="container relative py-16 md:py-20">
-            <Link to="/docs" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-surface-dark-foreground/70 hover:text-primary-glow transition-colors">
+            <Link to="/docs" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-primary">
               <ArrowLeft className="h-3.5 w-3.5" />
               Research & Insights
             </Link>
             <div className="mt-6 flex items-center gap-3">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-dark-foreground/10 text-primary-glow">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-primary">
                 <Icon className="h-5 w-5" />
               </span>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-surface-dark-foreground/60">Chapter {chapter.number}</div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-white/60">Chapter {chapter.number}</div>
             </div>
-            <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">{chapter.title}</h1>
-            <p className="mt-4 max-w-2xl text-surface-dark-foreground/75">{chapter.tagline}</p>
+            <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">{chapter.title}</h1>
+            <p className="mt-4 max-w-2xl text-white/75">{chapter.tagline}</p>
           </div>
         </section>
 

@@ -11,7 +11,7 @@ export const EcosystemVideo = () => {
   return (
     <section
       id="ecosystem-video"
-      className="scroll-mt-24 border-b border-border bg-[radial-gradient(ellipse_at_top,_rgba(14,42,78,0.55),_transparent_55%),linear-gradient(180deg,#050b16_0%,hsl(var(--background))_100%)] py-20 md:py-28"
+      className="scroll-mt-24 border-b border-border bg-surface-muted py-20 md:py-28"
     >
       <div className="container">
         <SectionHeading
@@ -26,7 +26,7 @@ export const EcosystemVideo = () => {
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-start">
-          <div className="overflow-hidden rounded-2xl border border-border/70 bg-black shadow-elevated">
+          <div className="media-frame border border-border/70 bg-black">
             <div className="relative aspect-video w-full">
               {playingId === FEATURED_VIDEO.youtubeId ? (
                 <iframe

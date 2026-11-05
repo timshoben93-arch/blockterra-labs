@@ -35,7 +35,7 @@ export const Services = () => {
                     to={`/services/${service.slug}`}
                     className="group grid gap-6 py-8 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-8 md:py-10"
                   >
-                    <div className="relative hidden h-20 w-32 overflow-hidden border border-border sm:block">
+                    <div className="relative hidden h-20 w-32 overflow-hidden rounded-2xl border border-border sm:block">
                       <img
                         src={images[i]}
                         alt=""

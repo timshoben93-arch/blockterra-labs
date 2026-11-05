@@ -5,28 +5,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-sans text-sm font-medium tracking-[-0.01em] ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-sans text-sm font-semibold tracking-[-0.01em] ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-border bg-transparent text-foreground hover:bg-secondary hover:border-foreground/20",
+          "border border-border bg-card text-foreground hover:bg-secondary hover:border-foreground/15",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-primary text-primary-foreground shadow-soft hover:bg-primary/90 active:translate-y-px transition-all duration-200",
-        accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent/90 active:translate-y-px transition-all duration-200",
-        soft: "bg-transparent text-foreground border border-border hover:bg-secondary hover:border-foreground/25 active:translate-y-px transition-all duration-200",
+        ghost: "hover:bg-secondary hover:text-foreground",
+        link: "rounded-none text-primary underline-offset-4 hover:underline",
+        hero: "bg-primary text-primary-foreground shadow-soft hover:bg-[#e85a12] active:translate-y-px",
+        accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent/90 active:translate-y-px",
+        soft: "border border-border bg-card text-foreground hover:bg-secondary active:translate-y-px",
         dark: "bg-surface-dark text-surface-dark-foreground hover:bg-surface-dark/90",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-12 rounded-xl px-8 text-base",
-        xl: "h-14 rounded-2xl px-10 text-base",
-        pill: "h-11 rounded-full px-6",
+        default: "h-10 px-5 py-2",
+        sm: "h-9 px-4",
+        lg: "h-12 px-8 text-base",
+        xl: "h-14 px-10 text-base",
+        pill: "h-11 px-6",
         icon: "h-10 w-10",
       },
     },

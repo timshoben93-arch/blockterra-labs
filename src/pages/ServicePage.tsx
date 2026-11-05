@@ -63,8 +63,8 @@ const ServicePage = () => {
               </div>
 
               <div className="relative">
-                <div className="rounded-3xl bg-gradient-card border border-border p-8 shadow-elevated">
-                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary-glow/10 text-primary">
+                <div className="rounded-4xl border border-border bg-gradient-card p-8 shadow-elevated">
+                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="h-8 w-8" />
                   </div>
                   <h3 className="mt-6 font-display text-xl font-semibold">Focus areas</h3>

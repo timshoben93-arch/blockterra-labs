@@ -49,10 +49,12 @@ export const Industries = () => {
           description="A sophisticated B2B audience across traditional finance and digital asset infrastructure — not retail crypto trading."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {audiences.map(({ icon: Icon, label, desc }) => (
-            <article key={label} className="bg-background p-7 md:p-8">
-              <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+            <article key={label} className="rounded-4xl border border-border bg-card p-7 shadow-soft md:p-8">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
               <h3 className="mt-5 font-display text-xl font-semibold tracking-tight">{label}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
             </article>

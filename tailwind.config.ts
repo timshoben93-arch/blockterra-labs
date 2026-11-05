@@ -72,12 +72,14 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 0.35rem)",
+        sm: "calc(var(--radius) - 0.65rem)",
+        "4xl": "2.25rem",
+        "5xl": "2.75rem",
       },
       fontFamily: {
-        sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Figtree"', "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ['"Outfit"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

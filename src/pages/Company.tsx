@@ -93,7 +93,7 @@ const Company = () => {
                   conventional management consultancy.
                 </p>
               </div>
-              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+              <figure className="media-frame border border-border">
                 <img src={STUDIO[0].src} alt={STUDIO[0].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
               </figure>
 
@@ -103,7 +103,7 @@ const Company = () => {
                 technical evaluation and multi-provider collaboration, rather than forcing a single proprietary
                 stack.
               </p>
-              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+              <figure className="media-frame border border-border">
                 <img src={STUDIO[1].src} alt={STUDIO[1].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
               </figure>
 
@@ -131,7 +131,7 @@ const Company = () => {
                   </Button>
                 </div>
               </div>
-              <figure className="overflow-hidden rounded-2xl border border-border/70 shadow-soft">
+              <figure className="media-frame border border-border">
                 <img src={STUDIO[2].src} alt={STUDIO[2].alt} className="h-56 w-full object-cover sm:h-64 lg:h-[17.5rem]" />
               </figure>
             </div>
@@ -162,7 +162,10 @@ const Company = () => {
                 "Industry research partnerships",
                 "Executive briefings and educational workshops",
               ].map((item) => (
-                <li key={item} className="flex gap-3 text-sm md:text-base text-foreground/85">
+                <li
+                  key={item}
+                  className="flex gap-3 rounded-4xl border border-border bg-card px-5 py-4 text-sm shadow-soft md:text-base text-foreground/85"
+                >
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {item}
                 </li>
@@ -179,7 +182,7 @@ const Company = () => {
                 How we work with institutions
               </h2>
             </div>
-            <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 ["Independent research", "Evidence-based analysis without fabricated findings or unverified partnership claims."],
                 ["Technology neutrality", "Objective evaluation across providers, architectures and operating models."],
@@ -188,7 +191,7 @@ const Company = () => {
                 ["Responsible innovation", "Pilots and proofs of concept with bounded claims and measurable criteria."],
                 ["Confidentiality", "Appropriate intellectual property and confidentiality arrangements for sensitive work."],
               ].map(([t, d]) => (
-                <div key={t} className="bg-background p-7">
+                <div key={t} className="rounded-4xl border border-border bg-card p-7 shadow-soft">
                   <h3 className="font-display text-lg font-semibold tracking-tight">{t}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
                 </div>
@@ -216,7 +219,7 @@ const Company = () => {
             </div>
 
             <div className="mt-12 grid lg:grid-cols-3 gap-6 items-stretch min-w-0">
-              <Card className="p-6 sm:p-8 min-w-0 break-words lg:col-span-1 bg-card border-border/70 shadow-soft">
+              <Card className="min-w-0 break-words rounded-4xl border-border bg-card p-6 shadow-soft sm:p-8 lg:col-span-1">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Contact
                 </div>
@@ -253,7 +256,7 @@ const Company = () => {
                 </ul>
               </Card>
 
-              <div className="lg:col-span-2 min-w-0 rounded-2xl overflow-hidden border border-border/70 shadow-soft min-h-[460px] bg-card">
+              <div className="media-frame lg:col-span-2 min-h-[460px] min-w-0 border border-border bg-card">
                 <iframe
                   title="TokenBrickLabs HQ map"
                   src={mapSrc}

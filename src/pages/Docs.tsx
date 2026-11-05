@@ -26,14 +26,14 @@ const Docs = () => {
           <div className="pointer-events-none absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
           <div className="container relative py-20 md:py-28">
-            <div className="inline-flex items-center gap-2 rounded-full border border-surface-dark-foreground/15 bg-surface-dark-foreground/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-surface-dark-foreground/70">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-white/70">
               <FileText className="h-3.5 w-3.5" />
               Research & Insights · {WHITEPAPER.edition} · v{WHITEPAPER.version} · {WHITEPAPER.date}
             </div>
-            <h1 className="mt-6 max-w-4xl font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight">
+            <h1 className="mt-6 max-w-4xl font-display text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-6xl">
               Research on real-world asset <span className="text-gradient">tokenisation</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-base md:text-lg text-surface-dark-foreground/75 leading-relaxed">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
               {WHITEPAPER.audience}. Independent analysis connecting financial markets, digital securities and
               tokenization infrastructure.
             </p>
@@ -107,10 +107,10 @@ const Docs = () => {
                 <Link
                   key={chapter.slug}
                   to={`/docs/${chapter.slug}`}
-                  className="group relative rounded-2xl border border-border/70 bg-card p-6 hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+                  className="group relative rounded-4xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated md:p-7"
                 >
                   <div className="flex items-start gap-4">
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </span>
                     <div className="flex-1">

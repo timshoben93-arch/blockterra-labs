@@ -30,7 +30,7 @@ const partners = [
 
 export const Partnerships = () => {
   return (
-    <section id="partnerships" className="scroll-mt-24 border-b border-border bg-surface-raised py-20 md:py-28">
+    <section id="partnerships" className="scroll-mt-24 border-b border-border bg-surface-muted py-20 md:py-28">
       <div className="container">
         <SectionHeading
           align="split"
@@ -43,9 +43,9 @@ export const Partnerships = () => {
           description="We collaborate across the stack — without implying that any specific partnership already exists unless separately confirmed."
         />
 
-        <div className="mt-14 grid gap-px bg-border lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {models.map((m, i) => (
-            <Reveal key={m.title} delayMs={i * 70} as="article" className="bg-card p-8 md:p-10">
+            <Reveal key={m.title} delayMs={i * 70} as="article" className="rounded-4xl border border-border bg-card p-8 shadow-soft md:p-10">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Model 0{i + 1}
               </p>

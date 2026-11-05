@@ -2,86 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TokenBrickLabs Design System
-   RWA + Blockchain — clean, modern, trust-forward.
+/* TokenBrickLabs Design System — Mastercard-inspired institutional language
+   Light, warm neutrals · orange primary · circle motifs · open whitespace
    All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Warm off-white canvas (Mastercard light gray family) */
+    --background: 40 14% 96%;
+    --foreground: 60 3% 8%;
 
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 60 3% 8%;
 
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 60 3% 8%;
 
-    /* Brand: deep blockchain blue */
-    --primary: 217 91% 62%;
+    /* Primary: Mastercard digital orange #ff671b */
+    --primary: 18 100% 55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 190 95% 60%;
+    --primary-glow: 32 100% 56%;
 
-    /* Brand accent: terra/earth — emerald-teal for "Terra" */
-    --accent: 162 75% 50%;
+    /* Secondary gold / warm accent */
+    --accent: 35 100% 48%;
     --accent-foreground: 0 0% 100%;
-    --accent-glow: 152 80% 55%;
+    --accent-glow: 45 100% 56%;
 
-    /* Warm earth highlight (like the orange in ref) */
-    --highlight: 28 95% 62%;
-    --highlight-foreground: 0 0% 100%;
+    --highlight: 45 100% 56%;
+    --highlight-foreground: 60 3% 8%;
 
-    --secondary: 217 33% 14%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 40 12% 92%;
+    --secondary-foreground: 60 3% 8%;
 
-    --muted: 217 33% 14%;
-    --muted-foreground: 215 16% 72%;
+    --muted: 40 12% 92%;
+    --muted-foreground: 30 6% 38%;
 
-    --destructive: 0 74% 55%;
+    --destructive: 0 74% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 217 91% 62%;
+    --border: 36 10% 86%;
+    --input: 36 10% 86%;
+    --ring: 18 100% 55%;
 
-    --radius: 0.5rem;
+    --radius: 1.25rem;
 
     /* Surfaces */
-    --surface-dark: 222 47% 4%;
-    --surface-dark-foreground: 210 40% 98%;
-    --surface-raised: 217 32% 10%;
-    --surface-muted: 217 28% 8.2%;
+    --surface-dark: 60 3% 8%;
+    --surface-dark-foreground: 40 14% 96%;
+    --surface-raised: 0 0% 100%;
+    --surface-muted: 40 16% 93%;
     --flow-h: clamp(2.75rem, 6.5vw, 5.25rem);
 
+    /* Brand circle hues (inspired by interlocking discs) */
+    --circle-a: 4 86% 48%;
+    --circle-b: 43 100% 50%;
+    --circle-overlap: 18 100% 55%;
+
     /* Gradients */
-    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(217 91% 22%) 0%, hsl(222 47% 6%) 60%);
-    --gradient-text: linear-gradient(135deg, hsl(217 91% 55%), hsl(190 95% 55%), hsl(162 75% 50%));
-    --gradient-text-warm: linear-gradient(135deg, hsl(28 95% 60%), hsl(12 90% 58%));
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 55%), hsl(190 95% 55%));
-    --gradient-accent: linear-gradient(135deg, hsl(162 75% 42%), hsl(190 95% 55%));
-    --gradient-card: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 8%));
+    --gradient-hero: radial-gradient(ellipse 70% 55% at 70% 20%, hsl(18 100% 55% / 0.12), transparent 55%),
+      linear-gradient(180deg, hsl(40 14% 97%) 0%, hsl(40 14% 94%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(18 100% 48%), hsl(35 100% 45%));
+    --gradient-text-warm: linear-gradient(135deg, hsl(35 100% 48%), hsl(4 86% 48%));
+    --gradient-primary: linear-gradient(135deg, hsl(18 100% 55%), hsl(35 100% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(35 100% 48%), hsl(45 100% 56%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 14% 98%));
 
-    /* Shadows — restrained depth, not glow-first */
-    --shadow-soft: 0 1px 0 hsl(210 40% 98% / 0.04), 0 8px 24px hsl(222 47% 2% / 0.35);
-    --shadow-elevated: 0 1px 0 hsl(210 40% 98% / 0.06), 0 16px 40px hsl(222 47% 2% / 0.45);
-    --shadow-glow: 0 12px 32px hsl(217 91% 40% / 0.22);
-    --shadow-accent-glow: 0 12px 32px hsl(162 75% 30% / 0.18);
+    /* Soft institutional shadows — no glow-first look */
+    --shadow-soft: 0 1px 2px hsl(60 3% 8% / 0.04), 0 8px 24px hsl(60 3% 8% / 0.06);
+    --shadow-elevated: 0 2px 4px hsl(60 3% 8% / 0.04), 0 20px 48px hsl(60 3% 8% / 0.1);
+    --shadow-glow: 0 12px 32px hsl(18 100% 55% / 0.18);
+    --shadow-accent-glow: 0 12px 32px hsl(35 100% 48% / 0.14);
 
-    /* Motion */
-    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 480ms cubic-bezier(0.22, 1, 0.36, 1);
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 217 91% 62%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 60 3% 8%;
+    --sidebar-primary: 18 100% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 14%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 18%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 40 12% 92%;
+    --sidebar-accent-foreground: 60 3% 8%;
+    --sidebar-border: 36 10% 86%;
+    --sidebar-ring: 18 100% 55%;
   }
-
 }
 
 @layer base {
@@ -91,7 +95,7 @@
   html {
     scroll-behavior: smooth;
     overflow-x: clip;
-    color-scheme: dark;
+    color-scheme: light;
     @apply font-sans antialiased;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
@@ -112,9 +116,9 @@
   h4,
   h5,
   h6 {
-    @apply font-sans;
-    letter-spacing: -0.028em;
-    line-height: 1.18;
+    @apply font-display;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
     font-weight: 600;
   }
   p {
@@ -154,7 +158,7 @@
 
 @layer utilities {
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground;
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground;
   }
 
   .text-gradient {
@@ -181,29 +185,63 @@
   .bg-gradient-card {
     background: var(--gradient-card);
   }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-elevated { box-shadow: var(--shadow-elevated); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-lift {
+    box-shadow: var(--shadow-elevated);
+  }
 
-  /* Modern utilities for talent pages */
+  /* Mastercard-like interlocking circle motif */
+  .brand-circles {
+    position: absolute;
+    pointer-events: none;
+    inset: auto;
+  }
+  .brand-circles::before,
+  .brand-circles::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    border: 1.5px solid hsl(var(--circle-a) / 0.35);
+  }
+  .brand-circles::before {
+    width: min(42vw, 28rem);
+    height: min(42vw, 28rem);
+    right: -8%;
+    top: 8%;
+  }
+  .brand-circles::after {
+    width: min(34vw, 22rem);
+    height: min(34vw, 22rem);
+    right: 6%;
+    top: 22%;
+    border-color: hsl(var(--circle-b) / 0.4);
+  }
+
   .glass-card {
-    background: hsl(222 47% 12% / 0.6);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(217 33% 30% / 0.4);
+    background: hsl(0 0% 100% / 0.78);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid hsl(36 10% 86% / 0.9);
   }
   .mesh-gradient {
     background-image:
-      radial-gradient(at 20% 10%, hsl(217 91% 55% / 0.18) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsl(190 95% 60% / 0.20) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsl(162 75% 50% / 0.15) 0px, transparent 50%),
-      radial-gradient(at 90% 80%, hsl(28 95% 60% / 0.12) 0px, transparent 50%);
+      radial-gradient(at 18% 12%, hsl(18 100% 55% / 0.1) 0px, transparent 48%),
+      radial-gradient(at 82% 8%, hsl(43 100% 50% / 0.12) 0px, transparent 45%),
+      radial-gradient(at 70% 78%, hsl(4 86% 48% / 0.06) 0px, transparent 50%);
   }
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(217 91% 55% / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(217 91% 55% / 0.06) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(hsl(60 3% 8% / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(60 3% 8% / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
   }
   .border-gradient {
@@ -218,17 +256,16 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, hsl(217 91% 55% / 0.5), hsl(162 75% 50% / 0.3), transparent);
+    background: linear-gradient(135deg, hsl(18 100% 55% / 0.45), hsl(43 100% 50% / 0.35), transparent);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    mask-composite: exclude;
     pointer-events: none;
   }
   .marquee-fade {
     mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
   }
 
-  /* Flowing section transitions */
   .section-flow {
     position: relative;
     isolation: isolate;
@@ -239,10 +276,10 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
     transition:
-      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .reveal.is-visible {
     opacity: 1;
@@ -251,5 +288,12 @@
 
   .hairline {
     box-shadow: inset 0 0 0 1px hsl(var(--border));
+  }
+
+  /* Large media frame used across hero / feature modules */
+  .media-frame {
+    border-radius: clamp(1.5rem, 3vw, 2.75rem);
+    overflow: hidden;
+    box-shadow: var(--shadow-elevated);
   }
 }
