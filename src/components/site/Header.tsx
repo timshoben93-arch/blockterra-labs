@@ -35,6 +35,7 @@ const PAGE_LINKS = [
 
 const SECTION_LINKS = [
   { label: "Approach", href: "/#pillars" },
+  { label: "Ecosystem", href: "/#ecosystem-video" },
   { label: "How We Work", href: "/#how-we-work" },
   { label: "Partnerships", href: "/#partnerships" },
   { label: "Contact", href: "/#contact" },
