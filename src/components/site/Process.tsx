@@ -35,6 +35,7 @@ export const Process = () => {
       <div className="container">
         <SectionHeading
           eyebrow="How we work"
+          singleLineTitle
           title="From market insight to practical collaboration"
           description="A clear operating philosophy for advancing tokenized real-world assets — research-led, technology-informed and institutionally grounded."
         />

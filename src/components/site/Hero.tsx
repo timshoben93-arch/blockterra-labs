@@ -1,49 +1,83 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 
+/** Pexels — Pressmaster #3129671 (royalty-free): teal digital network / interconnected infrastructure */
+const HERO_VIDEO_DESKTOP = "/hero-rwa-background.mp4";
+const HERO_VIDEO_MOBILE = "/hero-rwa-background-mobile.mp4";
+const HERO_POSTER = "/hero-rwa-poster.jpg";
+
+const pickVideoSrc = () =>
+  typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+    ? HERO_VIDEO_MOBILE
+    : HERO_VIDEO_DESKTOP;
+
 export const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [videoSrc, setVideoSrc] = useState(HERO_VIDEO_DESKTOP);
+
+  useEffect(() => {
+    setVideoSrc(pickVideoSrc());
+
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const widthQuery = window.matchMedia("(max-width: 767px)");
+
+    const applyMotionPref = () => setReduceMotion(motion.matches);
+    const applyWidthPref = () => setVideoSrc(pickVideoSrc());
+
+    applyMotionPref();
+    motion.addEventListener("change", applyMotionPref);
+    widthQuery.addEventListener("change", applyWidthPref);
+
+    return () => {
+      motion.removeEventListener("change", applyMotionPref);
+      widthQuery.removeEventListener("change", applyWidthPref);
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!video || reduceMotion) return;
+
     const sync = () => {
-      video.playbackRate = 0.5;
-      if (motion.matches) {
-        video.pause();
-        return;
-      }
+      video.playbackRate = 0.65;
       video.play().catch(() => {});
     };
+
     sync();
     video.addEventListener("loadedmetadata", sync);
-    motion.addEventListener("change", sync);
-    return () => {
-      video.removeEventListener("loadedmetadata", sync);
-      motion.removeEventListener("change", sync);
-    };
-  }, []);
+    return () => video.removeEventListener("loadedmetadata", sync);
+  }, [reduceMotion, videoSrc]);
 
   return (
     <section className="relative flex min-h-[630px] items-center overflow-x-clip border-b border-border sm:min-h-[605px] lg:min-h-[713px]">
       <div className="absolute inset-0" aria-hidden="true">
-        <video
-          ref={videoRef}
-          className="h-full w-full object-cover object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source src="/hero-background.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/78 to-background/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/35 via-transparent to-background" />
+        <div
+          className="absolute inset-0 bg-[#050b16] bg-cover bg-center"
+          style={{ backgroundImage: `url(${HERO_POSTER})` }}
+        />
+
+        {!reduceMotion ? (
+          <video
+            key={videoSrc}
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={HERO_POSTER}
+            src={videoSrc}
+          />
+        ) : null}
+
+        <div className="absolute inset-0 bg-[#050b16]/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background" />
       </div>
 
       <div className="container relative py-16 sm:py-20 lg:py-28">
@@ -52,7 +86,8 @@ export const Hero = () => {
             TokenBrickLabs · Research. Connect. Build.
           </p>
           <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4rem]">
-            Advancing the Future of{" "}
+            Advancing the Future of
+            <br />
             <span className="text-gradient">Tokenized Real-World Assets</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">

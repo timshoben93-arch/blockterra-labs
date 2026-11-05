@@ -16,6 +16,7 @@ export const Services = () => {
       <div className="container">
         <SectionHeading
           eyebrow="What we do"
+          singleLineTitle
           title={
             <>
               Four capabilities for the tokenized <span className="text-gradient">asset economy</span>
