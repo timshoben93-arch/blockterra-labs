@@ -5,8 +5,22 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 
 const picks = [
   DOCS.find((d) => d.slug === "executive-summary")!,
-  DOCS.find((d) => d.slug === "introduction")!,
-  DOCS.find((d) => d.slug === "strategic-vision")!,
+  DOCS.find((d) => d.slug === "understanding-rwa")!,
+  DOCS.find((d) => d.slug === "infrastructure")!,
+];
+
+const themes = [
+  "Real-world asset tokenization",
+  "Tokenized investment funds",
+  "Real estate tokenization",
+  "Private equity and private credit",
+  "Fixed income and digital securities",
+  "Blockchain infrastructure",
+  "Smart contracts and token standards",
+  "Digital asset custody",
+  "Compliance and investor eligibility",
+  "Settlement and interoperability",
+  "Tokenized asset lifecycle management",
 ];
 
 export const Insights = () => {
@@ -15,16 +29,24 @@ export const Insights = () => {
       <div className="container">
         <SectionHeading
           align="split"
-          eyebrow="Insights"
+          eyebrow="Research & Insights"
           title={
             <>
-              Chapters from the <span className="text-gradient">whitepaper</span>
+              A knowledge platform for <span className="text-gradient">tokenized markets</span>
             </>
           }
-          description="The public information edition on real-world asset tokenisation: the five-pillar target ecosystem, the lifecycle, and the limits of what a token represents."
+          description="Independent analysis connecting financial-market reality with tokenization technology — without fabricated statistics or unverified partnership claims."
         />
 
-        <ul className="mt-14 divide-y divide-border border-y border-border">
+        <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-b border-border pb-10">
+          {themes.map((t) => (
+            <li key={t} className="text-sm text-muted-foreground">
+              {t}
+            </li>
+          ))}
+        </ul>
+
+        <ul className="mt-4 divide-y divide-border border-b border-border">
           {picks.map((doc) => (
             <li key={doc.slug}>
               <Link
@@ -46,6 +68,12 @@ export const Insights = () => {
             </li>
           ))}
         </ul>
+
+        <div className="mt-8">
+          <Link to="/docs" className="text-sm font-medium text-primary hover:underline">
+            View all research chapters →
+          </Link>
+        </div>
       </div>
     </section>
   );

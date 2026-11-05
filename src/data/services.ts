@@ -1,14 +1,8 @@
 import {
-  Coins,
-  Boxes,
-  Brain,
-  Smartphone,
-  Globe,
-  ShoppingCart,
-  Send,
-  Gamepad2,
+  BookOpen,
   Cpu,
-  Server,
+  Handshake,
+  Network,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,164 +19,148 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    slug: "rwa-tokenization",
-    title: "RWA Tokenization Platform",
-    short: "RWA Tokenization",
-    tagline: "Our platform for bringing real-world assets on-chain.",
+    slug: "rwa-research-intelligence",
+    title: "RWA Research & Intelligence",
+    short: "Research & Intelligence",
+    tagline: "Independent research, market intelligence and technical analysis of real-world asset tokenization.",
     description:
-      "TokenBrickLabs is building its own tokenization platform for real estate, treasuries, private credit, commodities, and funds. The current build covers permissioned token standards, identity hooks, and custody integrations. The platform is in development. A token on it is not legal title unless a specific instrument says so, and we do not operate an exchange or take discretionary custody.",
-    icon: Coins,
+      "We research how tokenized real-world assets are structured, regulated and operated across asset classes and jurisdictions. Our work supports financial institutions, asset owners and technology platforms that need clear, platform-neutral analysis — not product marketing. Outputs may include research briefings, market and regulatory reviews, commercial-model assessments and publications. We do not publish fabricated findings or claim regulated investment advice.",
+    icon: BookOpen,
     features: [
-      { title: "Permissioned token standards", desc: "ERC-3643 / T-REX, ERC-1400, and custom transfer rules designed with counsel — not a legal-compliance certificate." },
-      { title: "Asset lifecycle", desc: "Issuance, distribution, corporate actions, and redemptions as the administrator defines them. Secondary transfer only if the offering and venue allow it." },
-      { title: "Identity hooks", desc: "Allowlists and accreditation checks wired to KYC/AML providers selected for each asset." },
-      { title: "Custody integrations", desc: "MPC and HSM integrations with operational controls. TokenBrickLabs does not hold investor assets." },
+      {
+        title: "Asset tokenization research",
+        desc: "Structured analysis of how specific asset classes can be represented, administered and transferred through tokenized models.",
+      },
+      {
+        title: "Market and industry analysis",
+        desc: "Coverage of institutional adoption trends, infrastructure developments and competitive dynamics in tokenized markets.",
+      },
+      {
+        title: "Legal and regulatory research",
+        desc: "Jurisdiction-aware review of classification questions, disclosure themes and operating constraints — coordinated with qualified counsel where required.",
+      },
+      {
+        title: "Investment and commercial models",
+        desc: "Evaluation of issuance, distribution, servicing and partnership economics without presenting investment recommendations.",
+      },
+      {
+        title: "Institutional adoption trends",
+        desc: "Research into how banks, asset managers and market infrastructures approach pilots, procurement and operating models.",
+      },
+      {
+        title: "Reports and publications",
+        desc: "Briefings and research notes intended for senior executives and technical decision-makers. Published findings are limited to verified or clearly provisional content.",
+      },
     ],
-    technologies: ["Solidity", "ERC-3643", "Chainlink", "Fireblocks", "The Graph"],
+    technologies: ["Market analysis", "Regulatory research", "Asset-class studies", "Briefings"],
   },
   {
-    slug: "blockchain-development",
-    title: "Platform Protocol",
-    short: "Platform Protocol",
-    tagline: "The contracts and chain layer of our RWA platform.",
+    slug: "technology-architecture",
+    title: "Technology & Architecture Research",
+    short: "Technology & Architecture",
+    tagline: "Technical evaluation of blockchain infrastructure, token standards and digital securities systems.",
     description:
-      "Protocol work at TokenBrickLabs goes into our own platform: permissioned contracts, chain integrations, and the review path around them. We build on existing EVM networks, and on Solana only where an asset design requires it.",
-    icon: Boxes,
-    features: [
-      { title: "Platform contracts", desc: "Solidity contracts for issuance and transfer rules, with automated tests and room for an independent audit when the threat model requires it." },
-      { title: "Chain selection", desc: "Ethereum and EVM L2s as the default settlement environment for the platform." },
-      { title: "Cross-chain boundaries", desc: "Messaging and wrapped representations documented with conservative trust assumptions. Bridging does not create a new legal asset." },
-      { title: "Upgrade and admin design", desc: "Pause, upgrade, and admin controls shaped for multisig or MPC, not a single developer key." },
-    ],
-    technologies: ["Solidity", "Rust", "Foundry", "EVM", "ERC-3643"],
-  },
-  {
-    slug: "ai-ml-development",
-    title: "Platform Analytics",
-    short: "Platform Analytics",
-    tagline: "Risk and operations signals on the platform’s own data.",
-    description:
-      "Analytics work supports the platform we are building: issuance monitoring, anomaly detection, and operator-facing summaries of on-chain activity. Models assist review. They are not valuations, and they are not investment advice.",
-    icon: Brain,
-    features: [
-      { title: "Issuance monitoring", desc: "Surfaces for supply, transfer restrictions, and corporate-action events on the platform." },
-      { title: "Anomaly detection", desc: "Signals for unusual transfer or admin activity that an operator should review." },
-      { title: "Operator summaries", desc: "Readable status for people who run an asset, not a trading terminal." },
-      { title: "Bounded models", desc: "Analytics stay downstream of the administrator’s NAV and servicing inputs." },
-    ],
-    technologies: ["TypeScript", "Python", "On-chain indexers", "PostgreSQL"],
-  },
-  {
-    slug: "mobile-app-development",
-    title: "Investor & Operator Apps",
-    short: "Investor & Operator Apps",
-    tagline: "Mobile surfaces for the platform, still in development.",
-    description:
-      "Application work is for our platform: investor status and operator actions on a phone, with the same identity and transfer rules as the contracts. These apps are part of the product build.",
-    icon: Smartphone,
-    features: [
-      { title: "Investor status", desc: "Holdings, restrictions, and corporate-action notices once an asset is live on the platform." },
-      { title: "Operator actions", desc: "Allowlist and servicing tasks that match the admin controls in the contracts." },
-      { title: "Wallet connection", desc: "Wallet flows that respect permissioned transfer rules." },
-      { title: "Same control environment", desc: "Empty states, errors, and confirmations designed to survive compliance review." },
-    ],
-    technologies: ["React Native", "TypeScript", "WalletConnect"],
-  },
-  {
-    slug: "web-cms-development",
-    title: "Issuer & Investor Portals",
-    short: "Portals",
-    tagline: "Web portals for running an asset on the platform.",
-    description:
-      "The platform includes web portals for issuers, operators, and investors. Editors and operators see documents, identity status, and lifecycle events in one place.",
-    icon: Globe,
-    features: [
-      { title: "Operator console", desc: "The day-to-day surface for allowlists, corporate actions, and issuance status." },
-      { title: "Investor portal", desc: "A read path for positions and restrictions tied to the same identity registry." },
-      { title: "Document workflow", desc: "Offering and servicing documents kept next to the on-chain record they describe." },
-      { title: "Access control", desc: "Roles that match who is allowed to administer an asset." },
-    ],
-    technologies: ["React", "TypeScript", "Tailwind"],
-  },
-  {
-    slug: "ecommerce-development",
-    title: "Primary Distribution",
-    short: "Distribution",
-    tagline: "How an issuance is allocated on the platform.",
-    description:
-      "Distribution on the platform is the primary path for an issuance: eligibility, allocation, and settlement according to the offering. It is not a retail storefront, and it is not a secondary market operated by TokenBrickLabs.",
-    icon: ShoppingCart,
-    features: [
-      { title: "Eligibility", desc: "Allocation only for identities the allowlist already accepts." },
-      { title: "Subscription flow", desc: "A primary issuance path defined by the offering documents, not an open order book." },
-      { title: "Settlement events", desc: "Software records for allocation and funding status supplied by the administrator." },
-      { title: "No exchange", desc: "TokenBrickLabs does not operate an ATS, broker-dealer, or secondary venue." },
-    ],
-    technologies: ["TypeScript", "Solidity", "ERC-3643"],
-  },
-  {
-    slug: "telegram-mini-apps",
-    title: "Investor Messaging",
-    short: "Investor Messaging",
-    tagline: "Notices and status for people on an issuance.",
-    description:
-      "Messaging work for the platform is operational: corporate-action notices, identity exceptions, and status updates to people already on an issuance. It is not a consumer mini-app or a game loop.",
-    icon: Send,
-    features: [
-      { title: "Corporate-action notices", desc: "Coupons, redemptions, and document updates delivered to eligible holders." },
-      { title: "Exception alerts", desc: "Operator alerts when an identity or transfer check fails." },
-      { title: "Channel adapters", desc: "Email and messaging hooks around the same event log as the operator console." },
-      { title: "No promotional token", desc: "Messages describe platform status. They are not an offer to buy an instrument." },
-    ],
-    technologies: ["TypeScript", "Node.js"],
-  },
-  {
-    slug: "game-development",
-    title: "Lifecycle Operations",
-    short: "Lifecycle",
-    tagline: "The servicing loop after an asset is issued.",
-    description:
-      "After issuance, the platform has to keep working: NAV inputs, coupons, redemptions, and the runbooks operators follow. That lifecycle is a core part of the product we are building. It is not a games practice.",
-    icon: Gamepad2,
-    features: [
-      { title: "Corporate actions", desc: "Workflows for NAV inputs, coupons, and redemptions as the administrator defines them." },
-      { title: "Runbooks", desc: "Written steps for pause, upgrade, and exception handling." },
-      { title: "Shared event log", desc: "One record of what the platform did, visible to operators and reviewable later." },
-      { title: "No independent valuation", desc: "The platform records inputs. It does not set NAV or promise liquidity." },
-    ],
-    technologies: ["TypeScript", "Solidity", "PostgreSQL"],
-  },
-  {
-    slug: "iot-embedded-development",
-    title: "Asset Attestations",
-    short: "Attestations",
-    tagline: "How off-chain asset facts enter the platform.",
-    description:
-      "Some assets on the platform depend on facts that live off-chain: custody attestations, inventory, or inspection records. We are building the path for signed inputs into the issuance record. A signed feed is evidence the administrator accepts — not proof that a token is the physical good.",
+      "We assess tokenization architectures, smart-contract requirements, custody and settlement options, identity and compliance rails, and interoperability approaches. The goal is objective technical evaluation that helps institutions and platforms choose and design infrastructure — not to sell a proprietary end-to-end issuance product. We collaborate with specialist technology providers where implementation is required.",
     icon: Cpu,
     features: [
-      { title: "Signed inputs", desc: "Attestations from custodians or inspectors recorded against an issuance." },
-      { title: "Clear provenance", desc: "Each input names who asserted it and when." },
-      { title: "Operator review", desc: "Feeds can be held for review before they affect servicing." },
-      { title: "Not the asset itself", desc: "An attestation does not convert a token into title to metal, crops, or equipment." },
+      {
+        title: "Blockchain infrastructure evaluation",
+        desc: "Comparative assessment of public, permissioned and hybrid ledger designs against institutional operating requirements.",
+      },
+      {
+        title: "Token standards and smart contracts",
+        desc: "Analysis of permissioned token standards, transfer controls and contract architectures suited to digital securities workflows.",
+      },
+      {
+        title: "Digital securities infrastructure",
+        desc: "Research into issuance, registry, corporate-action and investor-servicing components of institutional tokenization stacks.",
+      },
+      {
+        title: "Custody and settlement solutions",
+        desc: "Review of digital-asset custody models, key management patterns and settlement design — without claiming custodial authority.",
+      },
+      {
+        title: "Identity and compliance infrastructure",
+        desc: "Evaluation of eligibility, KYC/AML hooks, allowlisting and transfer-restriction approaches for institutional use cases.",
+      },
+      {
+        title: "Interoperability and integration",
+        desc: "Research on connecting ledgers, registries, custodians, administrators and enterprise systems with clear trust boundaries.",
+      },
     ],
-    technologies: ["TypeScript", "Solidity", "HSM"],
+    technologies: ["DLT evaluation", "Token standards", "Custody models", "Integration design"],
   },
   {
-    slug: "devops-services",
-    title: "Platform Infrastructure",
-    short: "Infrastructure",
-    tagline: "The environments the platform is developed and run on.",
+    slug: "platform-collaboration",
+    title: "Platform Collaboration & Development",
+    short: "Platform Collaboration",
+    tagline: "Supporting product strategy, technical specifications, proofs of concept and pilot initiatives with technology partners.",
     description:
-      "Infrastructure work is for the TokenBrickLabs platform: reproducible environments, deployment of contracts and APIs, and observability for issuance operations. We do not take discretionary custody of assets from this layer.",
-    icon: Server,
+      "We work with tokenization platforms and infrastructure providers on assessments, product strategy, technical specifications, integration opportunities and proof-of-concept design. TokenBrickLabs is platform-neutral: we help advance institutional-grade solutions through collaboration rather than positioning ourselves as a competing full-stack issuance venue or exchange.",
+    icon: Handshake,
     features: [
-      { title: "Reproducible deploys", desc: "Contract and service releases with a written change record." },
-      { title: "Chain connectivity", desc: "RPC, indexers, and health checks for the networks the platform uses." },
-      { title: "Observability", desc: "Logs and alerts for failed transfers, admin actions, and dependency outages." },
-      { title: "Scoped secrets", desc: "Credentials rotated and kept off developer laptops wherever practical." },
+      {
+        title: "Technology platform assessments",
+        desc: "Structured reviews of platform capabilities against institutional requirements, asset-class needs and operating models.",
+      },
+      {
+        title: "Product strategy support",
+        desc: "Guidance on roadmap priorities, buyer personas and commercial packaging for institutional tokenization offerings.",
+      },
+      {
+        title: "Technical specifications",
+        desc: "Requirements and architecture notes that translate financial-market needs into implementable technical designs.",
+      },
+      {
+        title: "Integration opportunities",
+        desc: "Identification of custody, identity, data, administration and settlement connections that matter for production use.",
+      },
+      {
+        title: "Proof-of-concept design",
+        desc: "Scoped PoC definitions with success criteria, assumptions, participants and evaluation methods.",
+      },
+      {
+        title: "Pilot project collaboration",
+        desc: "Support for controlled pilots that test legal, operational and technical readiness without overstating outcomes.",
+      },
     ],
-    technologies: ["Kubernetes", "Terraform", "Foundry", "Prometheus"],
+    technologies: ["PoC design", "Product strategy", "Technical specs", "Pilot support"],
+  },
+  {
+    slug: "ecosystem-development",
+    title: "Ecosystem Development & Partnerships",
+    short: "Ecosystem Development",
+    tagline: "Connecting asset owners, financial institutions, technology providers and research partners around tokenized markets.",
+    description:
+      "We help build productive relationships across the tokenized-asset ecosystem: strategic technology partnerships, financial-institution collaboration, asset-owner engagement, workshops and standards-oriented initiatives. Partnerships described on this site are illustrative of how we work unless a specific relationship is separately confirmed.",
+    icon: Network,
+    features: [
+      {
+        title: "Strategic technology partnerships",
+        desc: "Introductions and structured collaboration with infrastructure, custody, compliance and integration specialists.",
+      },
+      {
+        title: "Financial institution collaboration",
+        desc: "Engagement models for banks and market infrastructures exploring tokenization research, pilots and architecture options.",
+      },
+      {
+        title: "Asset owner engagement",
+        desc: "Support for real estate, private markets and other asset owners evaluating whether tokenization creates operational or capital-markets value.",
+      },
+      {
+        title: "Workshops and roundtables",
+        desc: "Executive briefings and working sessions that bring legal, technology and business stakeholders into one conversation.",
+      },
+      {
+        title: "Research institution partnerships",
+        desc: "Collaboration opportunities with academic and industry research groups on tokenization themes.",
+      },
+      {
+        title: "Standards and interoperability",
+        desc: "Participation in discussions that improve consistency across token standards, data models and operating practices.",
+      },
+    ],
+    technologies: ["Partnerships", "Workshops", "Standards dialogue", "Ecosystem mapping"],
   },
 ];
 

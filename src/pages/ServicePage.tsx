@@ -20,49 +20,44 @@ const ServicePage = () => {
     }
   }, [service]);
 
-  if (!service) return <Navigate to="/" replace />;
+  if (!service) return <Navigate to="/#what-we-do" replace />;
 
   const Icon = service.icon;
-  const others = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
+  const others = SERVICES.filter((s) => s.slug !== service.slug);
 
   return (
     <div className="min-h-screen bg-background font-sans">
       <Header />
       <main id="main">
-        {/* Hero */}
         <section className="relative overflow-hidden bg-hero-radial">
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
           <div className="container relative pt-16 md:pt-24 pb-20">
             <Link
-              to="/"
+              to="/#what-we-do"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ArrowLeft className="h-4 w-4" /> Back to home
+              <ArrowLeft className="h-4 w-4" /> Back to what we do
             </Link>
 
             <div className="mt-8 grid lg:grid-cols-[1.4fr_1fr] gap-12 items-start">
               <div className="animate-fade-in-up">
                 <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 backdrop-blur px-4 py-2 text-xs font-medium text-foreground/70 shadow-soft">
-                  TokenBrickLabs platform
+                  Research · Connect · Build
                 </span>
                 <h1 className="mt-6 font-display font-bold tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
                   <span className="text-gradient">{service.title}</span>
                 </h1>
-                <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-2xl">
-                  {service.tagline}
-                </p>
-                <p className="mt-5 text-base text-foreground/80 max-w-2xl leading-relaxed">
-                  {service.description}
-                </p>
+                <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-2xl">{service.tagline}</p>
+                <p className="mt-5 text-base text-foreground/80 max-w-2xl leading-relaxed">{service.description}</p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Button variant="hero" size="xl" className="group" asChild>
                     <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
-                      Talk with the team
+                      Discuss this capability
                       <ArrowRight className="ml-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </a>
                   </Button>
                   <Button variant="soft" size="xl" asChild>
-                    <Link to="/#solutions">See the platform</Link>
+                    <Link to="/#what-we-do">All capabilities</Link>
                   </Button>
                 </div>
               </div>
@@ -72,7 +67,7 @@ const ServicePage = () => {
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary-glow/10 text-primary">
                     <Icon className="h-8 w-8" />
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-semibold">Stack in this part of the platform</h3>
+                  <h3 className="mt-6 font-display text-xl font-semibold">Focus areas</h3>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {service.technologies.map((t) => (
                       <span
@@ -89,15 +84,12 @@ const ServicePage = () => {
           </div>
         </section>
 
-        {/* Features */}
         <section className="py-20 md:py-28">
           <div className="container">
             <div className="max-w-3xl">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                In development
-              </span>
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Scope</span>
               <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold tracking-tight">
-                What this part of the <span className="text-gradient">platform</span> covers
+                What this capability <span className="text-gradient">covers</span>
               </h2>
             </div>
             <div className="mt-12 grid sm:grid-cols-2 gap-6">
@@ -117,21 +109,18 @@ const ServicePage = () => {
           </div>
         </section>
 
-        {/* Other services */}
         <section className="py-20 bg-muted/30 border-y border-border">
           <div className="container">
             <div className="flex items-end justify-between flex-wrap gap-4">
-              <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
-                Other parts of the platform
-              </h2>
+              <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">Related capabilities</h2>
               <Link
-                to="/"
+                to="/#what-we-do"
                 className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
               >
                 View all <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {others.map((s) => {
                 const OIcon = s.icon;
                 return (

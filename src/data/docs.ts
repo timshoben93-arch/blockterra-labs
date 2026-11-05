@@ -35,7 +35,8 @@ export const WHITEPAPER = {
   edition: "Public Information Edition",
   version: "1.1",
   date: "2 November 2026",
-  audience: "A strategic perspective for asset owners, institutional investors and ecosystem partners",
+  audience:
+    "A strategic research perspective for financial institutions, asset owners, technology platforms and ecosystem partners",
   status: "General informational publication; not an offer, prospectus or regulated issuance document",
 } as const;
 
@@ -59,7 +60,7 @@ export const DOCS: DocChapter[] = [
       {
         heading: "Five connected pillars",
         body: [
-          "TokenBrick Labs' strategic vision is organised around five connected pillars. Together, these pillars describe a proposed long-term ecosystem rather than a claim that every component is currently operational. Their strategic value lies in the relationships between them: infrastructure supports issuance and administration; analytics and intelligence support decision-making; DeFi integration can connect eligible assets to selected on-chain financial applications; and markets can support discovery and transfer where legal and commercial conditions permit.",
+          "TokenBrickLabs' research framework is organised around five connected pillars. Together, these pillars describe a proposed long-term ecosystem for institutional tokenised markets rather than a claim that every component is currently operational or offered by TokenBrickLabs. Their analytical value lies in the relationships between them: infrastructure supports issuance and administration; analytics and intelligence support decision-making; DeFi integration can connect eligible assets to selected on-chain financial applications; and markets can support discovery and transfer where legal and commercial conditions permit.",
         ],
         bullets: [
           "Analytics — a target capability for organising and presenting asset, transaction, portfolio and market information. Potential applications include reporting, activity monitoring and performance measurement; no specific product availability or delivery commitment is asserted.",
@@ -243,7 +244,7 @@ export const DOCS: DocChapter[] = [
       {
         heading: "4.1 Illustrative case study",
         body: [
-          "Consider a hypothetical €25 million office property held through an SPV. The issuer considers issuing 250,000 tokens at an indicative €100 per token. The structure would need to define the rights represented by each token, the treatment of rental income, expenses, reserves, voting, refinancing, sale proceeds, transfer restrictions and investor exit rights. The example is illustrative only; it is not a TokenBrick Labs transaction, offer or representation of an available investment.",
+          "Consider a hypothetical €25 million office property held through an SPV. The issuer considers issuing 250,000 tokens at an indicative €100 per token. The structure would need to define the rights represented by each token, the treatment of rental income, expenses, reserves, voting, refinancing, sale proceeds, transfer restrictions and investor exit rights. The example is illustrative only; it is not a TokenBrickLabs transaction, offer or representation of an available investment.",
         ],
       },
       {
@@ -293,9 +294,9 @@ export const DOCS: DocChapter[] = [
         ],
       },
       {
-        heading: "TokenBrick Labs positioning",
+        heading: "TokenBrickLabs positioning",
         body: [
-          "This chapter describes architectural options and evaluation criteria. It does not imply that TokenBrick Labs has selected a specific blockchain, token standard, custody provider or cross-chain protocol.",
+          "This chapter describes architectural options and evaluation criteria for independent research and collaboration. It does not imply that TokenBrickLabs has selected a specific blockchain, token standard, custody provider or cross-chain protocol, or that we operate a proprietary issuance platform.",
         ],
       },
     ],
@@ -427,7 +428,7 @@ export const DOCS: DocChapter[] = [
       {
         heading: "8.5 Risk controls",
         body: [
-          "DeFi integration can introduce smart-contract, oracle, bridge, liquidation, leverage, rehypothecation, governance, counterparty and regulatory risks. TokenBrick Labs' proposed DeFi Integration pillar should therefore be framed as selective, permission-aware connectivity rather than unrestricted composability. The Markets pillar should distinguish asset discovery and primary distribution from secondary trading, and should not imply that a marketplace itself guarantees liquidity.",
+          "DeFi integration can introduce smart-contract, oracle, bridge, liquidation, leverage, rehypothecation, governance, counterparty and regulatory risks. TokenBrickLabs' DeFi Integration research theme should therefore be framed as selective, permission-aware connectivity rather than unrestricted composability. The Markets theme should distinguish asset discovery and primary distribution from secondary trading, and should not imply that a marketplace itself guarantees liquidity.",
         ],
       },
       {
@@ -442,22 +443,22 @@ export const DOCS: DocChapter[] = [
     slug: "strategic-vision",
     number: "09",
     title: "Strategic Vision, Business Model and Roadmap",
-    tagline: "A five-pillar target ecosystem. This edition does not state that any pillar is operational.",
+    tagline: "A five-pillar research framework. This edition does not state that any pillar is operational.",
     icon: Compass,
     intro:
-      "TokenBrick Labs' long-term vision is to contribute to an integrated ecosystem for real-world asset tokenisation and digital asset markets. The five pillars provide a framework for connecting asset information, intelligent analysis, technical infrastructure, decentralised financial applications and market access.",
+      "TokenBrickLabs' long-term vision is to contribute, through independent research and collaboration, to an integrated ecosystem for real-world asset tokenisation and digital asset markets. The five pillars provide a research framework for connecting asset information, intelligent analysis, technical infrastructure, decentralised financial applications and market access.",
     sections: [
       {
         heading: "9.1 Strategic vision",
         body: [
-          "TokenBrick Labs' long-term vision is to contribute to an integrated ecosystem for real-world asset tokenisation and digital asset markets. The five pillars provide a framework for connecting asset information, intelligent analysis, technical infrastructure, decentralised financial applications and market access.",
+          "TokenBrickLabs' long-term vision is to contribute, through independent research and collaboration, to an integrated ecosystem for real-world asset tokenisation and digital asset markets. The five pillars provide a research framework for connecting asset information, intelligent analysis, technical infrastructure, decentralised financial applications and market access.",
         ],
       },
       {
-        heading: "9.2 The five-pillar target ecosystem",
+        heading: "9.2 The five-pillar research framework",
         body: [
-          "The five pillars are presented as a long-term target ecosystem. This publication does not state that any pillar or component is fully developed, deployed, licensed, commercially available or operational. Product status and service availability should be confirmed directly with TokenBrick Labs.",
-          "Figure 1 in the source edition is a proposed long-term target ecosystem. That diagram does not assert that all five pillars are currently operational. The proposed sequence is Analytics, Intelligence, Infrastructure, DeFi Integration, and Markets. Analytics and Intelligence are proposed capabilities. Infrastructure is a recommended foundation whose status is unverified in this edition. DeFi Integration and Markets are planned and sit outside an MVP.",
+          "The five pillars are presented as a long-term research and ecosystem framework. This publication does not state that any pillar or component is fully developed, deployed, licensed, commercially available or operational as a TokenBrickLabs product. Engagement scope should be confirmed directly with TokenBrickLabs.",
+          "Figure 1 in the source edition is a proposed long-term target ecosystem. That diagram does not assert that all five pillars are currently operational. The proposed sequence is Analytics, Intelligence, Infrastructure, DeFi Integration, and Markets. Analytics and Intelligence are research and capability themes. Infrastructure is a recommended foundation. DeFi Integration and Markets are longer-horizon themes requiring legal, commercial and operational readiness.",
         ],
       },
       {
@@ -499,16 +500,16 @@ export const DOCS: DocChapter[] = [
       {
         heading: "9.4 Potential business model components",
         body: [
-          "The categories below are illustrative industry business models, not confirmed TokenBrick Labs revenue streams, current services or commercial commitments. Their feasibility depends on product design, target market, regulatory perimeter, delivery capability and partner arrangements.",
+          "The categories below are illustrative industry and collaboration models relevant to an independent research and innovation company. They are not confirmed TokenBrickLabs revenue streams or commercial commitments. Feasibility depends on engagement design, target market, regulatory perimeter, delivery capability and partner arrangements.",
         ],
         bullets: [
-          "Implementation and tokenisation services: project design, technical implementation and integrations.",
-          "Software subscriptions: access to infrastructure, administration, analytics or reporting tools.",
-          "Asset administration and servicing: ongoing data, reporting, lifecycle and investor-support services.",
-          "Marketplace and transaction fees: fees for permitted listing, distribution or transaction activity.",
-          "Analytics and intelligence subscriptions: specialist data, dashboards and analytical services.",
-          "Enterprise integrations and licensing: technology access, APIs or white-label capabilities.",
-          "Partner revenue sharing: commercial arrangements with qualified providers, subject to conflicts and regulatory requirements.",
+          "Research subscriptions and membership: ongoing market intelligence and briefings.",
+          "Strategic advisory assignments: institutional and technology-oriented research support.",
+          "Technical research and architecture assessments: infrastructure and platform evaluations.",
+          "Platform collaboration and development support: specifications, PoCs and joint programmes.",
+          "Pilot projects and proof-of-concept initiatives: controlled applied innovation.",
+          "Industry research partnerships and executive workshops: ecosystem education and dialogue.",
+          "Partner arrangements with specialist providers: subject to conflicts management and applicable requirements.",
         ],
       },
       {
@@ -548,8 +549,8 @@ export const DOCS: DocChapter[] = [
       {
         heading: "The five-pillar vision",
         body: [
-          "TokenBrick Labs' five-pillar vision — Analytics, Intelligence, Infrastructure, DeFi Integration and Markets — offers a framework for pursuing this opportunity in a coordinated way. The pillars are interdependent and should be developed in a disciplined sequence, beginning with clearly defined customer needs, legal foundations, operational controls and measurable use cases.",
-          "The path to a more connected digital asset economy will be built through credible execution, strong partnerships, regulatory awareness and continuous attention to the interests of asset owners and investors.",
+          "TokenBrickLabs' five-pillar research framework — Analytics, Intelligence, Infrastructure, DeFi Integration and Markets — offers a structured way to pursue this opportunity. The pillars are interdependent and should be advanced in a disciplined sequence, beginning with clearly defined institutional needs, legal foundations, operational controls and measurable use cases.",
+          "The path to a more connected digital asset economy will be built through credible research, strong partnerships, regulatory awareness and continuous attention to the interests of asset owners and investors.",
         ],
       },
     ],
@@ -629,7 +630,7 @@ export const DOCS: DocChapter[] = [
     tagline: "Sources for general industry, technical and regulatory propositions.",
     icon: Library,
     intro:
-      "The references support general industry, technical and regulatory propositions. They do not verify TokenBrick Labs-specific products, licences, projects, customers, partnerships, financial position or operational performance. No headline market-size estimate is presented in this edition. Public dashboards use different definitions, coverage and methodologies. Any future market statistic should identify the source, snapshot date, asset coverage, treatment of represented versus distributed value and exclusions. RWA.xyz dashboard: https://app.rwa-xyz.com/networks",
+      "The references support general industry, technical and regulatory propositions. They do not verify TokenBrickLabs-specific products, licences, projects, customers, partnerships, financial position or operational performance. No headline market-size estimate is presented in this edition. Public dashboards use different definitions, coverage and methodologies. Any future market statistic should identify the source, snapshot date, asset coverage, treatment of represented versus distributed value and exclusions. RWA.xyz dashboard: https://app.rwa-xyz.com/networks",
     sections: [
       {
         heading: "Sources",

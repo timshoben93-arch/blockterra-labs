@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail } from "lucide-react";
-import { DOCS } from "@/data/docs";
+import { SERVICES } from "@/data/services";
 import { SITE } from "@/lib/site";
 import logo from "@/assets/logo.png";
 
@@ -22,9 +22,8 @@ export const Footer = () => {
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-surface-dark-foreground/70">
-              Building our own real-world asset tokenization platform — issuance, identity, and operator workflows.
-              Based in {SITE.location}. The platform is in development. We do not custody assets or offer securities
-              on this site.
+              An independent RWA research and innovation company advancing the infrastructure, technology and
+              adoption of tokenized real-world assets. Based in {SITE.location}. Research. Connect. Build.
             </p>
             <a
               href={`mailto:${SITE.email}`}
@@ -42,10 +41,11 @@ export const Footer = () => {
               </p>
               <ul className="mt-4 space-y-2.5">
                 {[
-                  { label: "Platform", to: "/#solutions" },
-                  { label: "Company", to: "/company" },
+                  { label: "About", to: "/company" },
+                  { label: "What We Do", to: "/#what-we-do" },
+                  { label: "How We Work", to: "/#how-we-work" },
                   { label: "Talent", to: "/talents" },
-                  { label: "Docs", to: "/docs" },
+                  { label: "Research & Insights", to: "/docs" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link to={item.to} className="text-sm text-surface-dark-foreground/75 transition-colors hover:text-primary">
@@ -55,18 +55,18 @@ export const Footer = () => {
                 ))}
               </ul>
             </nav>
-            <nav aria-label="Documentation">
+            <nav aria-label="Capabilities">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-surface-dark-foreground/50">
-                Docs
+                Capabilities
               </p>
               <ul className="mt-4 space-y-2.5">
-                {DOCS.slice(0, 4).map((d) => (
-                  <li key={d.slug}>
+                {SERVICES.map((s) => (
+                  <li key={s.slug}>
                     <Link
-                      to={`/docs/${d.slug}`}
+                      to={`/services/${s.slug}`}
                       className="text-sm text-surface-dark-foreground/75 transition-colors hover:text-primary"
                     >
-                      {d.title}
+                      {s.short}
                     </Link>
                   </li>
                 ))}
@@ -74,10 +74,11 @@ export const Footer = () => {
             </nav>
             <div>
               <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-surface-dark-foreground/50">
-                Talk to us
+                Collaborate
               </p>
               <p className="mt-4 text-sm leading-relaxed text-surface-dark-foreground/70">
-                A short call on the platform now in development: issuance, identity, and operator workflows.
+                For financial institutions, asset owners and technology platforms exploring institutional
+                tokenization.
               </p>
               <a
                 href={SITE.calendly}
@@ -85,7 +86,7 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-glow"
               >
-                Book a call
+                Book a conversation
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </div>

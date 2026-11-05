@@ -76,8 +76,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Outfit"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

@@ -4,40 +4,44 @@ import { Reveal } from "@/components/site/Reveal";
 const steps = [
   {
     n: "01",
-    t: "Asset model",
-    d: "Write down the asset, the jurisdiction, the parties, and the constraints the platform has to encode.",
+    t: "Research",
+    d: "Identify market developments, opportunities and technological challenges across asset classes and jurisdictions.",
   },
   {
     n: "02",
-    t: "Architecture",
-    d: "Contract design, chain selection, identity, custody integrations, and administrator roles — decided before the implementation hardens.",
+    t: "Evaluate",
+    d: "Assess asset classes, platforms, infrastructure and operating models against institutional requirements.",
   },
   {
     n: "03",
-    t: "Build & review",
-    d: "Platform engineering with internal review, and an independent audit when the threat model requires it.",
+    t: "Connect",
+    d: "Bring together relevant financial and technology participants around a clearly defined problem.",
   },
   {
     n: "04",
-    t: "Operate",
-    d: "Deployment, monitoring, investor onboarding, and the runbooks operators keep using after issuance.",
+    t: "Design",
+    d: "Develop architectures, technical requirements and practical solution outlines with clear assumptions.",
+  },
+  {
+    n: "05",
+    t: "Collaborate",
+    d: "Support implementation, testing and innovation initiatives with specialist providers where required.",
   },
 ];
 
 export const Process = () => {
   return (
-    <section id="process" className="scroll-mt-24 border-b border-border bg-surface-dark py-20 text-surface-dark-foreground md:py-28">
+    <section id="how-we-work" className="scroll-mt-24 border-b border-border bg-surface-dark py-20 text-surface-dark-foreground md:py-28">
       <div className="container">
         <SectionHeading
-          inverse
-          eyebrow="Process"
-          title="How the platform moves from structure to software"
-          description="The sequence we are using to build TokenBrickLabs’ RWA tokenization platform, so the open questions stay in the asset and the jurisdiction."
+          eyebrow="How we work"
+          title="From market insight to practical collaboration"
+          description="A clear operating philosophy for advancing tokenized real-world assets — research-led, technology-informed and institutionally grounded."
         />
 
-        <ol className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-14 grid gap-px bg-surface-dark-foreground/10 md:grid-cols-2 lg:grid-cols-5">
           {steps.map((s, i) => (
-            <Reveal key={s.n} delayMs={i * 70} as="li" className="rounded-3xl border border-surface-dark-foreground/10 bg-surface-dark-foreground/5 p-7 md:p-8">
+            <Reveal key={s.n} delayMs={i * 70} as="li" className="bg-surface-dark p-7 md:p-8">
               <p className="font-display text-3xl font-semibold text-primary">{s.n}</p>
               <h3 className="mt-6 font-display text-xl font-semibold">{s.t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-surface-dark-foreground/70">{s.d}</p>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, FileText } from "lucide-react";
 import { Header } from "@/components/site/Header";
@@ -6,6 +7,17 @@ import { Button } from "@/components/ui/button";
 import { DOCS, WHITEPAPER } from "@/data/docs";
 
 const Docs = () => {
+  useEffect(() => {
+    document.title = "Research & Insights — TokenBrickLabs | RWA Tokenization";
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) {
+      desc.setAttribute(
+        "content",
+        "Independent research on real-world asset tokenization, digital securities, blockchain infrastructure and institutional adoption. TokenBrickLabs Research & Insights.",
+      );
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -16,13 +28,14 @@ const Docs = () => {
           <div className="container relative py-20 md:py-28">
             <div className="inline-flex items-center gap-2 rounded-full border border-surface-dark-foreground/15 bg-surface-dark-foreground/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-surface-dark-foreground/70">
               <FileText className="h-3.5 w-3.5" />
-              {WHITEPAPER.edition} · Version {WHITEPAPER.version} · {WHITEPAPER.date}
+              Research & Insights · {WHITEPAPER.edition} · v{WHITEPAPER.version} · {WHITEPAPER.date}
             </div>
             <h1 className="mt-6 max-w-4xl font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight">
-              Real-world asset <span className="text-gradient">tokenisation</span>
+              Research on real-world asset <span className="text-gradient">tokenisation</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg text-surface-dark-foreground/75 leading-relaxed">
-              {WHITEPAPER.audience}. Building the foundations for a more connected digital asset economy.
+              {WHITEPAPER.audience}. Independent analysis connecting financial markets, digital securities and
+              tokenization infrastructure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button variant="hero" size="pill" asChild>
@@ -52,23 +65,39 @@ const Docs = () => {
             <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold tracking-tight">Purpose, scope and limitations</h2>
             <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                This whitepaper is published for general informational and strategic discussion. It describes the potential of real-world asset tokenisation and TokenBrick Labs&apos; long-term five-pillar target ecosystem. References to possible products, services, business models, development priorities and future capabilities are illustrative and forward-looking. They do not state or imply that any specific product is commercially available, any service is being offered, any project has been completed, or any regulatory permission has been obtained.
+                This research publication is provided for general informational and strategic discussion. It
+                examines the potential of real-world asset tokenisation and a long-term framework for
+                institutional digital asset markets. References to possible products, services, business models,
+                development priorities and future capabilities are illustrative and forward-looking. They do not
+                state or imply that any specific product is commercially available, any service is being offered,
+                any project has been completed, or any regulatory permission has been obtained.
               </p>
               <p>
-                The legal and regulatory treatment of a tokenised structure depends on the rights created, governing documents, asset type, activities and relevant jurisdictions. This publication is not an offer, solicitation, prospectus, regulated crypto-asset white paper, investment recommendation, or legal, tax or financial advice. It is not intended to satisfy disclosure requirements for any specific issuance, offer or admission to trading and must not be relied upon to make an investment decision. No representation is made that tokenisation guarantees liquidity, capital protection, returns or regulatory compliance.
+                TokenBrickLabs is an independent RWA research and innovation company. Content here is intended to
+                establish intellectual credibility around financial markets and tokenization technology — not to
+                market a proprietary issuance platform or claim regulated financial activities.
               </p>
               <p>
-                Any actual transaction would require separate documentation, disclosures, due diligence and professional advice. Readers should consult appropriately qualified advisers. Status: {WHITEPAPER.status}.
+                The legal and regulatory treatment of a tokenised structure depends on the rights created,
+                governing documents, asset type, activities and relevant jurisdictions. This publication is not an
+                offer, solicitation, prospectus, regulated crypto-asset white paper, investment recommendation, or
+                legal, tax or financial advice. No representation is made that tokenisation guarantees liquidity,
+                capital protection, returns or regulatory compliance.
               </p>
-              <p className="text-sm">
-                The references support general industry, technical and regulatory propositions. They do not verify TokenBrick Labs-specific products, licences, projects, customers, partnerships, financial position or operational performance.
+              <p>
+                Any actual transaction would require separate documentation, disclosures, due diligence and
+                professional advice. Status: {WHITEPAPER.status}.
               </p>
             </div>
           </div>
 
           <div className="mt-16 max-w-2xl">
             <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Contents</div>
-            <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold tracking-tight">Whitepaper structure</h2>
+            <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold tracking-tight">Research chapters</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Coverage spans real-world asset tokenization, digital securities, blockchain infrastructure, custody,
+              compliance, settlement, interoperability and the tokenized asset lifecycle.
+            </p>
           </div>
 
           <div className="mt-8 grid md:grid-cols-2 gap-5">
@@ -78,14 +107,16 @@ const Docs = () => {
                 <Link
                   key={chapter.slug}
                   to={`/docs/${chapter.slug}`}
-                  className="group relative rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated"
+                  className="group relative rounded-2xl border border-border/70 bg-card p-6 hover:shadow-elevated hover:-translate-y-0.5 transition-all"
                 >
                   <div className="flex items-start gap-4">
                     <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                       <Icon className="h-5 w-5" />
                     </span>
                     <div className="flex-1">
-                      <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Chapter {chapter.number}</div>
+                      <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                        Chapter {chapter.number}
+                      </div>
                       <h3 className="mt-1 font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {chapter.title}
                       </h3>

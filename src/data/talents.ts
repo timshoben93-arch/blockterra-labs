@@ -3,13 +3,10 @@ import {
   Globe2,
   Server,
   Layout,
-  ClipboardList,
-  Package,
   Settings,
   ServerCog,
   Network,
   Blocks,
-  PenTool,
   UsersRound,
   UserCog,
   Megaphone,
@@ -53,21 +50,6 @@ const SHARED_BENEFITS = [
 const ENGINEERING_CULTURE = {
   heading: "Engineering Organization & Culture",
   body: "At TokenBrickLabs, we are building our own Real-World Asset tokenization platform, and we hold it to an institutional standard. The mission is a platform centered on security and compliance, which takes more than delivering code. As a global team, we set a high bar for people who want to do their best work alongside strong peers.\n\nWe value engineers who treat development as a craft and own the outcome from concept to deployment. We expect teams to bring structure to ambiguity and shape the frameworks the platform depends on. We refuse to compromise on quality and seek problem solvers who thrive on high-impact technical challenges.",
-};
-
-const DESIGN_CULTURE = {
-  heading: "Design Organization & Culture",
-  body: "At TokenBrickLabs, design is how institutional complexity becomes operable. Issuance, identity, and custody only work if operators and investors can see the system clearly. We hold a high bar for craft, systems thinking, and written rationale — not slide-deck aesthetics.\n\nWe look for designers who treat product surfaces as part of the control environment: every empty state, error, and confirmation has to survive legal and compliance review. We work remotely, document decisions, and partner tightly with engineering and product.",
-};
-
-const PRODUCT_CULTURE = {
-  heading: "Product Organization & Culture",
-  body: "At TokenBrickLabs, product is the sequencing of contracts, identity, custody integrations, and the operator workflows on our RWA platform. We do not ship theater. We are building a system institutions can run.\n\nProduct managers here write clearly, cut scope without losing the risk surface, and stay close to engineering. We expect you to bring structure to the platform and to own outcomes from the current build through day-two operations.",
-};
-
-const OPERATIONS_CULTURE = {
-  heading: "Operations Organization & Culture",
-  body: "At TokenBrickLabs, operations is the delivery system around protocol, product, and partners. Audits, releases, and issuance calendars do not tolerate loose coordination.\n\nWe look for operators who make work visible, surface risk early, and keep remote teams honest about dates. Ceremony is light; accountability is not.",
 };
 
 const aboutRole = (paragraph: string) => `${STUDIO_INTRO}\n\n${paragraph}`;
@@ -438,95 +420,6 @@ export const TALENTS: Talent[] = [
     ],
   },
   {
-    slug: "project-manager",
-    title: "Project Manager",
-    short: "Project Manager",
-    tagline: "Keep cross-functional RWA delivery on time and on quality.",
-    icon: ClipboardList,
-    department: "Operations",
-    location: "Remote/Hybrid",
-    employmentType: "Full-time",
-    requisitionId: "JR2001241",
-    overview: aboutRole(
-      "As a Project Manager, you will coordinate engineering, design, product, and external partners so tokenization, audits, and releases land on time — with risk visible before it becomes a date miss.",
-    ),
-    extraSections: jdExtras(
-      "Director, Operations",
-      OPERATIONS_CULTURE,
-      "The Team: Delivery",
-      "Delivery keeps development of the TokenBrickLabs platform sequenced across protocol, product, and vendors. We run the roadmap, audit calendar, and partner integrations with written status — not status theater. The job is to make dependencies and quality bars explicit.",
-    ),
-    responsibilities: [
-      "Plan and run delivery cycles across engineering, design, product, and partners.",
-      "Maintain roadmaps, milestones, and clear status reporting to leadership.",
-      "Identify risks, dependencies, and blockers — and drive them to resolution.",
-      "Run rituals (standups, planning, retros) that keep teams focused and unblocked.",
-      "Coordinate releases, audits, and partner integrations.",
-    ],
-    qualifications: [
-      "4+ years managing software delivery in fintech, Web3, or complex SaaS.",
-      "Strong command of Agile/Scrum and modern PM tooling (Jira, Linear, Notion).",
-      "Excellent stakeholder management and written communication.",
-      "Comfort with technical concepts in blockchain, AI, and platform engineering.",
-    ],
-    niceToHave: [
-      "PMP, Scrum Master, or PSPO certifications.",
-      "Experience coordinating security audits or regulated-product launches.",
-      "Prior work with globally distributed engineering teams.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Delivery", items: ["Linear", "Jira", "Notion"] },
-      { category: "Communication", items: ["Written status", "Async rituals"] },
-      { category: "Domain", items: ["Audits", "Releases", "Partner integrations"] },
-    ],
-  },
-  {
-    slug: "product-manager",
-    title: "Product Manager",
-    short: "Product Manager",
-    tagline: "Lead issuance, identity, and operator products for tokenized real-world assets.",
-    icon: Package,
-    department: "Product",
-    location: "Remote/Hybrid",
-    employmentType: "Full-time",
-    requisitionId: "JR2001242",
-    overview: aboutRole(
-      "As a Product Manager, you will own strategy, planning, and execution for TokenBrickLabs products — translating issuance, identity, and custody into requirements engineering and design can ship, and operators can run.",
-    ),
-    extraSections: jdExtras(
-      "Head of Product",
-      PRODUCT_CULTURE,
-      "The Team: Product",
-      "Product sits between business, design, and engineering. We turn tokenization models into sequenced work: investor flows, issuer consoles, and the compliance surfaces in between. We measure what ships, write the spec, and stay in the room when legal and protocol disagree.",
-    ),
-    responsibilities: [
-      "Collaborate with engineering, design, blockchain, and AI teams to translate business goals into clear product requirements and user stories.",
-      "Lead end-to-end product lifecycle from ideation, specification, and development to launch and iteration.",
-      "Conduct market research, competitive analysis, and user interviews to gather insights and validate assumptions.",
-      "Monitor product performance through KPIs and user feedback; drive continuous improvement and feature enhancements.",
-      "Manage stakeholder communication and ensure alignment across business, tech, and marketing teams.",
-    ],
-    qualifications: [
-      "Proven experience as a Product Manager, preferably in blockchain, fintech, or real estate technology.",
-      "Strong understanding of Web3 product surfaces, wallets, and permissioned-token workflows.",
-      "Excellent communication and leadership skills with cross-functional teams.",
-      "Ability to balance big-picture vision with detailed execution.",
-      "Familiarity with agile methodologies and product management tools (Jira, Trello, Notion).",
-    ],
-    niceToHave: [
-      "Experience shipping regulated or compliance-heavy products.",
-      "Familiarity with RWA issuance, KYC/AML, or custody workflows.",
-      "Comfort writing technical specs alongside engineering.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Product", items: ["Linear", "Notion", "FigJam"] },
-      { category: "Analytics", items: ["KPIs", "User interviews", "Funnels"] },
-      { category: "Domain", items: ["RWA", "Web3", "Fintech"] },
-    ],
-  },
-  {
     slug: "devops-engineer",
     title: "DevOps Engineer",
     short: "DevOps Engineer",
@@ -569,53 +462,6 @@ export const TALENTS: Talent[] = [
       { category: "Orchestration", items: ["Kubernetes", "ArgoCD", "GitHub Actions"] },
       { category: "Observability", items: ["Prometheus", "Grafana", "OpenTelemetry"] },
       { category: "Security", items: ["IAM", "Secrets", "Policy-as-code"] },
-    ],
-  },
-  {
-    slug: "product-designer",
-    title: "Product Designer",
-    short: "Product Designer",
-    tagline: "Shape the product surfaces investors and issuers use every day.",
-    icon: PenTool,
-    department: "Design",
-    location: "Remote/Hybrid",
-    employmentType: "Full-time",
-    requisitionId: "JR2001245",
-    overview: aboutRole(
-      "As a Product Designer, you will own end-to-end product design — from problem framing and information architecture to high-fidelity systems — so tokenization, KYC, and portfolio flows feel as considered as a top-tier fintech.",
-    ),
-    extraSections: jdExtras(
-      "Head of Product",
-      DESIGN_CULTURE,
-      "The Team: Product Design",
-      "Product Design owns the surfaces investors, issuers, and operators use. We turn ambiguous asset and compliance requirements into structure, then into a system engineering can implement. We prototype, test with real users, and present rationale — not just screens — to founders and legal partners.",
-    ),
-    responsibilities: [
-      "Lead design for investor, issuer, and operator journeys across web (and later mobile).",
-      "Translate ambiguous asset and compliance requirements into clear product structure.",
-      "Build and maintain a coherent design system used by engineering and marketing.",
-      "Prototype flows for issuance, onboarding, and portfolio management; test with real users.",
-      "Partner with Product, Engineering, and Legal so visual decisions survive regulatory review.",
-      "Present work with rationale — not just screens — to founders and cross-functional partners.",
-    ],
-    qualifications: [
-      "5+ years of product design for complex web products (fintech, marketplace, or B2B SaaS preferred).",
-      "A portfolio that shows systems thinking, not only visual polish.",
-      "Expert in Figma: components, variants, auto-layout, and documentation for engineers.",
-      "Comfortable running lightweight research and turning findings into product changes.",
-      "Strong written communication; you can write specs designers and engineers both use.",
-      "Experience collaborating in a remote, high-ownership environment.",
-    ],
-    niceToHave: [
-      "Prior work on dashboards, KYC/AML, or wealth/investment products.",
-      "Motion and prototyping (Figma, Principle, or code).",
-      "Familiarity with Web3 wallets and on-chain mental models.",
-    ],
-    benefits: SHARED_BENEFITS,
-    techStack: [
-      { category: "Design", items: ["Figma", "FigJam", "Prototyping"] },
-      { category: "Systems", items: ["Design tokens", "Components", "Documentation"] },
-      { category: "Research", items: ["Usability tests", "Journey maps"] },
     ],
   },
   {

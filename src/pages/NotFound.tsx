@@ -15,17 +15,18 @@ const NotFound = () => {
         <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">404</p>
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl">This page is not on the map</h1>
         <p className="mt-4 max-w-md text-muted-foreground">
-          The URL does not match a platform page, chapter, or company page. Head home or open the docs index.
+          The URL does not match a research chapter, capability page, or company page. Head home or open Research
+          &amp; Insights.
         </p>
         <div className="mt-8 flex flex-wrap gap-6 text-sm font-medium">
           <Link to="/" className="text-primary underline-offset-4 hover:underline">
             Home
           </Link>
           <Link to="/docs" className="text-primary underline-offset-4 hover:underline">
-            Docs
+            Research
           </Link>
           <Link to="/company" className="text-primary underline-offset-4 hover:underline">
-            Company
+            About
           </Link>
         </div>
       </main>

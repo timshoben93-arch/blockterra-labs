@@ -27,16 +27,17 @@ const Logo = () => (
 );
 
 const PAGE_LINKS = [
-  { label: "Company", to: "/company" },
+  { label: "About", to: "/company" },
+  { label: "What We Do", to: "/#what-we-do" },
+  { label: "Research", to: "/docs" },
   { label: "Talent", to: "/talents" },
-  { label: "Docs", to: "/docs" },
 ];
 
 const SECTION_LINKS = [
-  { label: "Platform", href: "/#solutions" },
-  { label: "RWA", href: "/#rwa" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Insights", href: "/#insights" },
+  { label: "Approach", href: "/#pillars" },
+  { label: "How We Work", href: "/#how-we-work" },
+  { label: "Partnerships", href: "/#partnerships" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const Header = () => {
@@ -44,12 +45,11 @@ export const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/92 backdrop-blur-md">
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <div className="container py-3">
-      <div className="flex h-14 items-center justify-between gap-3 rounded-full border border-border bg-card px-3 shadow-soft sm:h-16 sm:px-5">
+      <div className="container flex h-16 items-center justify-between gap-3 sm:h-[4.25rem]">
         <Logo />
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {SECTION_LINKS.map((item) => (
@@ -62,7 +62,21 @@ export const Header = () => {
             </a>
           ))}
           {PAGE_LINKS.map((item) => {
-            const active = location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
+            const isHash = item.to.includes("#");
+            const active =
+              !isHash &&
+              (location.pathname === item.to || location.pathname.startsWith(`${item.to}/`));
+            if (isHash) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  className="rounded-md px-3 py-2 text-sm text-foreground/70 transition-colors hover:bg-secondary hover:text-foreground"
+                >
+                  {item.label}
+                </a>
+              );
+            }
             return (
               <Link
                 key={item.label}
@@ -78,7 +92,7 @@ export const Header = () => {
         <div className="flex shrink-0 items-center gap-2">
           <Button variant="hero" size="pill" className="group hidden sm:inline-flex" asChild>
             <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
-              Book a call
+              Partner with us
               <ArrowRight className="ml-0.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </Button>
@@ -104,19 +118,30 @@ export const Header = () => {
                     {item.label}
                   </a>
                 ))}
-                {PAGE_LINKS.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.to}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-3 text-base text-foreground/85 transition-colors hover:bg-secondary"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {PAGE_LINKS.map((item) =>
+                  item.to.includes("#") ? (
+                    <a
+                      key={item.label}
+                      href={item.to}
+                      onClick={() => setOpen(false)}
+                      className="rounded-md px-3 py-3 text-base text-foreground/85 transition-colors hover:bg-secondary"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.label}
+                      to={item.to}
+                      onClick={() => setOpen(false)}
+                      className="rounded-md px-3 py-3 text-base text-foreground/85 transition-colors hover:bg-secondary"
+                    >
+                      {item.label}
+                    </Link>
+                  ),
+                )}
                 <Button variant="hero" size="pill" className="mt-4" asChild>
                   <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
-                    Book a call
+                    Partner with us
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </a>
                 </Button>
@@ -124,7 +149,6 @@ export const Header = () => {
             </SheetContent>
           </Sheet>
         </div>
-      </div>
       </div>
     </header>
   );

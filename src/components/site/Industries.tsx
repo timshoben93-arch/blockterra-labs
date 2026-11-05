@@ -1,33 +1,57 @@
-import { Banknote, Building, Gem, HousePlug, Trees, Wheat } from "lucide-react";
+import { Building2, Landmark, Layers, Scale, Server, Wallet } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
 
-const industries = [
-  { icon: Building, label: "Real estate", desc: "The first asset class the platform is being built around: interests in property vehicles, including SPVs, with transfer restrictions that match the offering. A token is not a substitute for title or REIT status." },
-  { icon: Banknote, label: "Private credit", desc: "Loans, receivables, and structured credit, with servicing events recorded for the administrator who operates them." },
-  { icon: Gem, label: "Commodities", desc: "Inventory-linked records with custody attestations. The token is not the metal." },
-  { icon: Trees, label: "Climate & ESG", desc: "An audit trail for environmental instruments an issuer is authorized to issue. The platform is not a carbon exchange." },
-  { icon: Wheat, label: "Agri-finance", desc: "Seasonal, warehouse-linked instruments with redemption rules taken from the offering documents." },
-  { icon: HousePlug, label: "Infrastructure", desc: "Long-dated project cash-flow instruments, where a legal structure already exists, with operations designed in from the start." },
+const audiences = [
+  {
+    icon: Landmark,
+    label: "Banks & financial institutions",
+    desc: "Institutions exploring tokenization research, architecture options, pilots and ecosystem partnerships.",
+  },
+  {
+    icon: Building2,
+    label: "Asset managers & owners",
+    desc: "Fund managers, real estate and infrastructure owners evaluating whether tokenization creates operational or capital-markets value.",
+  },
+  {
+    icon: Layers,
+    label: "Tokenization platforms",
+    desc: "Technology platforms seeking institutional product strategy, architecture assessments and collaborative development support.",
+  },
+  {
+    icon: Server,
+    label: "Blockchain infrastructure",
+    desc: "Network and infrastructure providers focused on institutional requirements, interoperability and digital securities workflows.",
+  },
+  {
+    icon: Wallet,
+    label: "Custodians & market infrastructure",
+    desc: "Digital asset custodians, administrators and settlement participants designing institutional operating models.",
+  },
+  {
+    icon: Scale,
+    label: "Compliance & legal specialists",
+    desc: "Partners contributing regulatory, identity and investor-eligibility expertise to responsible innovation programmes.",
+  },
 ];
 
 export const Industries = () => {
   return (
-    <section id="industries" className="scroll-mt-24 border-b border-border py-20 md:py-28">
+    <section id="audiences" className="scroll-mt-24 border-b border-border py-20 md:py-28">
       <div className="container">
         <SectionHeading
           align="split"
-          eyebrow="Industries"
+          eyebrow="Who we work with"
           title={
             <>
-              Where on-chain rails change <span className="text-gradient">settlement, not just branding</span>
+              Built for institutional and technology <span className="text-gradient">decision-makers</span>
             </>
           }
-          description="Asset classes the platform is being built to support, where identity, jurisdiction, and servicing already exist."
+          description="A sophisticated B2B audience across traditional finance and digital asset infrastructure — not retail crypto trading."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {industries.map(({ icon: Icon, label, desc }) => (
-            <article key={label} className="rounded-3xl border border-border bg-card p-7 shadow-soft transition-shadow duration-200 hover:shadow-elevated md:p-8">
+        <div className="mt-14 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {audiences.map(({ icon: Icon, label, desc }) => (
+            <article key={label} className="bg-background p-7 md:p-8">
               <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
               <h3 className="mt-5 font-display text-xl font-semibold tracking-tight">{label}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>

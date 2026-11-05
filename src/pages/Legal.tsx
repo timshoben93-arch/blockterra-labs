@@ -16,35 +16,34 @@ const LegalShell = ({ title, updated, children }: LegalPageProps) => {
   }, [title]);
 
   return (
-  <div className="min-h-screen bg-background">
-    <Header />
-    <main id="main">
-      <article className="container max-w-3xl py-16 md:py-24">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">Legal</p>
-        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl">{title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">Last updated {updated}</p>
-        <div className="mt-10 space-y-6 text-base leading-relaxed text-muted-foreground [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4">
-          {children}
-        </div>
-        <p className="mt-12 text-sm">
-          <Link to="/" className="text-primary underline-offset-4 hover:underline">
-            Back to home
-          </Link>
-        </p>
-      </article>
-    </main>
-    <Footer />
-  </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main id="main">
+        <article className="container max-w-3xl py-16 md:py-24">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">Legal</p>
+          <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl">{title}</h1>
+          <p className="mt-3 text-sm text-muted-foreground">Last updated {updated}</p>
+          <div className="mt-10 space-y-6 text-base leading-relaxed text-muted-foreground [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4">
+            {children}
+          </div>
+          <p className="mt-12 text-sm">
+            <Link to="/" className="text-primary underline-offset-4 hover:underline">
+              Back to home
+            </Link>
+          </p>
+        </article>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
 export const Privacy = () => (
-  <LegalShell title="Privacy" updated="November 2, 2026">
+  <LegalShell title="Privacy" updated="November 4, 2026">
     <p>
-      TokenBrickLabs (“we”) operates tokenbricklabs.com to describe the RWA tokenization platform we are
-      developing, along with documentation and hiring. This notice describes what we collect when you use the
-      site, book a call, or apply for a role. It is not legal advice and is not an offer of employment or
-      securities.
+      TokenBrickLabs (“we”) operates tokenbricklabs.com to describe our RWA research and innovation activities,
+      research publications and hiring. This notice describes what we collect when you use the site, book a
+      conversation, or apply for a role. It is not legal advice and is not an offer of employment or securities.
     </p>
     <h2>What we collect</h2>
     <p>
@@ -65,15 +64,15 @@ export const Privacy = () => (
     </p>
     <h2>How we use it</h2>
     <p>
-      We use this information to respond to inquiries, schedule discovery calls, evaluate applications, and
+      We use this information to respond to inquiries, schedule conversations, evaluate applications, and
       operate the website. We do not sell personal information. Applicant records are available only to
       authorized TokenBrickLabs personnel.
     </p>
     <h2>Retention and rights</h2>
     <p>
-      We keep correspondence and applications as long as needed for hiring, conversations about the platform,
-      and ordinary legal obligations, then delete or restrict them. To access, correct, or delete information we hold about
-      you (including a résumé), email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Depending on your
+      We keep correspondence and applications as long as needed for hiring, partnership conversations, and
+      ordinary legal obligations, then delete or restrict them. To access, correct, or delete information we hold
+      about you (including a résumé), email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Depending on your
       location, you may have additional rights under laws such as the CCPA or GDPR; we will handle those
       requests in line with applicable law.
     </p>
@@ -86,25 +85,26 @@ export const Privacy = () => (
 );
 
 export const Terms = () => (
-  <LegalShell title="Terms of use" updated="November 2, 2026">
+  <LegalShell title="Terms of use" updated="November 4, 2026">
     <p>
-      This website is provided by TokenBrickLabs for information about the RWA tokenization platform we are
-      developing, our documentation, and hiring. The platform is in development. The site is not an offer of
+      This website is provided by TokenBrickLabs for information about our independent RWA research and
+      innovation activities, research publications, collaboration models and hiring. The site is not an offer of
       securities, investment advice, a solicitation to buy or sell any instrument, or a commitment to tokenize
       any particular asset. Tokens discussed in our materials are not legal title to real estate or other
       property unless a specific, counsel-drafted instrument says so.
     </p>
-    <h2>The platform</h2>
+    <h2>Our activities</h2>
     <p>
-      Descriptions of the platform may change as development continues. Nothing on this site creates a customer,
-      investor, or client relationship. Calls are complimentary and do not bind either party. TokenBrickLabs is
-      not a broker-dealer, ATS, transfer agent, fund administrator, or custodian.
+      Descriptions of research, advisory support, architecture assessments, partnerships and innovation
+      programmes may change. Nothing on this site creates a customer, investor, or client relationship.
+      Conversations are complimentary and do not bind either party. TokenBrickLabs is not a broker-dealer, ATS,
+      transfer agent, fund administrator, custodian or investment manager.
     </p>
     <h2>Content</h2>
     <p>
-      Documentation describes the platform under development and may change. It is not a TokenBrickLabs
-      blockchain, a native token, or a whitepaper for an offering. You may not republish it as your own. You may
-      quote short passages with attribution for commentary or internal evaluation.
+      Research publications and documentation are informational and may change. They are not a TokenBrickLabs
+      blockchain, a native token, or a prospectus for an offering. You may not republish them as your own. You
+      may quote short passages with attribution for commentary or internal evaluation.
     </p>
     <h2>Limitation</h2>
     <p>
@@ -119,22 +119,22 @@ export const Terms = () => (
 );
 
 export const Security = () => (
-  <LegalShell title="Security" updated="November 2, 2026">
+  <LegalShell title="Security" updated="November 4, 2026">
     <p>
-      TokenBrickLabs treats the platform’s smart contracts, keys, and personal data as high-risk systems. This
-      page summarizes how we work on the product now in development. It is not a claim that we are an audit firm.
+      TokenBrickLabs treats personal data, research materials and any technical artefacts we handle as sensitive
+      systems. This page summarizes our approach. It is not a claim that we are an audit firm or a licensed
+      custodian.
     </p>
-    <h2>Engineering practice</h2>
+    <h2>Engineering and research practice</h2>
     <p>
-      Platform contracts are developed with automated tests and internal engineering review. An independent
-      third-party audit is commissioned when the threat model requires it. We prefer conservative trust
-      assumptions on bridges and oracles.
+      Where we contribute to technical assessments, proof-of-concept design or collaborative development with
+      specialist providers, we favour conservative trust assumptions, documented requirements and independent
+      review when the threat model requires it.
     </p>
     <h2>Custody and keys</h2>
     <p>
-      We do not take discretionary custody of investor assets. The platform is being designed to integrate
-      custody (MPC / HSM) appointed for each asset. Infrastructure credentials are scoped, rotated, and held
-      off developer laptops wherever practical.
+      We do not take discretionary custody of investor assets. Any discussion of custody or key management on
+      this site is research or architecture guidance — not an offer of custodial services.
     </p>
     <h2>Disclosure</h2>
     <p>

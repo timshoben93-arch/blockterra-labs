@@ -36,7 +36,7 @@ const DocChapter = () => {
           <div className="container relative py-16 md:py-20">
             <Link to="/docs" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-surface-dark-foreground/70 hover:text-primary-glow transition-colors">
               <ArrowLeft className="h-3.5 w-3.5" />
-              All Docs
+              Research & Insights
             </Link>
             <div className="mt-6 flex items-center gap-3">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-dark-foreground/10 text-primary-glow">

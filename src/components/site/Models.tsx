@@ -1,64 +1,75 @@
-import { ArrowRight, Building2, Landmark } from "lucide-react";
+import { ArrowRight, Building2, Link2, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
-import { SITE } from "@/lib/site";
 
-const models = [
+const pillars = [
   {
-    icon: Landmark,
-    badge: "Issuance",
-    title: "Permissioned issuance stack",
-    desc: "The part of the platform that takes a counsel-approved structure into software: permissioned contracts, transfer-restriction hooks, administrator-supplied NAV inputs, and an investor portal.",
+    icon: Search,
+    badge: "01 · Research",
+    title: "Independent research & intelligence",
+    desc: "Market intelligence, technical analysis and institutional adoption research across real-world asset tokenization — platform-neutral and evidence-based.",
     points: [
-      "ERC-3643 / T-REX or equivalent permissioned transfer rules",
-      "Allowlists wired to identity and accreditation vendors",
-      "Corporate-action workflows (NAV inputs, coupons) as the administrator defines them",
-      "Integrations with custodians and fund administrators",
+      "Asset-class and market structure analysis",
+      "Regulatory and commercial-model research",
+      "Infrastructure and standards evaluation",
+      "Executive briefings and publications",
     ],
-    cta: "Talk about the build",
-    to: SITE.calendly,
-    external: true,
+    cta: "View research areas",
+    to: "/services/rwa-research-intelligence",
+  },
+  {
+    icon: Link2,
+    badge: "02 · Connect",
+    title: "Ecosystem partnerships",
+    desc: "We bring together asset owners, financial institutions, technology platforms and infrastructure providers around practical tokenization initiatives.",
+    points: [
+      "Strategic introductions across the ecosystem",
+      "Financial institution and asset-owner engagement",
+      "Workshops, roundtables and standards dialogue",
+      "Platform-neutral collaboration models",
+    ],
+    cta: "Explore partnerships",
+    to: "/#partnerships",
   },
   {
     icon: Building2,
-    badge: "Operators",
-    title: "Operator and integrator surface",
-    desc: "APIs, an operator console, and documentation so an asset can be issued and serviced on the platform without rebuilding identity and transfer rules.",
+    badge: "03 · Build",
+    title: "Applied innovation & collaboration",
+    desc: "Architecture assessments, technical specifications, proofs of concept and pilot support — delivered with specialist technology partners where needed.",
     points: [
-      "APIs for issuance and servicing events",
-      "An operator console in active development",
-      "Settlement on EVM networks, and Solana only where an asset design requires it",
-      "Pluggable KYC and transfer restrictions",
+      "Technology and architecture assessments",
+      "Proof-of-concept and pilot design",
+      "Integration and feasibility studies",
+      "Development support with specialist providers",
     ],
-    cta: "Read the platform notes",
-    to: "/docs",
-    external: false,
+    cta: "See how we collaborate",
+    to: "/services/platform-collaboration",
   },
 ];
 
 export const Models = () => {
   return (
-    <section id="rwa" className="scroll-mt-24 border-b border-border bg-surface-raised py-20 md:py-28">
+    <section id="pillars" className="scroll-mt-24 border-b border-border bg-surface-raised py-20 md:py-28">
       <div className="container">
         <SectionHeading
-          eyebrow="Product"
+          eyebrow="Our approach"
           title={
             <>
-              One platform, from issuance through <span className="text-gradient">operations</span>
+              Research. Connect. <span className="text-gradient">Build.</span>
             </>
           }
-          description="Both surfaces are parts of the TokenBrickLabs platform now in development."
+          description="Three activities define how we contribute to institutional-grade tokenized asset infrastructure — as an independent research and innovation partner, not a competing issuance platform."
         />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {models.map(({ icon: Icon, badge, title, desc, points, cta, to, external }, i) => (
-            <Reveal key={title} delayMs={i * 80} as="article" className="rounded-3xl border border-border bg-card p-8 shadow-soft md:p-10">
+        <div className="mt-14 grid gap-px bg-border lg:grid-cols-3">
+          {pillars.map(({ icon: Icon, badge, title, desc, points, cta, to }, i) => (
+            <Reveal key={title} delayMs={i * 80} as="article" className="bg-card p-8 md:p-10">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{badge}</p>
               <div className="mt-4 flex items-start gap-3">
                 <Icon className="mt-1 h-5 w-5 text-primary" aria-hidden="true" />
-                <h3 className="font-display text-2xl font-semibold tracking-tight md:text-[1.75rem]">{title}</h3>
+                <h3 className="font-display text-2xl font-semibold tracking-tight md:text-[1.5rem]">{title}</h3>
               </div>
               <p className="mt-4 max-w-lg text-muted-foreground leading-relaxed">{desc}</p>
               <ul className="mt-6 space-y-2.5">
@@ -69,18 +80,11 @@ export const Models = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant={external ? "hero" : "soft"} size="lg" className="mt-8 group" asChild>
-                {external ? (
-                  <a href={to} target="_blank" rel="noopener noreferrer">
-                    {cta}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                ) : (
-                  <Link to={to}>
-                    {cta}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                )}
+              <Button variant="soft" size="lg" className="mt-8 group" asChild>
+                <Link to={to}>
+                  {cta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </Button>
             </Reveal>
           ))}
