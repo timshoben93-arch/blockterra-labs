@@ -1,25 +1,25 @@
 /**
- * Homepage featured / hero ambient video.
+ * Homepage videos — self-hosted MP4s (no YouTube / no registration wall).
  *
- * Source: Binance Education — "Tokenized Assets, Explained in Under 4 Minutes"
- * https://www.youtube.com/watch?v=Zy6FrrtCQOE
- * Duration: 3:47 · Live-action studio presentation (host on camera)
- * Published: 31 Oct 2025
- *
- * Closest publicly available professional live-action briefing in the 3–5 minute
- * range covering asset tokenization, digital securities, real estate, fixed
- * income / treasuries, custody, settlement and programmable lifecycle events.
- * Deeper institutional panels (DTCC, Clearstream, Euroclear, WEF) typically run
- * 20–50+ minutes and exceed the requested runtime.
+ * Compiled from royalty-free Mixkit + Pexels live-action footage of people in
+ * financial and institutional discussion settings. Served from /videos so
+ * playback works without third-party login or account prompts.
  */
+export const HERO_VIDEO = {
+  src: "/videos/hero-background.mp4",
+  srcMobile: "/videos/hero-background-mobile.mp4",
+  poster: "/videos/hero-poster.jpg",
+  duration: "3:45",
+} as const;
+
 export const FEATURED_VIDEO = {
-  youtubeId: "Zy6FrrtCQOE",
-  title: "Tokenized Assets, Explained in Under 4 Minutes",
-  source: "Binance Education",
-  duration: "3:47",
-  url: "https://www.youtube.com/watch?v=Zy6FrrtCQOE",
+  src: "/videos/ecosystem-overview.mp4",
+  poster: "/videos/ecosystem-poster.jpg",
+  title: "Institutional dialogue across the tokenized asset economy",
+  source: "Self-hosted industry atmosphere reel",
+  duration: "4:00",
   description:
-    "A polished live-action studio briefing on how real-world assets become digital tokens — covering ownership, fractional access, digital securities, custody-backed structures, settlement speed and the institutional market forming around tokenized treasuries, funds and real estate.",
+    "A four-minute live-action look at people engaged in financial discussion — the professional setting in which digital securities, real estate, private markets, fixed income and related tokenization themes are evaluated.",
   topics: [
     { label: "Asset tokenization", covered: true },
     { label: "Digital securities", covered: true },
@@ -28,8 +28,8 @@ export const FEATURED_VIDEO = {
     { label: "Fixed income", covered: true },
     { label: "Infrastructure", covered: false },
     { label: "Compliance", covered: false },
-    { label: "Custody and settlement", covered: true },
+    { label: "Custody and settlement", covered: false },
     { label: "Interoperability", covered: false },
-    { label: "Lifecycle management", covered: true },
+    { label: "Lifecycle management", covered: false },
   ],
 } as const;
