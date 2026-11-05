@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 
-/** Pexels — Pressmaster #3129671 (royalty-free): teal digital network / interconnected infrastructure */
+/**
+ * Self-hosted looping hero reel (~3:45).
+ * Royalty-free Mixkit + Pexels footage of people in financial / business discussions.
+ * No YouTube embed — plays without registration or third-party login walls.
+ */
 const HERO_VIDEO_DESKTOP = "/hero-rwa-background.mp4";
 const HERO_VIDEO_MOBILE = "/hero-rwa-background-mobile.mp4";
 const HERO_POSTER = "/hero-rwa-poster.jpg";
@@ -43,7 +47,6 @@ export const Hero = () => {
     if (!video || reduceMotion) return;
 
     const sync = () => {
-      video.playbackRate = 0.65;
       video.play().catch(() => {});
     };
 
@@ -69,15 +72,15 @@ export const Hero = () => {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={HERO_POSTER}
             src={videoSrc}
           />
         ) : null}
 
-        <div className="absolute inset-0 bg-[#050b16]/35" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background" />
+        <div className="absolute inset-0 bg-[#050b16]/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background" />
       </div>
 
       <div className="container relative py-16 sm:py-20 lg:py-28">

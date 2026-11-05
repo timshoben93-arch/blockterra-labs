@@ -1,25 +1,20 @@
 /**
- * Homepage featured video — industry overview of asset tokenization.
+ * Homepage featured video — self-hosted ecosystem reel (also used as hero ambient).
  *
- * Source: Binance Education — "Tokenized Assets, Explained in Under 4 Minutes"
- * https://www.youtube.com/watch?v=Zy6FrrtCQOE
- * Duration: 3:47 · Live-action studio presentation (host on camera)
- * Published: 31 Oct 2025
+ * Source: Royalty-free Mixkit + Pexels footage of people in financial / business
+ * discussions. Compiled into a single ~3:45 MP4 for continuous looping without
+ * YouTube registration or third-party login walls.
  *
- * Selected as the closest publicly available 3–5 minute live-action overview
- * covering tokenized assets, digital securities, real estate, funds/treasuries,
- * custody, settlement, liquidity and regulatory considerations. Institutional
- * panel recordings from Clearstream, DTCC, BNP Paribas and WEF are typically
- * 30–50+ minutes and exceed the requested runtime.
+ * Files: /hero-rwa-background.mp4 (desktop), /hero-rwa-background-mobile.mp4
  */
 export const FEATURED_VIDEO = {
-  youtubeId: "Zy6FrrtCQOE",
-  title: "Tokenized Assets, Explained in Under 4 Minutes",
-  source: "Binance Education",
-  duration: "3:47",
-  url: "https://www.youtube.com/watch?v=Zy6FrrtCQOE",
+  src: "/hero-rwa-background.mp4",
+  poster: "/hero-rwa-poster.jpg",
+  title: "Institutional dialogue around tokenized real-world assets",
+  source: "Industry atmosphere reel",
+  duration: "3:45",
   description:
-    "A live-action overview of how real-world assets become digital tokens — covering ownership, fractional access, digital securities, custody-backed structures, settlement speed and the institutional market now forming around tokenized treasuries and funds.",
+    "A continuous look at people engaged in financial discussion — the setting in which digital securities, real estate, private markets and fixed-income structures are evaluated as tokenized assets.",
   topics: [
     { label: "Asset tokenization", covered: true },
     { label: "Digital securities", covered: true },
@@ -27,9 +22,9 @@ export const FEATURED_VIDEO = {
     { label: "Private markets", covered: true },
     { label: "Fixed income", covered: true },
     { label: "Infrastructure", covered: false },
-    { label: "Compliance", covered: true },
-    { label: "Custody and settlement", covered: true },
+    { label: "Compliance", covered: false },
+    { label: "Custody and settlement", covered: false },
     { label: "Interoperability", covered: false },
-    { label: "Lifecycle management", covered: true },
+    { label: "Lifecycle management", covered: false },
   ],
 } as const;
