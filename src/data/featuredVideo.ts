@@ -1,35 +1,69 @@
 /**
- * Homepage videos — self-hosted MP4s (no YouTube / no registration wall).
+ * Homepage RWA tokenization videos.
  *
- * Compiled from royalty-free Mixkit + Pexels live-action footage of people in
- * financial and institutional discussion settings. Served from /videos so
- * playback works without third-party login or account prompts.
+ * Selected for topical coverage of real-world asset tokenization — not ambient
+ * office/street B-roll and not music-led montage. Hosted via YouTube privacy
+ * embeds (no TokenBrickLabs account / no publisher registration wall).
+ *
+ * Primary film (4:10): institutional journey from asset qualification through
+ * legal/custody design to issuance, settlement and servicing.
+ * Supporting shorts: tokenization definition, custody, tokenized real estate,
+ * and institutional trust architecture.
+ *
+ * Source: RWA Avaitar (Geneva) — institutional RWA education channel.
  */
 export const HERO_VIDEO = {
-  src: "/videos/hero-background.mp4",
-  srcMobile: "/videos/hero-background-mobile.mp4",
-  poster: "/videos/hero-poster.jpg",
-  duration: "3:45",
+  youtubeId: "PfWi4GWwhCQ",
+  title: "RWA Tokenization: From Real-World Asset to Structured Digital Capital",
+  duration: "4:10",
 } as const;
 
 export const FEATURED_VIDEO = {
-  src: "/videos/ecosystem-overview.mp4",
-  poster: "/videos/ecosystem-poster.jpg",
-  title: "Institutional dialogue across the tokenized asset economy",
-  source: "Self-hosted industry atmosphere reel",
-  duration: "4:00",
+  youtubeId: "PfWi4GWwhCQ",
+  title: "RWA Tokenization: From Real-World Asset to Structured Digital Capital",
+  source: "RWA Avaitar",
+  duration: "4:10",
+  url: "https://www.youtube.com/watch?v=PfWi4GWwhCQ",
   description:
-    "A four-minute live-action look at people engaged in financial discussion — the professional setting in which digital securities, real estate, private markets, fixed income and related tokenization themes are evaluated.",
+    "A four-minute institutional overview of real-world asset tokenization — from asset qualification and commercial objectives through legal, regulatory and custody design to issuance, distribution, settlement and ongoing servicing.",
   topics: [
     { label: "Asset tokenization", covered: true },
     { label: "Digital securities", covered: true },
     { label: "Real estate", covered: true },
     { label: "Private markets", covered: true },
-    { label: "Fixed income", covered: true },
+    { label: "Fixed income", covered: false },
     { label: "Infrastructure", covered: false },
-    { label: "Compliance", covered: false },
-    { label: "Custody and settlement", covered: false },
+    { label: "Compliance", covered: true },
+    { label: "Custody and settlement", covered: true },
     { label: "Interoperability", covered: false },
-    { label: "Lifecycle management", covered: false },
+    { label: "Lifecycle management", covered: true },
   ],
 } as const;
+
+/** Additional topical RWA shorts (same channel) — no desk/street ambience. */
+export const RWA_VIDEO_LIBRARY = [
+  {
+    youtubeId: "YmFKylOfCh8",
+    title: "What Is Asset Tokenization? The Shift to Digital Ownership",
+    duration: "1:37",
+    focus: "Asset tokenization",
+  },
+  {
+    youtubeId: "TUL15TS5P9U",
+    title: "How Custody Protects Tokenized Real-World Assets",
+    duration: "1:03",
+    focus: "Custody",
+  },
+  {
+    youtubeId: "IPO_98M_5b0",
+    title: "Tokenized Real Estate: Where Is the Property Stored?",
+    duration: "1:40",
+    focus: "Real estate",
+  },
+  {
+    youtubeId: "W6kQ3bRH6gQ",
+    title: "The Architecture of Trust behind credible digital markets",
+    duration: "2:11",
+    focus: "Institutional infrastructure",
+  },
+] as const;

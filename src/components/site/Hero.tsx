@@ -1,78 +1,54 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { HERO_VIDEO } from "@/data/featuredVideo";
 
-const pickVideoSrc = () =>
-  typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
-    ? HERO_VIDEO.srcMobile
-    : HERO_VIDEO.src;
+const HERO_POSTER = `https://i.ytimg.com/vi/${HERO_VIDEO.youtubeId}/maxresdefault.jpg`;
+
+/** Muted looping privacy embed — topical RWA film, no site login. */
+const heroEmbedSrc = () =>
+  `https://www.youtube-nocookie.com/embed/${HERO_VIDEO.youtubeId}` +
+  `?autoplay=1&mute=1&controls=0&loop=1&playlist=${HERO_VIDEO.youtubeId}` +
+  `&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
 
 export const Hero = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [videoSrc, setVideoSrc] = useState(HERO_VIDEO.src);
 
   useEffect(() => {
-    setVideoSrc(pickVideoSrc());
-
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const widthQuery = window.matchMedia("(max-width: 767px)");
-
-    const applyMotionPref = () => setReduceMotion(motion.matches);
-    const applyWidthPref = () => setVideoSrc(pickVideoSrc());
-
-    applyMotionPref();
-    motion.addEventListener("change", applyMotionPref);
-    widthQuery.addEventListener("change", applyWidthPref);
-
-    return () => {
-      motion.removeEventListener("change", applyMotionPref);
-      widthQuery.removeEventListener("change", applyWidthPref);
-    };
+    const apply = () => setReduceMotion(motion.matches);
+    apply();
+    motion.addEventListener("change", apply);
+    return () => motion.removeEventListener("change", apply);
   }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || reduceMotion) return;
-
-    const sync = () => {
-      video.play().catch(() => {});
-    };
-
-    sync();
-    video.addEventListener("loadedmetadata", sync);
-    return () => video.removeEventListener("loadedmetadata", sync);
-  }, [reduceMotion, videoSrc]);
 
   return (
     <section className="relative flex min-h-[630px] items-center overflow-x-clip border-b border-border sm:min-h-[605px] lg:min-h-[713px]">
       <div className="absolute inset-0" aria-hidden="true">
         <div
           className="absolute inset-0 bg-[#050b16] bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_VIDEO.poster})` }}
+          style={{ backgroundImage: `url(${HERO_POSTER})` }}
         />
 
         {!reduceMotion ? (
-          <video
-            key={videoSrc}
-            ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={HERO_VIDEO.poster}
-            src={videoSrc}
-          />
+          <div className="absolute inset-0 overflow-hidden">
+            <iframe
+              title=""
+              src={heroEmbedSrc()}
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen={false}
+              loading="eager"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
         ) : null}
 
-        <div className="absolute inset-0 bg-[#050b16]/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background" />
+        <div className="absolute inset-0 bg-[#050b16]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/25 via-transparent to-background" />
       </div>
 
       <div className="container relative py-16 sm:py-20 lg:py-28">

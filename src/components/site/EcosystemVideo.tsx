@@ -1,18 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Play } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { FEATURED_VIDEO } from "@/data/featuredVideo";
+import { FEATURED_VIDEO, RWA_VIDEO_LIBRARY } from "@/data/featuredVideo";
 import { cn } from "@/lib/utils";
 
 export const EcosystemVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !playing) return;
-    video.play().catch(() => setPlaying(false));
-  }, [playing]);
+  const [playingId, setPlayingId] = useState<string | null>(null);
+  const poster = `https://i.ytimg.com/vi/${FEATURED_VIDEO.youtubeId}/maxresdefault.jpg`;
 
   return (
     <section
@@ -25,36 +19,34 @@ export const EcosystemVideo = () => {
           eyebrow="Ecosystem overview"
           title={
             <>
-              Understanding the tokenized <span className="text-gradient">asset economy</span>
+              Real-world asset <span className="text-gradient">tokenization</span>, explained
             </>
           }
-          description="A self-hosted four-minute live-action reel — no registration or third-party login required."
+          description="Institutional films specifically about RWA tokenization — asset structuring, custody, real estate and trust architecture. No ambient office or street footage."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="overflow-hidden rounded-2xl border border-border/70 bg-black shadow-elevated">
             <div className="relative aspect-video w-full">
-              {playing ? (
-                <video
-                  ref={videoRef}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  src={FEATURED_VIDEO.src}
-                  poster={FEATURED_VIDEO.poster}
-                  controls
-                  autoPlay
-                  loop
-                  playsInline
-                  preload="metadata"
+              {playingId === FEATURED_VIDEO.youtubeId ? (
+                <iframe
+                  title={FEATURED_VIDEO.title}
+                  src={`https://www.youtube-nocookie.com/embed/${FEATURED_VIDEO.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
                 />
               ) : (
                 <button
                   type="button"
-                  onClick={() => setPlaying(true)}
+                  onClick={() => setPlayingId(FEATURED_VIDEO.youtubeId)}
                   className="group absolute inset-0 h-full w-full text-left"
                   aria-label={`Play video: ${FEATURED_VIDEO.title}`}
                 >
                   <img
-                    src={FEATURED_VIDEO.poster}
+                    src={poster}
                     alt=""
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -104,14 +96,70 @@ export const EcosystemVideo = () => {
               ))}
             </ul>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Themes without a highlight remain central to institutional tokenization and are covered
-              across our{" "}
-              <a href="/docs" className="font-medium text-primary hover:underline">
-                research chapters
-              </a>
-              . Footage is royalty-free industry atmosphere material, not TokenBrickLabs original content.
+              Independent industry education, not TokenBrickLabs content. Plays via privacy-enhanced
+              embed — no registration on this site.
             </p>
+            <a
+              href={FEATURED_VIDEO.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex text-sm font-medium text-primary hover:underline"
+            >
+              Open source page →
+            </a>
           </div>
+        </div>
+
+        <div className="mt-14">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">
+            More on RWA tokenization
+          </p>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {RWA_VIDEO_LIBRARY.map((video) => {
+              const thumb = `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
+              const active = playingId === video.youtubeId;
+              return (
+                <li
+                  key={video.youtubeId}
+                  className="overflow-hidden rounded-xl border border-border/70 bg-background/40"
+                >
+                  <div className="relative aspect-video bg-black">
+                    {active ? (
+                      <iframe
+                        title={video.title}
+                        src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                        className="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setPlayingId(video.youtubeId)}
+                        className="group absolute inset-0 h-full w-full text-left"
+                        aria-label={`Play video: ${video.title}`}
+                      >
+                        <img src={thumb} alt="" className="h-full w-full object-cover" loading="lazy" />
+                        <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition-colors group-hover:bg-black/35">
+                          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                            <Play className="ml-0.5 h-4 w-4 fill-current" aria-hidden="true" />
+                          </span>
+                        </span>
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-primary">
+                      {video.duration} · {video.focus}
+                    </p>
+                    <p className="mt-1 text-sm font-medium leading-snug text-foreground">{video.title}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>
