@@ -1,10 +1,8 @@
 /**
- * Hero background — self-hosted MP4 only (never YouTube embed / never login wall).
- * Topical RWA tokenization film (~4:00 muted loop). YouTube originals are bot-gated
- * for automated download; this cut is sourced from a public BitChute RWA explainer
- * (“Real World Asset Tokenization - How Will RWAs Reshape Finance”), trimmed + muted.
+ * Hero background — self-hosted MP4 only (never YouTube / never login wall).
+ * Source: Debut Infotech homepage banner (homepage-video.mp4), muted + looped locally.
  *
- * Ecosystem films below remain separate click-to-play RWA Avaitar YouTube explainers.
+ * Ecosystem films below are separate click-to-play RWA explainers (RWA Avaitar).
  */
 export const HERO_VIDEO = {
   src: "/videos/hero-background.mp4",
